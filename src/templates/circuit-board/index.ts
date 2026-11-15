@@ -282,7 +282,7 @@ class CircuitBoard extends BaseTemplate {
             prev = p;
           }
         }
-      } else {
+      } else if (c.kind === 'ammeter' || c.kind === 'voltmeter') {
         const isA = c.kind === 'ammeter';
         const val = isA ? this.shown('I') : this.shown('V');
         const full = isA ? 1.5 : this.n('emf');
