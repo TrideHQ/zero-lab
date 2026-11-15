@@ -8,7 +8,7 @@ const browser = await chromium.launch({ args: ['--use-gl=angle', '--use-angle=sw
 const ctx = await browser.newContext(flags.includes('--mobile') ? { ...devices['Pixel 7'] } : { viewport: { width: 1366, height: 800 } });
 const page = await ctx.newPage();
 const errors = [];
-page.on('pageerror', (e) => errors.push('pageerror: ' + e.message));
+page.on('pageerror', (e) => errors.push('pageerror: ' + (e.stack ?? e.message).split('\n').slice(0, 5).join(' | ')));
 page.on('console', (m) => { if (m.type() === 'error') errors.push('console: ' + m.text()); });
 await page.goto(url, { waitUntil: 'networkidle' });
 await page.waitForTimeout(Number(flag('wait') ?? 2500));
