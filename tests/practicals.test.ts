@@ -90,7 +90,7 @@ test('refraction: pins traced with human error give n within tolerance; parallax
   }
   const e = new PracticalEngine(p);
   assert.ok(parallax(0.05) === 0 && parallax(0.8) > 2);
-  const bad = e.add({ i: 43, r: 23 }, { oblique: 0.8, pinGap: 0.4, trueI: 40 });
+  const bad = e.add({ i: 43.5, r: 23 }, { oblique: 0.8, pinGap: 0.4, trueI: 40 });
   assert.deepEqual(bad.issues, ['parallax']);
   assert.ok(e.add({ i: 30, r: 19 }, { oblique: 0.05, pinGap: 0.08, trueI: 30 }).issues.includes('pins_too_close'));
 });
@@ -127,7 +127,8 @@ test('marks are deterministic and the rubric changes with the board', () => {
 
 test('careless work loses marks in the right places', () => {
   const e = pendulumRun('earth', 3);
-  e.analysis = { x: 'T2', y: 'L', formula: 'b', unit: '', precautions: ['big_push', 'one_swing'], conclusion: 1 };
+  // (formula 'b' with these swapped axes would, by luck, still give g; 'c' does not)
+  e.analysis = { x: 'T2', y: 'L', formula: 'c', unit: '', precautions: ['big_push', 'one_swing'], conclusion: 1 };
   const s = mark('waec', rubrics.rubrics.waec, e.stats());
   const row = (id: string) => s.rows.find((r) => r.id === id)!;
   assert.equal(row('precautions').got, 0);

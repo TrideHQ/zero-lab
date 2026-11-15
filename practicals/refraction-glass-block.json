@@ -83,14 +83,14 @@
         "label": "i",
         "unit": "°",
         "source": "measured",
-        "dp": 0
+        "dp": 1
       },
       {
         "id": "r",
         "label": "r",
         "unit": "°",
         "source": "measured",
-        "dp": 0
+        "dp": 1
       },
       {
         "id": "sini",

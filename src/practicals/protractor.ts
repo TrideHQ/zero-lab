@@ -1,5 +1,5 @@
 // The holographic protractor: turns the student's four pins into traced rays,
-// then reads the angles off to the nearest degree, with parallax if they are
+// then reads the angles off to the nearest half degree, with parallax if they are
 // not looking straight on.
 import type { P3, Seg } from '../render/beams.ts';
 
@@ -24,10 +24,11 @@ export function tracePins(above: Pin[], below: Pin[], top: number, bottom: numbe
 /** Parallax error in degrees for a viewing direction `oblique` radians off straight-on. */
 export const parallax = (oblique: number) => Math.max(0, Math.sin(oblique) - Math.sin(0.12)) * 4;
 
-/** What the protractor reads: nearest degree, shifted by parallax. `sign` is +1 or -1. */
+/** What the protractor reads: nearest half degree, shifted by parallax. `sign` is +1 or -1. */
 export function readAngles(tr: Trace, oblique: number, sign: number): { i: number; r: number } {
   const e = parallax(oblique) * sign;
-  return { i: Math.round(tr.i + e), r: Math.round(tr.r - e * 0.6) };
+  const half = (v: number) => Math.round(v * 2) / 2; // read to the nearest half degree
+  return { i: half(tr.i + e), r: half(tr.r - e * 0.6) };
 }
 
 /** Protractor scale around a centre: ticks every 10°, longer every 30°. */
