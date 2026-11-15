@@ -323,7 +323,7 @@ class CircuitBoard extends BaseTemplate {
     // meter flicker and (practical only) slow resistor heating while current flows
     if (t - this.noiseT > 0.6) {
       this.noiseT = t;
-      this.noise = { V: (this.rand() - 0.5) * 0.9, I: (this.rand() - 0.5) * 0.9 };
+      this.noise = { V: (this.rand() - 0.5) * 0.6, I: (this.rand() - 0.5) * 0.6 };
       this.dirty = true;
     }
     if (this.building) {

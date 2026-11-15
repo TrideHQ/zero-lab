@@ -75,7 +75,8 @@ const ohm: Logic = {
   range: [0.25, 1.25],
   derive: () => ({}),
   truth: (_m, meta) => ({ V: Number(meta.trueV ?? 0), I: Number(meta.trueI ?? 0) }),
-  error: (m, tr) => (tr.I > 0 && tr.V > 0 ? Math.max(Math.abs(m.V - tr.V) / tr.V, Math.abs(m.I - tr.I) / tr.I) : 1),
+  // a meter cannot be read closer than its smallest division (0.1 V, 0.02 A), so that much is not an error
+  error: (m, tr) => (tr.I > 0 && tr.V > 0 ? Math.max(Math.max(0, Math.abs(m.V - tr.V) - 0.1) / tr.V, Math.max(0, Math.abs(m.I - tr.I) - 0.02) / tr.I) : 1),
   issues(m, tr, meta, p) {
     if (!meta.switchOn || m.I === 0) return ['switch_open'];
     return this.error(m, tr) > p.tolerance.reading ? ['misread_scale'] : [];

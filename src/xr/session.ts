@@ -144,14 +144,18 @@ class Controller {
     document.body.append(this.bar);
     // taps on the HTML controls must not also place the lab
     document.body.addEventListener('beforexrselect', this.guard);
-    this.session.addEventListener('select', () => {
+    // a screen tap arrives as an XR 'select'; the click listener covers browsers that only deliver it to the overlay
+    this.placeTap = () => {
       if (!this.placement || this.placement.placed) return;
       this.placement.place(this.stage.root, this.stage.renderer.xr.getCamera());
       this.stage.root.visible = true;
       hint.textContent = '';
       blip('hum');
-    });
+    };
+    this.session.addEventListener('select', this.placeTap);
+    this.stage.renderer.domElement.addEventListener('click', this.placeTap);
   }
+  private placeTap: () => void = () => {};
   private guard = (e: Event) => {
     if ((e.target as Element | null)?.closest?.('button, a, input, select, label, .panel, .tools, .ar-bar, .bubble')) e.preventDefault();
   };
@@ -449,6 +453,7 @@ class Controller {
     this.placement?.dispose();
     this.bar?.remove();
     document.body.removeEventListener('beforexrselect', this.guard);
+    st.renderer.domElement.removeEventListener('click', this.placeTap);
     document.documentElement.classList.remove('ar-active');
     active = null;
     st.afterXR();

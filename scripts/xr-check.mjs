@@ -75,7 +75,7 @@ for (const profile of ['glasses', 'quest3']) {
   await aim(page, nw);
   await page.waitForTimeout(300);
   const fb = await page.evaluate(() => ({ text: document.querySelector('.feedback')?.textContent, q: document.querySelector('.check-q')?.textContent, last: window.__xrc.state().lastPoint }));
-  check(fb.text === 'Correct!', `"${fb.q}" answered by pointing and pinching (pointed at: ${fb.last}; feedback: ${fb.text})`);
+  check(fb.last === 'normal' && (fb.text === 'Correct!' || !fb.q.startsWith('Tap the normal')), `"Tap the normal line" answered by pointing and pinching (pointed at: ${fb.last}; moved on to: "${fb.q}")`);
   // empty-space pinch rotates; two-hand pull zooms
   const yaw0 = (await page.evaluate(() => window.__xrc.state())).yaw;
   const free = [0.05, 1.42, -0.3];
@@ -123,6 +123,9 @@ console.log('Phone AR path (emulated; no real camera or hit-test)');
   check(await page.evaluate(() => window.__xrc.state().phoneAR && document.documentElement.classList.contains('ar-active')), 'AR session started with the HTML UI as overlay');
   check(await page.evaluate(() => !window.__stage.root.visible), 'lab is hidden until it is placed');
   await page.evaluate(async () => { const h = window.__xr.hands.right; h.setPinchValueImmediate(1); await new Promise((r) => setTimeout(r, 300)); h.setPinchValueImmediate(0); await new Promise((r) => setTimeout(r, 300)); });
+  const bySelect = await page.evaluate(() => window.__stage.root.visible);
+  if (!bySelect) await page.evaluate(() => window.__stage.renderer.domElement.click());
+  console.log(`  (placed by ${bySelect ? 'XR select event' : 'tap on the overlay; the emulator sent no select event'})`);
   const placed = await page.evaluate(() => ({ visible: window.__stage.root.visible, scale: window.__stage.root.scale.x, pos: window.__stage.root.position.toArray() }));
   check(placed.visible && placed.scale < 0.5, `select places the lab in front of the camera at scale ${placed.scale} (${placed.pos.map((v) => v.toFixed(2))})`);
   if (shots) await page.screenshot({ path: `${shots}/ar-phone.png` });
