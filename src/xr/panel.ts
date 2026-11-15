@@ -99,7 +99,7 @@ export class Panel {
       return;
     }
     // buttons: laid out from the bottom up so they are always fully visible
-    const bh = 92, gap = 14;
+    const bh = 84, gap = 14;
     g.font = `600 30px ${FONT}`;
     const rows: { b: PanelButton; w: number; lines: string[] }[][] = [[]];
     let rowW = 0;
@@ -114,7 +114,8 @@ export class Panel {
       rowW += w + gap;
     }
     const used = s.buttons.length ? rows.length * (bh + gap) : 0;
-    let y = H - pad - used + gap - (s.footer ? 34 : 0);
+    const bare = !s.title && !s.body.length && !s.table; // a buttons-only panel fills from the top
+    let y = bare ? pad : H - pad - used + gap - (s.footer ? 34 : 0);
     const bodyBottom = y - 10;
     for (const row of rows) {
       const extra = (W - 2 * pad - row.reduce((a, r) => a + r.w, 0) - gap * (row.length - 1)) / (row.length || 1);

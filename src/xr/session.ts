@@ -18,7 +18,7 @@ let app: XRApp | null = null;
 let active: Controller | null = null;
 
 /** Layout constants (metres), chosen so everything sits inside a 70° x 66° field of view at arm's reach. */
-export const LAYOUT = { dist: 0.62, drop: 0.02, scale: 0.15, sideX: 0.32, sideZ: -0.05, sideTurn: 0.6, buttonsY: -0.21, buttonsZ: 0.05, buttonsTilt: -0.35 };
+export const LAYOUT = { dist: 0.62, drop: -0.02, scale: 0.15, sideX: 0.31, sideZ: -0.05, sideTurn: 0.6, buttonsY: -0.195, buttonsZ: 0.05, buttonsTilt: -0.35 };
 
 export async function xrSupport(): Promise<{ vr: boolean; ar: boolean }> {
   const xr = (navigator as Navigator & { xr?: XRSystem }).xr;
@@ -54,7 +54,8 @@ export async function enterXR(mode: 'vr' | 'ar', stage: Stage): Promise<void> {
   (window as unknown as { __xrc: unknown }).__xrc = active;
 }
 
-interface Grab { handle?: Handle; plane?: THREE.Plane; rotate?: { x: number; yaw: number } }
+interface Grab { handle?: Handle; plane?: THREE.Plane; offset?: THREE.Vector3; rotate?: { x: number; yaw: number } }
+interface Aim { ray: THREE.Ray; hot: { panel: Panel; index: number } | null; onPanel: boolean }
 
 class Controller {
   dirty = true;
@@ -62,7 +63,7 @@ class Controller {
   readonly hands = [new HandState('left'), new HandState('right')];
   readonly text = new Panel(0.24, 0.3);
   readonly side = new Panel(0.24, 0.3);
-  readonly buttons = new Panel(0.7, 0.2);
+  readonly buttons = new Panel(0.7, 0.18);
   readonly menu = new Panel(0.22, 0.2);
   private rig = new THREE.Group();
   private cursors = [0, 1].map(() => new THREE.Mesh(new THREE.SphereGeometry(0.006, 8, 6), glow(WARM, 1)));
@@ -78,6 +79,9 @@ class Controller {
   private swipe = [new PalmSwipe(), new PalmSwipe()];
   private ray = new THREE.Ray();
   private hov = new Map<Panel, number>();
+  /** Where each hand was aiming over the last few frames. Closing a pinch moves the fingers, so a pinch
+   *  acts on the aim from just before it started, not on where the closing fingers end up. */
+  private aims: Aim[][] = [[], []];
   private head = new THREE.Vector3();
   private yaw = 0;
   private bar: HTMLElement | null = null;
@@ -270,17 +274,25 @@ class Controller {
     this.poked[i] = pokedNow;
     if (hot) this.hov.set(hot.panel, hot.index);
 
+    if (!h.pinching) {
+      this.aims[i].push({ ray: this.ray.clone(), hot, onPanel: cursor.visible });
+      if (this.aims[i].length > 8) this.aims[i].shift();
+    }
     if (h.pinchStart) {
-      if (hot) {
-        hot.panel.press(hot.index);
+      const was = this.aims[i][0] ?? { ray: this.ray.clone(), hot, onPanel: cursor.visible };
+      this.aims[i] = [];
+      if (was.hot) {
+        was.hot.panel.press(was.hot.index);
         blip('tick');
-      } else if (!cursor.visible) this.grab(i);
+      } else if (!was.onPanel) this.grab(i, was.ray);
     }
     const g = this.grabs[i];
     if (g && h.pinching) {
       if (g.handle?.drag && g.plane) {
         const p = this.ray.intersectPlane(g.plane, new THREE.Vector3()) ?? g.plane.projectPoint(h.pinchPos, new THREE.Vector3());
-        g.handle.drag(this.stage.template!.group.worldToLocal(p), 'move');
+        const local = this.stage.template!.group.worldToLocal(p);
+        g.offset ??= g.handle.pos.clone().sub(local); // keep the handle under the fingers: no jump as the pinch closes
+        g.handle.drag(local.add(g.offset), 'move');
       } else if (g.rotate && !this.two) {
         const right = new THREE.Vector3(Math.cos(this.yaw), 0, -Math.sin(this.yaw));
         this.stage.root.rotation.y = g.rotate.yaw + (h.pinchPos.dot(right) - g.rotate.x) * 6;
@@ -298,7 +310,7 @@ class Controller {
     if (sw && !this.grabs[0] && !this.grabs[1]) app?.onSwipe?.(sw);
   }
 
-  private grab(i: number) {
+  private grab(i: number, ray: THREE.Ray) {
     const tpl = this.stage.template;
     const h = this.hands[i];
     if (!tpl) return;
@@ -309,7 +321,7 @@ class Controller {
     for (const hd of [...tpl.handles(), ...this.stage.extraHandles]) {
       if (hd.enabled && !hd.enabled()) continue;
       const w = tpl.group.localToWorld(hd.pos.clone());
-      const direct = w.distanceTo(h.pinchPos), along = this.ray.distanceToPoint(w);
+      const direct = w.distanceTo(h.pinchPos), along = ray.distanceToPoint(w);
       const d = direct < Math.max(0.05, hd.radius * s * 1.5) ? direct * 0.5 : along < Math.max(0.03, hd.radius * s) ? along : 1e9;
       if (d < bestD) { best = hd; bestD = d; }
     }
@@ -319,8 +331,7 @@ class Controller {
         const n = new THREE.Vector3(axis === 'x' ? 1 : 0, axis === 'y' ? 1 : 0, axis === 'z' ? 1 : 0).transformDirection(tpl.group.matrixWorld);
         const plane = new THREE.Plane().setFromNormalAndCoplanarPoint(n, tpl.group.localToWorld(best.pos.clone()));
         this.grabs[i] = { handle: best, plane };
-        const p = this.ray.intersectPlane(plane, new THREE.Vector3());
-        if (p) best.drag(tpl.group.worldToLocal(p), 'start');
+        best.drag(best.pos.clone(), 'start');
       } else best.tap?.();
       blip('tick');
       return;
@@ -328,13 +339,13 @@ class Controller {
     // 2. a named part (point + pinch), or any point on the model's plane when the screen wants it
     const zn = new THREE.Vector3(0, 0, 1).transformDirection(tpl.group.matrixWorld);
     const zPlane = new THREE.Plane().setFromNormalAndCoplanarPoint(zn, tpl.group.localToWorld(new THREE.Vector3()));
-    const on = this.ray.intersectPlane(zPlane, new THREE.Vector3());
+    const on = ray.intersectPlane(zPlane, new THREE.Vector3());
     const local = on ? tpl.group.worldToLocal(on.clone()) : null;
     let name: string | null = null, nd = 0.028;
     for (const [k, target] of Object.entries(tpl.pickTargets())) {
       const pts = Array.isArray(target) ? [0, 0.25, 0.5, 0.75, 1].map((f) => target[0].clone().lerp(target[1], f)) : [target.clone()];
       for (const p of pts) {
-        const d = this.ray.distanceToPoint(tpl.group.localToWorld(p));
+        const d = ray.distanceToPoint(tpl.group.localToWorld(p));
         if (d < nd) { nd = d; name = k; }
       }
     }
