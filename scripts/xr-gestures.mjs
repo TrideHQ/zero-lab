@@ -70,7 +70,7 @@ for (const profile of ['glasses', 'quest3']) {
     const before = await card();
     await page.evaluate(async (k) => {
       const hand = window.__xr.hands.right;
-      hand.quaternion.set(0, 0, 0, 1); hand.setPinchValueImmediate(0);
+      hand.quaternion.set(0, 0, 0.7071, 0.7071); hand.setPinchValueImmediate(0); // palm facing sideways, as when turning a page
       const dirn = k % 2 === 0 ? -1 : 1, x0 = dirn < 0 ? 0.3 : -0.05;
       hand.position.set(x0, 1.05, -0.35);
       await new Promise((res) => setTimeout(res, 400));
