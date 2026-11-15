@@ -10,7 +10,10 @@ let offline = false;
 
 export async function askPartner(ctx: PartnerContext): Promise<PartnerReply> {
   const fallback = (): PartnerReply => ({ ...ruleSay(ctx, t), source: 'rules' });
-  if (ctx.event === 'hello' || offline || new URLSearchParams(location.search).get('partner') === 'rules') return fallback();
+  // Routine progress lines ("that's 3 of 5") need no AI: the rules say them, which keeps the small
+  // upstream quota for the moments that matter, a reading that looks off and the final comment.
+  const routine = ctx.event === 'hello' || (ctx.event === 'reading' && ctx.issue === 'none');
+  if (routine || offline || new URLSearchParams(location.search).get('partner') === 'rules') return fallback();
   const ac = new AbortController();
   const timer = setTimeout(() => ac.abort(), PARTNER_TIMEOUT_MS);
   try {

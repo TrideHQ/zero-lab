@@ -1,3 +1,4 @@
+import { perfMark } from './ui/debug.ts';
 // Tiny hash router. Each route lazy-loads its screen so the first paint stays small.
 export interface Screen { el: HTMLElement; destroy?: () => void }
 type Loader = (params: string[], query: URLSearchParams) => Promise<Screen>;
@@ -20,6 +21,7 @@ export async function render() {
   const raw = location.hash.replace(/^#/, '') || '/';
   const [path, qs = ''] = raw.split('?');
   const mine = ++token;
+  perfMark('route');
   for (const [re, loader] of routes) {
     const m = path.match(re);
     if (!m) continue;
@@ -39,6 +41,7 @@ export async function render() {
     }
     current?.destroy?.();
     outlet.replaceChildren(next.el);
+    perfMark('screen');
     current = next;
     window.scrollTo(0, 0);
     return;

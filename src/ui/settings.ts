@@ -16,7 +16,7 @@ export default async function settingsPage(): Promise<Screen> {
     h('header.page-head', h('a.back', { href: '#/', 'aria-label': t('app.back') }, '←'), h('h1', t('settings.title'))),
     h('section', h('h2', t('settings.curriculum')), boardList((id) => saveSettings({ board: id, picked: true }))),
     h('section', h('h2', t('settings.language')),
-      h('div.seg.wrap', { role: 'radiogroup' }, LOCALES.map((l) => h('button', { role: 'radio', lang: l.id, 'aria-checked': String(l.id === s.locale), onclick: async () => { saveSettings({ locale: l.id }); await setLocale(l.id); redraw(); } }, l.name))),
+      h('div.seg.wrap', { role: 'radiogroup' }, LOCALES.map((l) => h('button', { role: 'radio', lang: l.id, 'aria-checked': String(l.id === s.locale), onclick: async () => { saveSettings({ locale: l.id }); await setLocale(l.id); redraw(); } }, l.name, l.id !== 'en' ? h('span.beta', t('settings.beta')) : null))),
       s.locale !== 'en' ? h('p.muted', t('settings.draft_locale')) : null),
     h('section', h('h2', t('settings.lite')),
       seg(t('settings.lite'), [['auto', `${t('settings.lite_auto')} (${isLiteAuto() ? t('settings.lite_on') : t('settings.lite_off')})`], ['on', t('settings.lite_on')], ['off', t('settings.lite_off')]], s.lite, (v) => { saveSettings({ lite: v as 'auto' }); redraw(); }),

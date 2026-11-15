@@ -50,6 +50,7 @@ async function boot() {
   route(/^\/p\/([\w-]+)$/, async (p, q) => (await import('./ui/bench.ts')).default(p, q));
   route(/^\/progress$/, async () => (await import('./ui/progress.ts')).default());
   route(/^\/settings$/, async () => (await import('./ui/settings.ts')).default());
+  if (new URLSearchParams(location.search).get('debug') === '1') (await import('./ui/debug.ts')).installDebug();
   startRouter(main);
 
   if (!s.picked) firstRunPicker(() => void render());

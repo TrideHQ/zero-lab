@@ -83,15 +83,18 @@ export function allowedNumbers(ctx: PartnerContext): number[] {
   return out;
 }
 
-/** Validate the model's reply. Returns null (use the rule-based fallback) on any doubt. */
-export function validateSay(raw: unknown, ctx: PartnerContext): PartnerSay | null {
-  if (!raw || typeof raw !== 'object') return null;
+/** Validate the model's reply. On any doubt it returns a short reason code and the caller uses the rules instead. */
+export function checkSay(raw: unknown, ctx: PartnerContext): { say: PartnerSay | null; reason: string } {
+  const no = (reason: string) => ({ say: null, reason });
+  if (!raw || typeof raw !== 'object') return no('not_json');
   const r = raw as Record<string, unknown>;
-  if (typeof r.say !== 'string') return null;
+  if (typeof r.say !== 'string') return no('no_say');
   const say = r.say.replace(/\s+/g, ' ').trim();
-  if (say.length < 2 || say.length > 240) return null;
-  if (/[<>{}\[\]]|https?:|www\./i.test(say)) return null;
-  if (r.mark !== null && r.mark !== undefined) return null; // marks are never the model's to give
+  if (say.length < 2) return no('empty');
+  if (say.length > 240) return no('too_long');
+  if (/[<>{}\[\]]|https?:|www\./i.test(say)) return no('markup');
+  // The model has no say over marks: whatever it puts in "mark" is discarded, and it may not quote a score.
+  if (/\b\d+(?:\.\d+)?\s*(?:\/|out of|of)\s*\d+\b|\b\d+\s*%/.test(say) && ctx.event === 'final') return no('quotes_mark');
   const tip = typeof r.tip === 'string' && TIPS.includes(r.tip) ? r.tip : ISSUE_TIP[ctx.issue] ?? 'none';
   let highlight: string | null = null;
   if (typeof r.highlight === 'string') {
@@ -101,10 +104,11 @@ export function validateSay(raw: unknown, ctx: PartnerContext): PartnerSay | nul
   const ok = allowedNumbers(ctx);
   for (const tok of say.match(/\d+(?:[.,]\d+)?/g) ?? []) {
     const v = Number(tok.replace(',', '.'));
-    if (!ok.some((a) => Math.abs(a - v) <= Math.max(0.006, Math.abs(a) * 0.006) || Math.abs(Number(a.toFixed(1)) - v) < 1e-9 || Math.abs(Number(a.toFixed(2)) - v) < 1e-9 || Math.abs(Math.round(a) - v) < 1e-9)) return null;
+    if (!ok.some((a) => Math.abs(a - v) <= Math.max(0.006, Math.abs(a) * 0.006) || Math.abs(Number(a.toFixed(1)) - v) < 1e-9 || Math.abs(Number(a.toFixed(2)) - v) < 1e-9 || Math.abs(Math.round(a) - v) < 1e-9)) return no('number_not_in_context');
   }
-  return { say, highlight, tip, mark: null };
+  return { say: { say, highlight, tip, mark: null }, reason: 'ok' };
 }
+export const validateSay = (raw: unknown, ctx: PartnerContext): PartnerSay | null => checkSay(raw, ctx).say;
 
 /** Pull the first JSON object out of a model reply (handles code fences and stray prose). */
 export function parseModelJson(text: string): unknown {

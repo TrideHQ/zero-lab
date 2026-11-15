@@ -29,7 +29,9 @@ test('a good model reply passes; numbers not in the context, marks and markup ar
   const ok = validateSay({ say: 'Your third timing, 34.1 s, looks about one swing short. Count from zero.', highlight: 'reading_3', tip: 'count_from_zero', mark: null }, ctx);
   assert.deepEqual(ok, { say: 'Your third timing, 34.1 s, looks about one swing short. Count from zero.', highlight: 'reading_3', tip: 'count_from_zero', mark: null });
   assert.equal(validateSay({ say: 'The period should be 1.79 s, so g is 9.86.', highlight: null, tip: 'none', mark: null }, ctx), null);
-  assert.equal(validateSay({ say: 'Nice work!', highlight: null, tip: 'none', mark: 18 }, ctx), null);
+  // the model has no say over marks: its "mark" is thrown away, and it may not quote a score in the final comment
+  assert.equal(validateSay({ say: 'Nice work!', highlight: null, tip: 'none', mark: 18 }, ctx)!.mark, null);
+  assert.equal(validateSay({ say: 'You got 5 out of 5, well done.', highlight: null, tip: 'none', mark: null }, { ...ctx, event: 'final', n: 5 }), null);
   assert.equal(validateSay({ say: 'See <b>this</b> http://x.y', highlight: null, tip: 'none', mark: null }, ctx), null);
   assert.equal(validateSay({ say: '', tip: 'none', mark: null }, ctx), null);
   assert.equal(validateSay('nope', ctx), null);

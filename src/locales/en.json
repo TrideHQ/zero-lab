@@ -23,7 +23,19 @@
     "moon_sub": "Drop a hammer and a feather. Fire a laser at the Moon. Four experiences.",
     "continue": "Continue learning",
     "start": "Start with Physics",
-    "open": "Open"
+    "open": "Open",
+    "eyebrow": "A holographic science library",
+    "cta2": "See how a practical works",
+    "how": "How it works",
+    "how1": "Explore",
+    "how1_sub": "Short cards drive a live 3D model you can drag, slice and slow down.",
+    "how2": "Do the practical",
+    "how2_sub": "Take your own readings on a hologram bench. A lab partner watches for slips.",
+    "how3": "Get marked",
+    "how3_sub": "Table, graph and best-fit line build as you go. The mark is computed, exam-style.",
+    "start_here": "Start here",
+    "all_topics": "All {n} physics topics",
+    "modes": "Runs in a browser, in AR on Android, and hands-only on Meta Quest and VR Glasses."
   },
   "picker": {
     "title": "Which curriculum do you follow?",
@@ -222,7 +234,8 @@
     "sound": "Sound",
     "narration": "Narration",
     "privacy": "No account. Your progress stays on this device. The lab partner is sent only your readings, never your name.",
-    "draft_locale": "This translation is a machine draft and only partly complete. English is shown where a string is missing."
+    "draft_locale": "Beta translation: a machine draft that is only partly complete. English is shown where a string is missing.",
+    "beta": "Beta"
   },
   "xr": {
     "menu": "Menu",
@@ -231,7 +244,8 @@
     "home": "All topics",
     "place": "Point at a table and tap to place the lab",
     "replace": "Move the lab",
-    "pinch": "Pinch to select"
+    "pinch": "Pinch to select",
+    "gaze": "Look at a button and pinch to select it"
   },
   "units": {
     "deg": "°"
@@ -306,5 +320,14 @@
     "anticlockwise": "turns anticlockwise",
     "clockwise": "turns clockwise",
     "switch_open": "switch open: no current"
+  },
+  "debug": {
+    "fps": "FPS",
+    "load": "Page shell",
+    "topic": "Topic opened",
+    "model": "3D ready",
+    "mode": "Mode",
+    "lite": "Lite",
+    "full": "Full"
   }
 }

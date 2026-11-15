@@ -13,6 +13,7 @@ import type { Stage } from '../render/renderer.ts';
 import type { Template } from '../templates/types.ts';
 import type { PanelSpec, XRApp } from '../xr/panel-spec.ts';
 import { blip } from '../audio/sfx.ts';
+import { perfMark } from './debug.ts';
 import { narrate, stopNarration } from '../audio/narration.ts';
 
 export default async function topicPage(params: string[], query: URLSearchParams): Promise<Screen> {
@@ -179,6 +180,7 @@ export default async function topicPage(params: string[], query: URLSearchParams
       tpl = made;
       stage.mount(viewport, lite);
       stage.setTemplate(tpl);
+      perfMark('model');
       blip('hum');
       bar = controlBar(tpl, stage);
       tools.replaceChildren(bar.el);

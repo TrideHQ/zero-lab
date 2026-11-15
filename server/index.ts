@@ -66,7 +66,10 @@ createServer(async (req, res) => {
     if (path === '/api/partner') {
       if (req.method !== 'POST') return json(res, 405, { error: 'method_not_allowed' });
       const ip = String(req.headers['x-forwarded-for'] ?? req.socket.remoteAddress ?? '').split(',')[0].trim();
-      if (limited(ip)) return json(res, 429, { error: 'rate_limited' });
+      if (limited(ip)) {
+        console.log(JSON.stringify({ t: new Date().toISOString(), api: 'partner', status: 429, outcome: 'rate_limited' }));
+        return json(res, 429, { error: 'rate_limited' });
+      }
       let raw = '';
       for await (const chunk of req) {
         raw += chunk;
@@ -77,6 +80,8 @@ createServer(async (req, res) => {
         body = JSON.parse(raw);
       } catch { /* handled as bad request */ }
       const out = await handlePartner(body, process.env);
+      // one line per call: status, latency and reason codes only (no readings, no text, no address)
+      console.log(JSON.stringify({ t: new Date().toISOString(), api: 'partner', status: out.status, ...out.log }));
       return json(res, out.status, out.body);
     }
     if (req.method !== 'GET' && req.method !== 'HEAD') return json(res, 405, { error: 'method_not_allowed' });

@@ -18,6 +18,7 @@ import { pickIssue } from '../partner/rules.ts';
 import type { Stage } from '../render/renderer.ts';
 import type { PanelButton, PanelSpec, XRApp } from '../xr/panel-spec.ts';
 import { blip } from '../audio/sfx.ts';
+import { perfMark } from './debug.ts';
 
 export default async function benchPage(params: string[], query: URLSearchParams): Promise<Screen> {
   const slug = params[0];
@@ -339,6 +340,7 @@ export default async function benchPage(params: string[], query: URLSearchParams
       stage = st;
       driver = d;
       st.setTemplate(d.template);
+      perfMark('model');
       st.extraHandles = d.handles;
       st.onTapPoint = (p) => { if (engine.phase === 'readings') d.onTapPoint?.(p); };
       const bot = new PartnerBot(1.25, 1.5, 0.2, lite);
