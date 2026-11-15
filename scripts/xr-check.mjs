@@ -17,8 +17,8 @@ async function start(profile, hash, mode = 'vr') {
   await page.goto(`${base}/?board=international&partner=rules&iwer=${profile}${hash}`);
   await page.waitForSelector(`#enter-${mode}`, { timeout: 30000 });
   await page.click(`#enter-${mode}`);
-  await page.waitForFunction(() => window.__xrc, null, { timeout: 15000 });
-  await page.waitForTimeout(1500);
+  await page.waitForFunction(() => window.__xrc && (window.__xrc.state().placed || window.__xrc.state().phoneAR), null, { timeout: 20000 });
+  await page.waitForTimeout(800);
   return page;
 }
 // put the right hand so its pinch point is at `at`
