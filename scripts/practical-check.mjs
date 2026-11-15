@@ -96,7 +96,7 @@ async function refraction() {
   const bad = await reading(45, 0.9);
   check((await rows(page))[0].issues.includes('parallax'), `side-on reading flagged as parallax; partner (${bad.source}): "${bad.say}"`);
   await page.click('#undo');
-  for (const a of [20, 30, 40, 50, 60]) await reading(a);
+  for (const a of [15, 30, 40, 55, 70]) await reading(a);
   const r = await rows(page);
   check(r.length === 5 && r.every((x) => x.issues.length === 0), `5 clean readings: ${r.map((x) => `i=${x.i} r=${x.r}`).join(', ')}`);
   const out = await analyse(page, { y: 'sini', x: 'sinr', formula: 'a', unit: '(no unit)', precautions: ['eye_level', 'pins_apart'], conclusion: 0 }, 'refraction');

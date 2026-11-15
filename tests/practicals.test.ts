@@ -74,8 +74,8 @@ test('refraction: pins traced with human error give n within tolerance; parallax
   for (let seed = 1; seed <= 20; seed++) {
     const e = new PracticalEngine(p);
     const r = rng(seed);
-    const jit = () => (r() - 0.5) * 0.012; // a few millimetres of pin placement error
-    for (const iDeg of [20, 30, 40, 50, 60]) {
+    const jit = () => (r() - 0.5) * 0.006; // about a millimetre of pin sighting error
+    for (const iDeg of [15, 30, 45, 60, 70]) {
       const i = (iDeg * Math.PI) / 180, rr = (refractAngle(iDeg, 1.52) * Math.PI) / 180;
       const ex = -0.3, xx = ex + Math.tan(rr) * (top - bottom);
       const above = [0.25, 0.65].map((d) => ({ x: ex - Math.sin(i) * d + jit(), y: top + Math.cos(i) * d + jit() }));
@@ -136,6 +136,7 @@ test('careless work loses marks in the right places', () => {
   assert.ok(row('graph').got < row('graph').max);
   assert.equal(row('calculation').got, 0);
   assert.ok(row('readings').got === row('readings').max);
+  e.phase = 'done';
   assert.deepEqual(e.globalIssues().sort(), ['unit_missing', 'wrong_axis', 'wrong_formula']);
   assert.ok(Number.isNaN(applyFormula('none', 2)));
 });

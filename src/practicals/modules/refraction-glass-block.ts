@@ -3,7 +3,7 @@
 // reads i and r. Viewing from the side gives a parallax error, as in a real lab.
 import type * as THREE from 'three';
 import { createTemplate } from '../../templates/registry.ts';
-import { BLOCK } from '../../templates/ray-optics/index.ts';
+import { BLOCK, traceBlock } from '../../templates/ray-optics/index.ts';
 import { Beams, type Seg } from '../../render/beams.ts';
 import { CYAN, WARM, WHITE } from '../../render/hologram-shader.ts';
 import { protractorSegs, readAngles, tracePins, type Pin } from '../protractor.ts';
@@ -54,7 +54,23 @@ export async function mount(ctx: DriverCtx): Promise<Driver> {
   };
   tpl.onChange = clear; // moving the ray box invalidates the pins
 
-  const place = (p: Pin) => {
+  // A pin is sighted onto the ray, so a tap near a ray lands on it, with about a
+  // millimetre of sighting error. A tap well away from any ray stays where it is.
+  let seed = 20240 + Math.round(n * 1000);
+  const noise = () => ((seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0) / 4294967296 - 0.5) * 0.006;
+  const snap = (p: Pin): Pin => {
+    const tr = traceBlock(Number(tpl.getState().angle), n);
+    const [a, b] = p.y > top ? [tr.source, tr.entry] : [tr.exit, tr.end];
+    const dx = b[0] - a[0], dy = b[1] - a[1], len = Math.hypot(dx, dy);
+    const along = ((p.x - a[0]) * dx + (p.y - a[1]) * dy) / (len * len);
+    const fx = a[0] + dx * along, fy = a[1] + dy * along;
+    if (Math.hypot(p.x - fx, p.y - fy) > 0.1) return p;
+    const e = noise();
+    return { x: fx + (-dy / len) * e, y: fy + (dx / len) * e };
+  };
+
+  const place = (raw: Pin) => {
+    const p = snap(raw);
     if (p.y > top + 0.03 && above.length < 2) above.push(p);
     else if (p.y < bottom - 0.03 && below.length < 2) below.push(p);
     else return;
