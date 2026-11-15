@@ -9,7 +9,7 @@ const base = process.env.BASE ?? 'http://localhost:5173';
 const browser = await chromium.launch({ args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
 let failed = 0;
 const check = (ok, msg) => { console.log(`  ${ok ? 'ok  ' : 'FAIL'} ${msg}`); if (!ok) failed++; };
-const HEAD = [0, 1.2, 0];
+let HEAD = [0, 1.2, 0];
 
 async function start(profile, hash, mode = 'vr') {
   const page = await browser.newPage({ viewport: { width: 1280, height: 1200 } });
@@ -52,6 +52,8 @@ for (const profile of ['glasses', 'quest3']) {
   console.log(`VR, ${profile} profile: topic stage`);
   const page = await start(profile, '#/t/refraction');
   const st = await page.evaluate(() => ({ ...window.__xrc.state(), extent: window.__xrc.extent() }));
+  HEAD = st.head;
+  console.log(`  head at ${HEAD.map((v) => v.toFixed(2))}, yaw ${st.headYaw.toFixed(2)}`);
   check(st.placed && st.hands.every((h) => h.tracked), `session placed, both hands tracked; panel buttons: ${st.buttons.join(', ')}`);
   check(st.extent.h <= 35 && st.extent.v <= 33, `everything within ${st.extent.h.toFixed(1)}° x ${st.extent.v.toFixed(1)}° half-angles (limit 35° x 33°)`);
   if (shots) await page.screenshot({ path: `${shots}/xr-${profile}-topic.png` });
