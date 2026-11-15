@@ -126,7 +126,7 @@ console.log('Phone AR path (emulated; no real camera or hit-test)');
   const placed = await page.evaluate(() => ({ visible: window.__stage.root.visible, scale: window.__stage.root.scale.x, pos: window.__stage.root.position.toArray() }));
   check(placed.visible && placed.scale < 0.5, `select places the lab in front of the camera at scale ${placed.scale} (${placed.pos.map((v) => v.toFixed(2))})`);
   if (shots) await page.screenshot({ path: `${shots}/ar-phone.png` });
-  await page.click('#exit-ar');
+  await page.evaluate(() => document.querySelector('#exit-ar').click()); // (the emulator's own canvas covers the page, so click from script)
   await page.waitForTimeout(500);
   check(await page.evaluate(() => !document.documentElement.classList.contains('ar-active') && window.__stage.root.scale.x === 1), 'leaving AR restores the browser view');
   await page.close();
