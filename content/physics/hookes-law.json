@@ -1,0 +1,210 @@
+{
+  "slug": "hookes-law",
+  "subject": "physics",
+  "unit": {
+    "en": "Forces and Motion"
+  },
+  "title": {
+    "en": "Hooke's Law and Elasticity"
+  },
+  "curricula": {
+    "international": {
+      "topic": "Hooke's law and elasticity",
+      "unit": "Forces and Motion",
+      "level": "Foundation",
+      "verified": false
+    },
+    "igcse": {
+      "topic": "Effects of forces",
+      "unit": "1 Motion, forces and energy",
+      "level": "Core",
+      "verified": false
+    },
+    "alevel": {
+      "topic": "Stress and strain",
+      "unit": "6 Deformation of solids",
+      "level": "AS Level",
+      "verified": false
+    },
+    "gcse": {
+      "topic": "Forces and elasticity",
+      "unit": "Forces",
+      "level": "Combined",
+      "verified": false
+    },
+    "ap": {
+      "topic": "Spring Forces",
+      "unit": "Force and Translational Dynamics",
+      "level": "AP Physics 1",
+      "verified": false
+    },
+    "ib": {
+      "topic": "Forces and momentum",
+      "unit": "A. Space, time and motion",
+      "level": "SL",
+      "verified": false
+    },
+    "ngss": {
+      "topic": "Forces and Motion",
+      "unit": "PS2 Motion and Stability",
+      "level": "HS",
+      "verified": false
+    },
+    "cbse": {
+      "topic": "Mechanical Properties of Solids",
+      "unit": "Properties of Bulk Matter",
+      "level": "Class 11",
+      "verified": false
+    },
+    "waec": {
+      "topic": "Elastic properties of solids: Hooke's law",
+      "unit": "Motion",
+      "level": "SS1",
+      "verified": false
+    },
+    "kcse": {
+      "topic": "Hooke's law",
+      "unit": "Mechanics",
+      "level": "Form 2",
+      "verified": false
+    },
+    "caps": null,
+    "acara": null
+  },
+  "reviewed": false,
+  "summary": {
+    "en": "Hang more load on a spring and it stretches in proportion, up to a limit."
+  },
+  "cards": [
+    {
+      "title": {
+        "en": "Stretching a spring"
+      },
+      "text": {
+        "en": "Hang a mass on a spring and it gets longer. The extra length is called the extension e. It is the new length minus the original length, not the whole length."
+      },
+      "equation": null,
+      "modelState": {
+        "mass": 0.2,
+        "arrows": false
+      }
+    },
+    {
+      "title": {
+        "en": "Twice the load, twice the stretch"
+      },
+      "text": {
+        "en": "Add masses one at a time. Each equal load adds an equal extension, so force and extension are proportional. This is Hooke's law."
+      },
+      "equation": "F = ke",
+      "modelState": {
+        "mass": 0.4,
+        "arrows": true
+      }
+    },
+    {
+      "title": {
+        "en": "The spring constant"
+      },
+      "text": {
+        "en": "The constant k tells you how stiff the spring is: the force needed for each metre of extension. Change k and watch the same load stretch the spring by a different amount."
+      },
+      "equation": "k = \\dfrac{F}{e}",
+      "modelState": {
+        "mass": 0.4,
+        "k": 40,
+        "arrows": true
+      }
+    },
+    {
+      "title": {
+        "en": "The elastic limit"
+      },
+      "text": {
+        "en": "Load the spring too far and the pattern breaks. Past the elastic limit the spring stretches more than the law predicts and will not return to its original length."
+      },
+      "equation": null,
+      "modelState": {
+        "mass": 0.65,
+        "k": 25,
+        "arrows": true
+      }
+    }
+  ],
+  "images": [
+    {
+      "type": "generated",
+      "state": {
+        "mass": 0.3,
+        "arrows": true
+      },
+      "caption": {
+        "en": "Extension is measured from the unloaded position"
+      }
+    },
+    {
+      "type": "generated",
+      "state": {
+        "mass": 0.65,
+        "arrows": true
+      },
+      "caption": {
+        "en": "Past the elastic limit the extension grows faster"
+      }
+    }
+  ],
+  "model": {
+    "template": "forces-rig",
+    "preset": "spring",
+    "params": {
+      "k": 25
+    }
+  },
+  "checks": [
+    {
+      "q": {
+        "en": "Tap the load hanging on the spring."
+      },
+      "type": "point",
+      "target": "load"
+    },
+    {
+      "q": {
+        "en": "A spring stretches 4 cm with a 2 N load. How far does it stretch with 6 N (within the elastic limit)?"
+      },
+      "type": "choice",
+      "options": [
+        {
+          "en": "12 cm"
+        },
+        {
+          "en": "8 cm"
+        },
+        {
+          "en": "6 cm"
+        }
+      ],
+      "answer": 0
+    },
+    {
+      "q": {
+        "en": "What is the extension of a spring?"
+      },
+      "type": "choice",
+      "options": [
+        {
+          "en": "Its total length when loaded"
+        },
+        {
+          "en": "Its loaded length minus its original length"
+        }
+      ],
+      "answer": 1
+    }
+  ],
+  "practical": null,
+  "related": [
+    "simple-pendulum",
+    "moments"
+  ]
+}

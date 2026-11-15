@@ -166,7 +166,9 @@ a.tile:hover { border-color: var(--cyan); box-shadow: 0 0 24px rgba(54, 227, 255
 .controls label { display: grid; gap: 2px; font-size: .88rem; color: var(--muted); }
 .controls input[type='range'] { width: 100%; accent-color: var(--warm); height: 30px; }
 .controls .btn-row { display: flex; flex-wrap: wrap; gap: 6px; }
-.readout { font-variant-numeric: tabular-nums; font-size: 1.9rem; font-weight: 700; color: var(--cyan); text-align: center; padding: 6px; border: 1px solid var(--line); border-radius: 12px; background: rgba(0, 0, 0, 0.25); letter-spacing: .02em; }
+.about { margin-bottom: 8px; } .about summary { cursor: pointer; color: var(--cyan); min-height: 32px; }
+.steps { font-size: .92rem; }
+.readout { font-variant-numeric: tabular-nums; font-size: 1.45rem; font-weight: 700; color: var(--cyan); text-align: center; padding: 6px; border: 1px solid var(--line); border-radius: 12px; background: rgba(0, 0, 0, 0.25); letter-spacing: .02em; }
 table.results { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: .92rem; }
 table.results th, table.results td { border: 1px solid var(--line); padding: 5px 8px; text-align: end; }
 table.results th { background: rgba(54, 227, 255, 0.1); font-weight: 650; text-align: center; }
@@ -221,7 +223,15 @@ table.results td.derived { color: #bfe9ff; }
   .page { padding: 0; max-width: none; }
   .summary-sheet { border-radius: 0; padding: 0; }
 }
-/* inside an AR session the page becomes a transparent overlay on the camera */
-.ar-active body, .ar-active { background: transparent !important; }
-.ar-active .topbar, .ar-active .images, .ar-active .stage-foot { display: none; }
-.ar-active .viewport { background: transparent; border: 0; }
+/* inside a phone AR session the page becomes a transparent overlay on the camera */
+.ar-active, .ar-active body { background: transparent !important; }
+.ar-active .topbar, .ar-active .images, .ar-active .stage-foot, .ar-active .stage-head .tags, .ar-active .hint { display: none; }
+.ar-active .stage-page { height: auto; min-height: 0; }
+.ar-active .stage-head { position: fixed; top: 0; left: 0; z-index: 4; padding: 8px; }
+.ar-active .stage-head h1, .ar-active .xr-buttons { display: none; }
+.ar-active .viewport { position: fixed; inset: 0; z-index: 1; height: auto !important; background: transparent; border: 0; border-radius: 0; }
+.ar-active .panel { position: fixed; inset-inline: 8px; bottom: 8px; z-index: 3; max-height: 36vh; overflow: auto; background: rgba(10, 18, 48, 0.82); }
+.ar-active .bench-data { bottom: auto; top: 56px; max-height: 28vh; }
+.ar-active .tools { position: fixed; inset-inline: 8px; top: 56px; z-index: 3; }
+.ar-active .bubble { top: auto; bottom: 38vh; }
+.ar-bar { position: fixed; top: 8px; inset-inline-end: 8px; z-index: 5; display: flex; gap: 6px; align-items: center; font-size: .85rem; color: #fff; text-shadow: 0 1px 4px #000; }

@@ -1,0 +1,225 @@
+{
+  "slug": "lenses",
+  "subject": "physics",
+  "unit": {
+    "en": "Light and Optics"
+  },
+  "title": {
+    "en": "Lenses: Convex and Concave"
+  },
+  "curricula": {
+    "international": {
+      "topic": "Lenses",
+      "unit": "Light and Optics",
+      "level": "Intermediate",
+      "verified": false
+    },
+    "igcse": {
+      "topic": "Thin lenses",
+      "unit": "3 Waves",
+      "level": "Core",
+      "verified": false
+    },
+    "alevel": null,
+    "gcse": {
+      "topic": "Lenses",
+      "unit": "Waves",
+      "level": "Physics only",
+      "verified": false
+    },
+    "ap": {
+      "topic": "Images Formed by Lenses",
+      "unit": "Geometric Optics",
+      "level": "AP Physics 2",
+      "verified": false
+    },
+    "ib": null,
+    "ngss": {
+      "topic": "Wave Properties",
+      "unit": "PS4 Waves and Their Applications",
+      "level": "HS",
+      "verified": false
+    },
+    "cbse": {
+      "topic": "Ray Optics and Optical Instruments",
+      "unit": "Optics",
+      "level": "Class 12",
+      "verified": false
+    },
+    "waec": {
+      "topic": "Refraction of light at curved surfaces: lenses",
+      "unit": "Light waves",
+      "level": "SS2",
+      "verified": false
+    },
+    "kcse": {
+      "topic": "Thin lenses",
+      "unit": "Light",
+      "level": "Form 4",
+      "verified": false
+    },
+    "caps": null,
+    "acara": null
+  },
+  "reviewed": false,
+  "summary": {
+    "en": "A convex lens can focus light to form an image; where the image forms depends on where the object is."
+  },
+  "cards": [
+    {
+      "title": {
+        "en": "A lens bends light twice"
+      },
+      "text": {
+        "en": "A convex lens is thicker in the middle. Rays parallel to the principal axis are bent inwards and pass through one point, the principal focus F. Its distance from the lens is the focal length f."
+      },
+      "equation": null,
+      "modelState": {
+        "u": 1.2,
+        "f": 0.4,
+        "explode": 0
+      }
+    },
+    {
+      "title": {
+        "en": "Two rays find the image"
+      },
+      "text": {
+        "en": "Follow two rays from the top of the object: one parallel to the axis that then passes through F, and one straight through the centre of the lens. Where they cross is the top of the image."
+      },
+      "equation": null,
+      "modelState": {
+        "u": 0.95,
+        "f": 0.4,
+        "explode": 0
+      }
+    },
+    {
+      "title": {
+        "en": "Move the object"
+      },
+      "text": {
+        "en": "Drag the object towards the lens. The real image moves away and grows. Between 2F and F it is magnified and inverted. The distances obey the lens formula."
+      },
+      "equation": "\\dfrac{1}{u} + \\dfrac{1}{v} = \\dfrac{1}{f}",
+      "modelState": {
+        "u": 0.6,
+        "f": 0.4,
+        "explode": 0
+      }
+    },
+    {
+      "title": {
+        "en": "Inside the focal length"
+      },
+      "text": {
+        "en": "Bring the object closer than F and the rays no longer meet. Traced backwards they seem to come from a larger, upright, virtual image. This is how a magnifying glass works."
+      },
+      "equation": "m = \\dfrac{v}{u}",
+      "modelState": {
+        "u": 0.25,
+        "f": 0.4,
+        "explode": 0
+      }
+    },
+    {
+      "title": {
+        "en": "Slice the lens"
+      },
+      "text": {
+        "en": "Cut the lens in half to see its shape. A convex lens bulges outwards and converges light. A concave lens is thinner in the middle and spreads light out."
+      },
+      "equation": null,
+      "modelState": {
+        "u": 0.95,
+        "f": 0.4,
+        "explode": 1
+      }
+    }
+  ],
+  "images": [
+    {
+      "type": "generated",
+      "state": {
+        "u": 0.95,
+        "f": 0.4
+      },
+      "caption": {
+        "en": "Convex lens: a real, inverted image"
+      }
+    },
+    {
+      "type": "generated",
+      "state": {
+        "u": 0.25,
+        "f": 0.4
+      },
+      "caption": {
+        "en": "Object inside F: a virtual, magnified image"
+      }
+    },
+    {
+      "type": "generated",
+      "preset": "concave-lens",
+      "state": {
+        "u": 0.9,
+        "f": 0.45
+      },
+      "caption": {
+        "en": "Concave lens: a virtual, smaller image"
+      }
+    }
+  ],
+  "model": {
+    "template": "ray-optics",
+    "preset": "convex-lens",
+    "params": {}
+  },
+  "checks": [
+    {
+      "q": {
+        "en": "Tap the principal focus F on the right of the lens."
+      },
+      "type": "point",
+      "target": "focus"
+    },
+    {
+      "q": {
+        "en": "An object is placed beyond 2F from a convex lens. The image is…"
+      },
+      "type": "choice",
+      "options": [
+        {
+          "en": "real, inverted and smaller"
+        },
+        {
+          "en": "virtual, upright and larger"
+        },
+        {
+          "en": "real, upright and larger"
+        }
+      ],
+      "answer": 0
+    },
+    {
+      "q": {
+        "en": "Which lens always gives a virtual, smaller image of a real object?"
+      },
+      "type": "choice",
+      "options": [
+        {
+          "en": "Convex"
+        },
+        {
+          "en": "Concave"
+        }
+      ],
+      "answer": 1
+    }
+  ],
+  "practical": null,
+  "related": [
+    "refraction",
+    "total-internal-reflection"
+  ]
+}

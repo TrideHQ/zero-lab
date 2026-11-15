@@ -1,0 +1,215 @@
+{
+  "slug": "reflection",
+  "subject": "physics",
+  "unit": {
+    "en": "Light and Optics"
+  },
+  "title": {
+    "en": "Reflection at Plane Mirrors"
+  },
+  "curricula": {
+    "international": {
+      "topic": "Reflection at plane mirrors",
+      "unit": "Light and Optics",
+      "level": "Foundation",
+      "verified": false
+    },
+    "igcse": {
+      "topic": "Reflection of light",
+      "unit": "3 Waves",
+      "level": "Core",
+      "verified": false
+    },
+    "alevel": null,
+    "gcse": {
+      "topic": "Reflection of waves",
+      "unit": "Waves",
+      "level": "Physics only",
+      "verified": false
+    },
+    "ap": {
+      "topic": "Reflection",
+      "unit": "Geometric Optics",
+      "level": "AP Physics 2",
+      "verified": false
+    },
+    "ib": {
+      "topic": "Wave phenomena",
+      "unit": "C. Wave behaviour",
+      "level": "SL",
+      "verified": false
+    },
+    "ngss": {
+      "topic": "Wave Properties",
+      "unit": "PS4 Waves and Their Applications",
+      "level": "HS",
+      "verified": false
+    },
+    "cbse": {
+      "topic": "Light – Reflection and Refraction",
+      "unit": "Natural Phenomena",
+      "level": "Class 10",
+      "verified": false
+    },
+    "waec": {
+      "topic": "Reflection of light at plane surfaces",
+      "unit": "Light waves",
+      "level": "SS2",
+      "verified": false
+    },
+    "kcse": {
+      "topic": "Rectilinear propagation and reflection at plane surfaces",
+      "unit": "Light",
+      "level": "Form 1",
+      "verified": false
+    },
+    "caps": null,
+    "acara": {
+      "topic": "Waves: reflection",
+      "unit": "Linear motion and waves",
+      "level": "Unit 2",
+      "verified": false
+    }
+  },
+  "reviewed": false,
+  "summary": {
+    "en": "Light bounces off a mirror at the same angle it arrives."
+  },
+  "cards": [
+    {
+      "title": {
+        "en": "Light bounces"
+      },
+      "text": {
+        "en": "A ray that hits a flat mirror is sent back. The incoming ray is the incident ray and the outgoing ray is the reflected ray."
+      },
+      "equation": null,
+      "modelState": {
+        "angle": 35,
+        "showNormal": false,
+        "showImage": false
+      }
+    },
+    {
+      "title": {
+        "en": "Measure from the normal"
+      },
+      "text": {
+        "en": "The normal is a line at 90° to the mirror at the point where the ray lands. The angle of incidence i and the angle of reflection r are both measured from it."
+      },
+      "equation": null,
+      "modelState": {
+        "angle": 35,
+        "showNormal": true,
+        "showImage": false
+      }
+    },
+    {
+      "title": {
+        "en": "The law of reflection"
+      },
+      "text": {
+        "en": "Drag the ray box. However you set it, the angle of reflection always equals the angle of incidence. The two rays and the normal all lie in one plane."
+      },
+      "equation": "i = r",
+      "modelState": {
+        "angle": 60,
+        "showNormal": true,
+        "showImage": false
+      }
+    },
+    {
+      "title": {
+        "en": "Where the image is"
+      },
+      "text": {
+        "en": "Your eye follows the reflected ray straight back and sees the light as if it came from behind the mirror. The image is virtual, upright, and as far behind the mirror as the object is in front."
+      },
+      "equation": null,
+      "modelState": {
+        "angle": 45,
+        "showNormal": true,
+        "showImage": true
+      }
+    }
+  ],
+  "images": [
+    {
+      "type": "generated",
+      "state": {
+        "angle": 40,
+        "showNormal": true
+      },
+      "caption": {
+        "en": "Angle of incidence equals angle of reflection"
+      }
+    },
+    {
+      "type": "generated",
+      "state": {
+        "angle": 45,
+        "showNormal": true,
+        "showImage": true
+      },
+      "caption": {
+        "en": "The virtual image lies behind the mirror"
+      }
+    }
+  ],
+  "model": {
+    "template": "ray-optics",
+    "preset": "mirror",
+    "params": {}
+  },
+  "checks": [
+    {
+      "q": {
+        "en": "Tap the reflected ray."
+      },
+      "type": "point",
+      "target": "reflected",
+      "modelState": {
+        "angle": 40,
+        "showNormal": true
+      }
+    },
+    {
+      "q": {
+        "en": "A ray hits a mirror at 30° to the normal. What is the angle of reflection?"
+      },
+      "type": "choice",
+      "options": [
+        {
+          "en": "30°"
+        },
+        {
+          "en": "60°"
+        },
+        {
+          "en": "90°"
+        }
+      ],
+      "answer": 0
+    },
+    {
+      "q": {
+        "en": "The image in a plane mirror is…"
+      },
+      "type": "choice",
+      "options": [
+        {
+          "en": "real and inverted"
+        },
+        {
+          "en": "virtual and the same size as the object"
+        }
+      ],
+      "answer": 1
+    }
+  ],
+  "practical": null,
+  "related": [
+    "refraction",
+    "lenses"
+  ]
+}

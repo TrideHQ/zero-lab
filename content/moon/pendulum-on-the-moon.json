@@ -1,0 +1,176 @@
+{
+  "slug": "pendulum-on-the-moon",
+  "subject": "moon",
+  "unit": {
+    "en": "Moon & Astronauts"
+  },
+  "title": {
+    "en": "Pendulum on the Moon"
+  },
+  "curricula": {
+    "international": {
+      "topic": "Pendulum on the Moon",
+      "unit": "Moon & Astronauts",
+      "level": "Intermediate",
+      "verified": false
+    },
+    "igcse": {
+      "topic": "Physical quantities and measurement techniques",
+      "unit": "1 Motion, forces and energy",
+      "level": "Core",
+      "verified": false
+    },
+    "alevel": {
+      "topic": "Simple harmonic oscillations",
+      "unit": "17 Oscillations",
+      "level": "A Level",
+      "verified": false
+    },
+    "gcse": null,
+    "ap": {
+      "topic": "Simple Harmonic Motion",
+      "unit": "Oscillations",
+      "level": "AP Physics 1",
+      "verified": false
+    },
+    "ib": {
+      "topic": "Simple harmonic motion",
+      "unit": "C. Wave behaviour",
+      "level": "SL",
+      "verified": false
+    },
+    "ngss": {
+      "topic": "Forces and Motion",
+      "unit": "PS2 Motion and Stability",
+      "level": "HS",
+      "verified": false
+    },
+    "cbse": {
+      "topic": "Oscillations",
+      "unit": "Oscillations and Waves",
+      "level": "Class 11",
+      "verified": false
+    },
+    "waec": {
+      "topic": "Simple harmonic motion",
+      "unit": "Motion",
+      "level": "SS2",
+      "verified": false
+    },
+    "kcse": {
+      "topic": "Linear motion: determining g with a simple pendulum",
+      "unit": "Mechanics",
+      "level": "Form 3",
+      "verified": false
+    },
+    "caps": null,
+    "acara": null
+  },
+  "reviewed": false,
+  "summary": {
+    "en": "The same pendulum swings more slowly on the Moon, and its period tells you the Moon's gravity."
+  },
+  "cards": [
+    {
+      "title": {
+        "en": "A clock that feels gravity"
+      },
+      "text": {
+        "en": "A pendulum's period depends on its length and on g. Take the same pendulum to the Moon and only g changes."
+      },
+      "equation": "T = 2\\pi\\sqrt{\\dfrac{L}{g}}",
+      "modelState": {
+        "L": 0.6,
+        "amp": 10,
+        "g": 9.81,
+        "running": true
+      }
+    },
+    {
+      "title": {
+        "en": "Lazy swings"
+      },
+      "text": {
+        "en": "On the Moon g is about 1.62 m/s². The swing is slower: the period is about two and a half times longer than on Earth for the same length."
+      },
+      "equation": null,
+      "modelState": {
+        "L": 0.6,
+        "amp": 10,
+        "g": 1.62,
+        "running": true
+      }
+    },
+    {
+      "title": {
+        "en": "Weigh the Moon's gravity"
+      },
+      "text": {
+        "en": "Turn the formula around and a pendulum becomes a gravity meter. Time 20 swings, find T, and work out g. Try the practical on the Moon to measure it yourself."
+      },
+      "equation": "g = \\dfrac{4\\pi^2 L}{T^2}",
+      "modelState": {
+        "L": 1.0,
+        "amp": 10,
+        "g": 1.62,
+        "running": true,
+        "arrows": true
+      }
+    }
+  ],
+  "images": [
+    {
+      "type": "generated",
+      "state": {
+        "L": 0.8,
+        "amp": 18,
+        "g": 1.62,
+        "running": false,
+        "arrows": true
+      },
+      "caption": {
+        "en": "The same forces act, but the weight is smaller on the Moon"
+      }
+    }
+  ],
+  "model": {
+    "template": "forces-rig",
+    "preset": "pendulum",
+    "params": {
+      "g": 1.62
+    }
+  },
+  "checks": [
+    {
+      "q": {
+        "en": "You take a pendulum from Earth to the Moon. Its period…"
+      },
+      "type": "choice",
+      "options": [
+        {
+          "en": "gets longer"
+        },
+        {
+          "en": "gets shorter"
+        },
+        {
+          "en": "stays the same"
+        }
+      ],
+      "answer": 0
+    },
+    {
+      "q": {
+        "en": "Tap the bob."
+      },
+      "type": "point",
+      "target": "bob"
+    }
+  ],
+  "practical": "pendulum-g",
+  "practicalVariant": "moon",
+  "related": [
+    "simple-pendulum",
+    "hammer-and-feather"
+  ]
+}

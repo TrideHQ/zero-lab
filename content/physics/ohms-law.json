@@ -56,5 +56,5 @@
     { "q": { "en": "How is a voltmeter connected to a resistor?" }, "type": "choice", "options": [{ "en": "In series with it" }, { "en": "Across it (in parallel)" }], "answer": 1 }
   ],
   "practical": "ohms-law",
-  "related": ["refraction", "simple-pendulum"]
+  "related": ["series-parallel"]
 }

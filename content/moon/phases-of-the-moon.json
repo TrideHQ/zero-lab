@@ -1,0 +1,162 @@
+{
+  "slug": "phases-of-the-moon",
+  "subject": "moon",
+  "unit": {
+    "en": "Moon & Astronauts"
+  },
+  "title": {
+    "en": "Phases of the Moon"
+  },
+  "curricula": {
+    "international": {
+      "topic": "Phases of the Moon",
+      "unit": "Moon & Astronauts",
+      "level": "Foundation",
+      "verified": false
+    },
+    "igcse": {
+      "topic": "The Earth",
+      "unit": "6 Space physics",
+      "level": "Core",
+      "verified": false
+    },
+    "alevel": null,
+    "gcse": null,
+    "ap": null,
+    "ib": null,
+    "ngss": {
+      "topic": "Earth and the Solar System",
+      "unit": "ESS1 Earth's Place in the Universe",
+      "level": "MS",
+      "verified": false
+    },
+    "cbse": null,
+    "waec": null,
+    "kcse": null,
+    "caps": null,
+    "acara": null
+  },
+  "reviewed": false,
+  "summary": {
+    "en": "Half of the Moon is always lit by the Sun; the phase is how much of that half we can see."
+  },
+  "cards": [
+    {
+      "title": {
+        "en": "The Moon does not shine"
+      },
+      "text": {
+        "en": "The Moon gives out no light of its own. We see it because it reflects sunlight. The side facing the Sun lamp is always lit and the far side is always dark."
+      },
+      "equation": null,
+      "modelState": {
+        "phase": 45
+      }
+    },
+    {
+      "title": {
+        "en": "New Moon to Full Moon"
+      },
+      "text": {
+        "en": "Drag the Moon around the Earth. When it is between us and the Sun we face its dark side: a New Moon. On the far side of the Earth we see the whole lit face: a Full Moon."
+      },
+      "equation": null,
+      "modelState": {
+        "phase": 180
+      }
+    },
+    {
+      "title": {
+        "en": "Quarters and crescents"
+      },
+      "text": {
+        "en": "A quarter of the way round we see half of the lit side, which looks like a half disc. In between come crescents and gibbous phases. The inset shows the view from Earth."
+      },
+      "equation": null,
+      "modelState": {
+        "phase": 90
+      }
+    },
+    {
+      "title": {
+        "en": "One cycle each month"
+      },
+      "text": {
+        "en": "The Moon takes about 29.5 days to go from one New Moon to the next. The phases are caused by our changing view of the lit half, not by the Earth's shadow."
+      },
+      "equation": null,
+      "modelState": {
+        "phase": 300
+      }
+    }
+  ],
+  "images": [
+    {
+      "type": "generated",
+      "state": {
+        "phase": 45
+      },
+      "caption": {
+        "en": "Waxing crescent: the Moon has moved a little way round its orbit"
+      }
+    },
+    {
+      "type": "generated",
+      "state": {
+        "phase": 180
+      },
+      "caption": {
+        "en": "Full Moon: the Earth lies between the Sun and the Moon"
+      }
+    }
+  ],
+  "model": {
+    "template": "sky-moon",
+    "preset": "phases",
+    "params": {}
+  },
+  "checks": [
+    {
+      "q": {
+        "en": "Tap the Moon."
+      },
+      "type": "point",
+      "target": "moon"
+    },
+    {
+      "q": {
+        "en": "What causes the phases of the Moon?"
+      },
+      "type": "choice",
+      "options": [
+        {
+          "en": "The Earth's shadow falling on the Moon"
+        },
+        {
+          "en": "Our changing view of the Moon's sunlit half"
+        }
+      ],
+      "answer": 1
+    },
+    {
+      "q": {
+        "en": "At Full Moon, the Moon is…"
+      },
+      "type": "choice",
+      "options": [
+        {
+          "en": "between the Earth and the Sun"
+        },
+        {
+          "en": "on the opposite side of the Earth from the Sun"
+        }
+      ],
+      "answer": 1
+    }
+  ],
+  "practical": null,
+  "related": [
+    "laser-to-the-moon",
+    "hammer-and-feather"
+  ]
+}

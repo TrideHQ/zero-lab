@@ -1,0 +1,224 @@
+{
+  "slug": "total-internal-reflection",
+  "subject": "physics",
+  "unit": {
+    "en": "Light and Optics"
+  },
+  "title": {
+    "en": "Total Internal Reflection and Critical Angle"
+  },
+  "curricula": {
+    "international": {
+      "topic": "Total internal reflection",
+      "unit": "Light and Optics",
+      "level": "Advanced",
+      "verified": false
+    },
+    "igcse": {
+      "topic": "Refraction of light: critical angle",
+      "unit": "3 Waves",
+      "level": "Supplement",
+      "verified": false
+    },
+    "alevel": null,
+    "gcse": {
+      "topic": "Total internal reflection",
+      "unit": "Waves",
+      "level": "Physics only",
+      "verified": false
+    },
+    "ap": {
+      "topic": "Refraction",
+      "unit": "Geometric Optics",
+      "level": "AP Physics 2",
+      "verified": false
+    },
+    "ib": {
+      "topic": "Wave phenomena",
+      "unit": "C. Wave behaviour",
+      "level": "SL",
+      "verified": false
+    },
+    "ngss": {
+      "topic": "Electromagnetic Radiation",
+      "unit": "PS4 Waves and Their Applications",
+      "level": "HS",
+      "verified": false
+    },
+    "cbse": {
+      "topic": "Ray Optics and Optical Instruments",
+      "unit": "Optics",
+      "level": "Class 12",
+      "verified": false
+    },
+    "waec": {
+      "topic": "Total internal reflection and critical angle",
+      "unit": "Light waves",
+      "level": "SS2",
+      "verified": false
+    },
+    "kcse": {
+      "topic": "Refraction of light",
+      "unit": "Light",
+      "level": "Form 3",
+      "verified": false
+    },
+    "caps": {
+      "topic": "Critical angles and total internal reflection",
+      "unit": "Geometrical optics",
+      "level": "Grade 11",
+      "verified": false
+    },
+    "acara": {
+      "topic": "Waves: total internal reflection",
+      "unit": "Linear motion and waves",
+      "level": "Unit 2",
+      "verified": false
+    }
+  },
+  "reviewed": false,
+  "summary": {
+    "en": "Past a certain angle, light trying to leave glass is reflected back completely."
+  },
+  "cards": [
+    {
+      "title": {
+        "en": "Leaving the glass"
+      },
+      "text": {
+        "en": "Here light travels inside a semicircular glass block and meets the flat face. Going from glass into air it bends away from the normal. A weak ray is also reflected back inside."
+      },
+      "equation": null,
+      "modelState": {
+        "angle": 25,
+        "n": 1.5,
+        "showNormal": true
+      }
+    },
+    {
+      "title": {
+        "en": "The critical angle"
+      },
+      "text": {
+        "en": "Increase the angle of incidence. The refracted ray swings down towards the surface. At the critical angle c it runs along the boundary, at 90° to the normal."
+      },
+      "equation": "\\sin c = \\dfrac{1}{n}",
+      "modelState": {
+        "angle": 41,
+        "n": 1.5,
+        "showNormal": true
+      }
+    },
+    {
+      "title": {
+        "en": "Total internal reflection"
+      },
+      "text": {
+        "en": "Go past the critical angle and no light escapes. All of it is reflected inside the glass. This only happens when light is in the denser material heading for a less dense one."
+      },
+      "equation": null,
+      "modelState": {
+        "angle": 55,
+        "n": 1.5,
+        "showNormal": true
+      }
+    },
+    {
+      "title": {
+        "en": "Why it matters"
+      },
+      "text": {
+        "en": "Optical fibres trap light by total internal reflection, carrying signals around bends with almost no loss. A material with a larger n has a smaller critical angle, which is part of why diamonds sparkle."
+      },
+      "equation": null,
+      "modelState": {
+        "angle": 30,
+        "n": 2.4,
+        "showNormal": true
+      }
+    }
+  ],
+  "images": [
+    {
+      "type": "generated",
+      "state": {
+        "angle": 30,
+        "n": 1.5,
+        "showNormal": true
+      },
+      "caption": {
+        "en": "Below the critical angle: refraction and weak reflection"
+      }
+    },
+    {
+      "type": "generated",
+      "state": {
+        "angle": 55,
+        "n": 1.5,
+        "showNormal": true
+      },
+      "caption": {
+        "en": "Above the critical angle: total internal reflection"
+      }
+    }
+  ],
+  "model": {
+    "template": "ray-optics",
+    "preset": "tir",
+    "params": {
+      "n": 1.5
+    }
+  },
+  "checks": [
+    {
+      "q": {
+        "en": "Tap the ray that is reflected back inside the glass."
+      },
+      "type": "point",
+      "target": "reflected",
+      "modelState": {
+        "angle": 55,
+        "n": 1.5,
+        "showNormal": true
+      }
+    },
+    {
+      "q": {
+        "en": "Total internal reflection can happen when light travels…"
+      },
+      "type": "choice",
+      "options": [
+        {
+          "en": "from glass towards air"
+        },
+        {
+          "en": "from air towards glass"
+        }
+      ],
+      "answer": 0
+    },
+    {
+      "q": {
+        "en": "Glass has n = 1.5, so sin c = 1/1.5. The critical angle is about…"
+      },
+      "type": "choice",
+      "options": [
+        {
+          "en": "42°"
+        },
+        {
+          "en": "60°"
+        },
+        {
+          "en": "30°"
+        }
+      ],
+      "answer": 0
+    }
+  ],
+  "practical": null,
+  "related": [
+    "refraction",
+    "lenses"
+  ]
+}

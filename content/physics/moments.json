@@ -1,0 +1,227 @@
+{
+  "slug": "moments",
+  "subject": "physics",
+  "unit": {
+    "en": "Forces and Motion"
+  },
+  "title": {
+    "en": "Moments and Equilibrium"
+  },
+  "curricula": {
+    "international": {
+      "topic": "Moments and equilibrium",
+      "unit": "Forces and Motion",
+      "level": "Intermediate",
+      "verified": false
+    },
+    "igcse": {
+      "topic": "Turning effect of forces",
+      "unit": "1 Motion, forces and energy",
+      "level": "Core",
+      "verified": false
+    },
+    "alevel": {
+      "topic": "Turning effects of forces",
+      "unit": "4 Forces, density and pressure",
+      "level": "AS Level",
+      "verified": false
+    },
+    "gcse": {
+      "topic": "Moments, levers and gears",
+      "unit": "Forces",
+      "level": "Physics only",
+      "verified": false
+    },
+    "ap": {
+      "topic": "Torque",
+      "unit": "Torque and Rotational Dynamics",
+      "level": "AP Physics 1",
+      "verified": false
+    },
+    "ib": {
+      "topic": "Rigid body mechanics",
+      "unit": "A. Space, time and motion",
+      "level": "HL",
+      "verified": false
+    },
+    "ngss": {
+      "topic": "Forces and Motion",
+      "unit": "PS2 Motion and Stability",
+      "level": "HS",
+      "verified": false
+    },
+    "cbse": {
+      "topic": "System of Particles and Rotational Motion",
+      "unit": "Motion of System of Particles and Rigid Body",
+      "level": "Class 11",
+      "verified": false
+    },
+    "waec": {
+      "topic": "Equilibrium of forces: principle of moments",
+      "unit": "Motion",
+      "level": "SS2",
+      "verified": false
+    },
+    "kcse": {
+      "topic": "Turning effect of a force",
+      "unit": "Mechanics",
+      "level": "Form 2",
+      "verified": false
+    },
+    "caps": null,
+    "acara": null
+  },
+  "reviewed": false,
+  "summary": {
+    "en": "A small force far from the pivot can balance a large force close to it."
+  },
+  "cards": [
+    {
+      "title": {
+        "en": "The turning effect of a force"
+      },
+      "text": {
+        "en": "A force can turn an object about a pivot. The turning effect is called the moment. It depends on the size of the force and on how far from the pivot it acts."
+      },
+      "equation": "\\text{moment} = F \\times d",
+      "modelState": {
+        "m1": 0.2,
+        "d1": 0.4,
+        "m2": 0.2,
+        "d2": 0.2,
+        "arrows": true
+      }
+    },
+    {
+      "title": {
+        "en": "Distance matters"
+      },
+      "text": {
+        "en": "Slide the right-hand mass along the rule. Further from the pivot, the same weight has a bigger moment. The distance is always measured at right angles to the force."
+      },
+      "equation": null,
+      "modelState": {
+        "m1": 0.2,
+        "d1": 0.4,
+        "m2": 0.2,
+        "d2": 0.45,
+        "arrows": true
+      }
+    },
+    {
+      "title": {
+        "en": "The principle of moments"
+      },
+      "text": {
+        "en": "When the rule balances, the total clockwise moment equals the total anticlockwise moment about the pivot. Here a heavier mass close in balances a lighter one further out."
+      },
+      "equation": "F_1 d_1 = F_2 d_2",
+      "modelState": {
+        "m1": 0.2,
+        "d1": 0.4,
+        "m2": 0.4,
+        "d2": 0.2,
+        "arrows": true
+      }
+    },
+    {
+      "title": {
+        "en": "Equilibrium needs two conditions"
+      },
+      "text": {
+        "en": "For an object to stay at rest the moments must balance and the forces must balance too. The pivot pushes up with a force equal to the total weight."
+      },
+      "equation": null,
+      "modelState": {
+        "m1": 0.3,
+        "d1": 0.3,
+        "m2": 0.45,
+        "d2": 0.2,
+        "arrows": true
+      }
+    }
+  ],
+  "images": [
+    {
+      "type": "generated",
+      "state": {
+        "m1": 0.2,
+        "d1": 0.4,
+        "m2": 0.4,
+        "d2": 0.2,
+        "arrows": true
+      },
+      "caption": {
+        "en": "A balanced rule: the two moments are equal"
+      }
+    },
+    {
+      "type": "generated",
+      "state": {
+        "m1": 0.2,
+        "d1": 0.4,
+        "m2": 0.4,
+        "d2": 0.4,
+        "arrows": true
+      },
+      "caption": {
+        "en": "Unbalanced: the larger moment wins"
+      }
+    }
+  ],
+  "model": {
+    "template": "forces-rig",
+    "preset": "moments",
+    "params": {}
+  },
+  "checks": [
+    {
+      "q": {
+        "en": "Tap the pivot."
+      },
+      "type": "point",
+      "target": "pivot"
+    },
+    {
+      "q": {
+        "en": "A 4 N weight hangs 30 cm from the pivot. Where must a 6 N weight hang on the other side to balance it?"
+      },
+      "type": "choice",
+      "options": [
+        {
+          "en": "20 cm from the pivot"
+        },
+        {
+          "en": "45 cm from the pivot"
+        },
+        {
+          "en": "30 cm from the pivot"
+        }
+      ],
+      "answer": 0
+    },
+    {
+      "q": {
+        "en": "The same force is moved further from the pivot. Its moment…"
+      },
+      "type": "choice",
+      "options": [
+        {
+          "en": "gets bigger"
+        },
+        {
+          "en": "gets smaller"
+        },
+        {
+          "en": "stays the same"
+        }
+      ],
+      "answer": 0
+    }
+  ],
+  "practical": null,
+  "related": [
+    "hookes-law",
+    "simple-pendulum"
+  ]
+}

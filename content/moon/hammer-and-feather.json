@@ -1,0 +1,224 @@
+{
+  "slug": "hammer-and-feather",
+  "subject": "moon",
+  "unit": {
+    "en": "Moon & Astronauts"
+  },
+  "title": {
+    "en": "Hammer and Feather"
+  },
+  "curricula": {
+    "international": {
+      "topic": "Hammer and feather: falling without air",
+      "unit": "Moon & Astronauts",
+      "level": "Foundation",
+      "verified": false
+    },
+    "igcse": {
+      "topic": "Motion: free fall",
+      "unit": "1 Motion, forces and energy",
+      "level": "Supplement",
+      "verified": false
+    },
+    "alevel": {
+      "topic": "Gravitational force between point masses",
+      "unit": "13 Gravitational fields",
+      "level": "A Level",
+      "verified": false
+    },
+    "gcse": {
+      "topic": "Gravity",
+      "unit": "Forces",
+      "level": "Combined",
+      "verified": false
+    },
+    "ap": {
+      "topic": "Gravitational Force",
+      "unit": "Force and Translational Dynamics",
+      "level": "AP Physics 1",
+      "verified": false
+    },
+    "ib": {
+      "topic": "Gravitational fields",
+      "unit": "D. Fields",
+      "level": "SL",
+      "verified": false
+    },
+    "ngss": {
+      "topic": "Types of Interactions",
+      "unit": "PS2 Motion and Stability",
+      "level": "HS",
+      "verified": false
+    },
+    "cbse": {
+      "topic": "Gravitation",
+      "unit": "Gravitation",
+      "level": "Class 11",
+      "verified": false
+    },
+    "waec": {
+      "topic": "Gravitational field",
+      "unit": "Fields at rest and in motion",
+      "level": "SS3",
+      "verified": false
+    },
+    "kcse": {
+      "topic": "Linear motion: free fall",
+      "unit": "Mechanics",
+      "level": "Form 3",
+      "verified": false
+    },
+    "caps": {
+      "topic": "Newton's law of universal gravitation",
+      "unit": "Newton's laws",
+      "level": "Grade 11",
+      "verified": false
+    },
+    "acara": {
+      "topic": "Gravity and motion",
+      "unit": "Gravity and electromagnetism",
+      "level": "Unit 3",
+      "verified": false
+    }
+  },
+  "reviewed": false,
+  "summary": {
+    "en": "On the Moon a hammer and a feather hit the ground together, as an astronaut showed on Apollo 15."
+  },
+  "cards": [
+    {
+      "title": {
+        "en": "On Earth, the feather loses"
+      },
+      "text": {
+        "en": "Drop a hammer and a feather on Earth. The hammer hits the ground at once while the feather drifts down. Is the hammer falling faster because it is heavier?"
+      },
+      "equation": null,
+      "modelState": {
+        "gravity": "earth",
+        "air": true,
+        "dropped": true
+      }
+    },
+    {
+      "title": {
+        "en": "Take the air away"
+      },
+      "text": {
+        "en": "Pump the air out and try again. Now they fall side by side. It was air resistance, not weight, that held the feather back."
+      },
+      "equation": null,
+      "modelState": {
+        "gravity": "earth",
+        "air": false,
+        "dropped": true
+      }
+    },
+    {
+      "title": {
+        "en": "The Moon has no air"
+      },
+      "text": {
+        "en": "In 1971 an Apollo 15 astronaut dropped a hammer and a falcon feather on the Moon. With no atmosphere they fell together and landed at the same moment."
+      },
+      "equation": null,
+      "modelState": {
+        "gravity": "moon",
+        "air": false,
+        "dropped": true
+      }
+    },
+    {
+      "title": {
+        "en": "Slower, but still together"
+      },
+      "text": {
+        "en": "The Moon's gravity is about one sixth of the Earth's, so the fall takes longer. Compare the times: the same drop takes about two and a half times as long."
+      },
+      "equation": "t = \\sqrt{\\dfrac{2h}{g}}",
+      "modelState": {
+        "gravity": "moon",
+        "air": false,
+        "dropped": true
+      }
+    }
+  ],
+  "images": [
+    {
+      "type": "generated",
+      "state": {
+        "gravity": "moon",
+        "air": false,
+        "dropped": false
+      },
+      "caption": {
+        "en": "Hammer and feather above the lunar surface"
+      }
+    },
+    {
+      "type": "generated",
+      "state": {
+        "gravity": "earth",
+        "air": true,
+        "dropped": false
+      },
+      "caption": {
+        "en": "The same drop on Earth, in air"
+      }
+    }
+  ],
+  "model": {
+    "template": "sky-moon",
+    "preset": "drop",
+    "params": {
+      "pair": "hammer-feather"
+    }
+  },
+  "checks": [
+    {
+      "q": {
+        "en": "Tap the feather."
+      },
+      "type": "point",
+      "target": "feather"
+    },
+    {
+      "q": {
+        "en": "Why does the feather fall slowly on Earth?"
+      },
+      "type": "choice",
+      "options": [
+        {
+          "en": "It is lighter, so gravity pulls it less"
+        },
+        {
+          "en": "Air resistance holds it back"
+        }
+      ],
+      "answer": 1
+    },
+    {
+      "q": {
+        "en": "On the Moon, the hammer and feather…"
+      },
+      "type": "choice",
+      "options": [
+        {
+          "en": "land together"
+        },
+        {
+          "en": "hammer first"
+        },
+        {
+          "en": "feather first"
+        }
+      ],
+      "answer": 0
+    }
+  ],
+  "practical": null,
+  "related": [
+    "gravitation-free-fall",
+    "pendulum-on-the-moon"
+  ]
+}

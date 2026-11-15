@@ -1,0 +1,229 @@
+{
+  "slug": "series-parallel",
+  "subject": "physics",
+  "unit": {
+    "en": "Electricity"
+  },
+  "title": {
+    "en": "Resistors in Series and Parallel"
+  },
+  "curricula": {
+    "international": {
+      "topic": "Resistors in series and parallel",
+      "unit": "Electricity",
+      "level": "Intermediate",
+      "verified": false
+    },
+    "igcse": {
+      "topic": "Series and parallel circuits",
+      "unit": "4 Electricity and magnetism",
+      "level": "Core",
+      "verified": false
+    },
+    "alevel": {
+      "topic": "Kirchhoff's laws",
+      "unit": "10 D.C. circuits",
+      "level": "AS Level",
+      "verified": false
+    },
+    "gcse": {
+      "topic": "Series and parallel circuits",
+      "unit": "Electricity",
+      "level": "Combined",
+      "verified": false
+    },
+    "ap": {
+      "topic": "Compound Direct Current Circuits",
+      "unit": "Electric Circuits",
+      "level": "AP Physics 2",
+      "verified": false
+    },
+    "ib": {
+      "topic": "Current and circuits",
+      "unit": "B. The particulate nature of matter",
+      "level": "SL",
+      "verified": false
+    },
+    "ngss": {
+      "topic": "Definitions of Energy",
+      "unit": "PS3 Energy",
+      "level": "HS",
+      "verified": false
+    },
+    "cbse": {
+      "topic": "Electricity",
+      "unit": "Effects of Current",
+      "level": "Class 10",
+      "verified": false
+    },
+    "waec": {
+      "topic": "Electric circuits: resistors in series and parallel",
+      "unit": "Fields at rest and in motion",
+      "level": "SS2",
+      "verified": false
+    },
+    "kcse": {
+      "topic": "Current electricity (II)",
+      "unit": "Electricity",
+      "level": "Form 3",
+      "verified": false
+    },
+    "caps": {
+      "topic": "Resistors in series and parallel",
+      "unit": "Electric circuits",
+      "level": "Grade 10",
+      "verified": false
+    },
+    "acara": {
+      "topic": "Electrical circuits",
+      "unit": "Thermal, nuclear and electrical physics",
+      "level": "Unit 1",
+      "verified": false
+    }
+  },
+  "reviewed": false,
+  "summary": {
+    "en": "In series the resistances add; in parallel the current has more than one path."
+  },
+  "cards": [
+    {
+      "title": {
+        "en": "One path: series"
+      },
+      "text": {
+        "en": "In a series circuit the components are joined end to end, so the same current passes through each one. Watch the electrons: they have only one route."
+      },
+      "equation": null,
+      "modelState": {
+        "switchOn": true,
+        "R1": 4,
+        "R2": 8,
+        "electrons": true
+      }
+    },
+    {
+      "title": {
+        "en": "Series resistances add"
+      },
+      "text": {
+        "en": "Each resistor takes a share of the battery's potential difference, and the shares add up to the total. The combined resistance is the sum of the two."
+      },
+      "equation": "R = R_1 + R_2",
+      "modelState": {
+        "switchOn": true,
+        "R1": 4,
+        "R2": 12,
+        "electrons": true
+      }
+    },
+    {
+      "title": {
+        "en": "Sharing the voltage"
+      },
+      "text": {
+        "en": "Make one resistor larger. It takes a larger share of the potential difference, because the same current flows through both and V = IR for each."
+      },
+      "equation": "V = V_1 + V_2",
+      "modelState": {
+        "switchOn": true,
+        "R1": 2,
+        "R2": 16,
+        "electrons": true
+      }
+    },
+    {
+      "title": {
+        "en": "Slice the board"
+      },
+      "text": {
+        "en": "Lift the components off the board to see how the circuit is put together, and open a resistor to see the resistive track inside."
+      },
+      "equation": null,
+      "modelState": {
+        "switchOn": true,
+        "R1": 4,
+        "R2": 8,
+        "electrons": false,
+        "explode": 1
+      }
+    }
+  ],
+  "images": [
+    {
+      "type": "generated",
+      "state": {
+        "switchOn": true,
+        "R1": 4,
+        "R2": 8,
+        "electrons": false
+      },
+      "caption": {
+        "en": "Two resistors in series"
+      }
+    },
+    {
+      "type": "generated",
+      "preset": "parallel",
+      "state": {
+        "switchOn": true,
+        "R1": 4,
+        "R2": 8,
+        "electrons": false
+      },
+      "caption": {
+        "en": "Two resistors in parallel: the current splits"
+      }
+    }
+  ],
+  "model": {
+    "template": "circuit-board",
+    "preset": "series",
+    "params": {}
+  },
+  "checks": [
+    {
+      "q": {
+        "en": "Tap the ammeter."
+      },
+      "type": "point",
+      "target": "ammeter"
+    },
+    {
+      "q": {
+        "en": "A 4 Ω and an 8 Ω resistor are joined in series. What is their combined resistance?"
+      },
+      "type": "choice",
+      "options": [
+        {
+          "en": "12 Ω"
+        },
+        {
+          "en": "2.7 Ω"
+        },
+        {
+          "en": "32 Ω"
+        }
+      ],
+      "answer": 0
+    },
+    {
+      "q": {
+        "en": "Two resistors are joined in parallel. Their combined resistance is…"
+      },
+      "type": "choice",
+      "options": [
+        {
+          "en": "more than either one"
+        },
+        {
+          "en": "less than either one"
+        }
+      ],
+      "answer": 1
+    }
+  ],
+  "practical": null,
+  "related": [
+    "ohms-law"
+  ]
+}

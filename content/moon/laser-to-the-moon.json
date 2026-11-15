@@ -1,0 +1,171 @@
+{
+  "slug": "laser-to-the-moon",
+  "subject": "moon",
+  "unit": {
+    "en": "Moon & Astronauts"
+  },
+  "title": {
+    "en": "Laser to the Moon"
+  },
+  "curricula": {
+    "international": {
+      "topic": "Laser ranging to the Moon",
+      "unit": "Moon & Astronauts",
+      "level": "Intermediate",
+      "verified": false
+    },
+    "igcse": {
+      "topic": "Electromagnetic spectrum",
+      "unit": "3 Waves",
+      "level": "Core",
+      "verified": false
+    },
+    "alevel": null,
+    "gcse": {
+      "topic": "Electromagnetic waves",
+      "unit": "Waves",
+      "level": "Combined",
+      "verified": false
+    },
+    "ap": null,
+    "ib": null,
+    "ngss": {
+      "topic": "Electromagnetic Radiation",
+      "unit": "PS4 Waves and Their Applications",
+      "level": "HS",
+      "verified": false
+    },
+    "cbse": null,
+    "waec": null,
+    "kcse": null,
+    "caps": {
+      "topic": "Electromagnetic radiation",
+      "unit": "Waves, sound and light",
+      "level": "Grade 10",
+      "verified": false
+    },
+    "acara": null
+  },
+  "reviewed": false,
+  "summary": {
+    "en": "Fire a laser at a mirror left on the Moon, time the echo, and you have measured the distance."
+  },
+  "cards": [
+    {
+      "title": {
+        "en": "A mirror on the Moon"
+      },
+      "text": {
+        "en": "Apollo astronauts left panels of retroreflectors on the lunar surface. A retroreflector sends light straight back the way it came, whatever angle it arrives from."
+      },
+      "equation": null,
+      "modelState": {
+        "aim": 0.9,
+        "dist": 384400
+      }
+    },
+    {
+      "title": {
+        "en": "Aim and fire"
+      },
+      "text": {
+        "en": "Line the laser up on the reflector and fire a pulse. Light travels at about 300 000 km/s, yet the trip there and back still takes about two and a half seconds."
+      },
+      "equation": null,
+      "modelState": {
+        "aim": 0,
+        "dist": 384400
+      }
+    },
+    {
+      "title": {
+        "en": "Time gives distance"
+      },
+      "text": {
+        "en": "The pulse covers the distance twice, out and back. Halve the round-trip time and multiply by the speed of light to get the distance to the Moon."
+      },
+      "equation": "d = \\dfrac{c\\,t}{2}",
+      "modelState": {
+        "aim": 0,
+        "dist": 384400
+      }
+    },
+    {
+      "title": {
+        "en": "Only a few photons come home"
+      },
+      "text": {
+        "en": "The beam spreads to kilometres wide by the time it arrives, and the reflector is small. Of a pulse of about 10¹⁷ photons, only a handful return to the telescope. Change the distance to see the time change as the Moon's orbit carries it nearer and further."
+      },
+      "equation": null,
+      "modelState": {
+        "aim": 0,
+        "dist": 405000
+      }
+    }
+  ],
+  "images": [
+    {
+      "type": "generated",
+      "state": {
+        "aim": 0,
+        "dist": 384400
+      },
+      "caption": {
+        "en": "A laser pulse from Earth to a lunar retroreflector"
+      }
+    }
+  ],
+  "model": {
+    "template": "sky-moon",
+    "preset": "laser",
+    "params": {}
+  },
+  "checks": [
+    {
+      "q": {
+        "en": "Tap the retroreflector on the Moon."
+      },
+      "type": "point",
+      "target": "reflector"
+    },
+    {
+      "q": {
+        "en": "A pulse returns after 2.56 s. Light travels at 300 000 km/s. How far away is the Moon?"
+      },
+      "type": "choice",
+      "options": [
+        {
+          "en": "About 384 000 km"
+        },
+        {
+          "en": "About 768 000 km"
+        },
+        {
+          "en": "About 117 000 km"
+        }
+      ],
+      "answer": 0
+    },
+    {
+      "q": {
+        "en": "Why must the round-trip time be halved?"
+      },
+      "type": "choice",
+      "options": [
+        {
+          "en": "The light travels the distance twice"
+        },
+        {
+          "en": "Light slows down in space"
+        }
+      ],
+      "answer": 0
+    }
+  ],
+  "practical": null,
+  "related": [
+    "phases-of-the-moon",
+    "hammer-and-feather"
+  ]
+}

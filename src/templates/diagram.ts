@@ -33,7 +33,7 @@ function get(w: number, h: number): THREE.WebGLRenderer {
 export async function renderDiagram(spec: DiagramSpec, w = 800, h = 600): Promise<string> {
   const tpl = await createTemplate(spec.template, spec.preset, spec.params, true);
   const scene = new THREE.Scene();
-  scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+  scene.add(new THREE.AmbientLight(0xffffff, 0.2));
   scene.add(tpl.group);
   tpl.setState(spec.state, { animate: false, reset: true });
   tpl.update(0, 0.6);

@@ -31,6 +31,10 @@ export class Stage {
   /** Raw tap in template-local coordinates on the template's upright (z = 0) plane. */
   onTapPoint: ((local: THREE.Vector3) => void) | null = null;
   onSlice: ((v: number) => void) | null = null;
+  /** Set by the XR controller while a session runs. */
+  xrHook: FrameHook | null = null;
+  /** True in phone AR, where the touch screen still drives the model. */
+  arTouch = false;
   fps = 60;
 
   private host: HTMLElement | null = null;
@@ -61,7 +65,7 @@ export class Stage {
     fm.depthWrite = false;
     fm.blending = THREE.AdditiveBlending;
     this.root.add(this.floor);
-    this.scene.add(new THREE.AmbientLight(0xffffff, 0.35));
+    this.scene.add(new THREE.AmbientLight(0xffffff, 0.12));
     const el = this.renderer.domElement;
     el.addEventListener('pointerdown', this.down);
     el.addEventListener('pointermove', this.move);
@@ -93,7 +97,7 @@ export class Stage {
   }
 
   unmount() {
-    this.renderer.setAnimationLoop(null);
+    if (!this.presenting) this.renderer.setAnimationLoop(null); // an XR session outlives a page change
     this.ro.disconnect();
     this.renderer.domElement.remove();
     this.host = null;
@@ -130,6 +134,19 @@ export class Stage {
     this.onSlice?.(this.slice);
   }
 
+  /** Called when an XR session ends. */
+  afterXR() {
+    if (!this.host) this.renderer.setAnimationLoop(null);
+    else setTimeout(() => this.resize(), 50);
+  }
+
+  /** The camera that is actually rendering: the XR view while presenting. */
+  private cam(): THREE.Camera {
+    if (!this.presenting) return this.camera;
+    const x = this.renderer.xr.getCamera();
+    return x.cameras[0] ?? x;
+  }
+
   get presenting(): boolean {
     return this.renderer.xr.isPresenting;
   }
@@ -157,6 +174,7 @@ export class Stage {
     U.uTime.value = t;
     this.template?.update(dt, t);
     for (const f of this.frame) f(dt, t, frame);
+    this.xrHook?.(dt, t, frame);
     if (!xr) this.placeCamera();
     const useBloom = this.bloom && this.wantBloom && !xr;
     this.scene.background = useBloom ? NAVY : xr && !this.arMode ? NAVY : null;
@@ -187,13 +205,13 @@ export class Stage {
     const r = this.rect();
     tmp.copy(local);
     this.template?.group.localToWorld(tmp);
-    tmp.project(this.camera);
+    tmp.project(this.cam());
     return { x: (tmp.x * 0.5 + 0.5) * r.width, y: (-tmp.y * 0.5 + 0.5) * r.height };
   }
 
   private setRay(cx: number, cy: number) {
     const r = this.rect();
-    this.ray.setFromCamera(new THREE.Vector2(((cx - r.left) / r.width) * 2 - 1, -((cy - r.top) / r.height) * 2 + 1), this.camera);
+    this.ray.setFromCamera(new THREE.Vector2(((cx - r.left) / r.width) * 2 - 1, -((cy - r.top) / r.height) * 2 + 1), this.cam());
   }
 
   private pickHandle(cx: number, cy: number): Handle | null {
@@ -252,7 +270,7 @@ export class Stage {
 
   // ---- pointer input -----------------------------------------------------
   private down = (e: PointerEvent) => {
-    if (this.presenting) return;
+    if (this.presenting && !this.arTouch) return;
     this.renderer.domElement.setPointerCapture(e.pointerId);
     this.pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
     if (this.pointers.size === 1) {
@@ -268,7 +286,7 @@ export class Stage {
       if (this.active?.drag) this.active.drag(this.active.pos.clone(), 'end');
       this.active = null;
       const [a, b] = [...this.pointers.values()];
-      this.gesture = { dist: Math.hypot(a.x - b.x, a.y - b.y), midY: (a.y + b.y) / 2, zoom: this.orbit.zoom, slice: this.slice, mode: '' };
+      this.gesture = { dist: Math.hypot(a.x - b.x, a.y - b.y), midY: (a.y + b.y) / 2, zoom: this.presenting ? this.root.scale.x : this.orbit.zoom, slice: this.slice, mode: '' };
     }
   };
 
@@ -283,6 +301,8 @@ export class Stage {
       if (this.active?.drag) {
         const l = this.localOnPlane(e.clientX, e.clientY, this.plane);
         if (l) this.active.drag(l, 'move');
+      } else if (this.moved > 6 && this.presenting) {
+        this.root.rotation.y += dx * 0.01; // AR: turn the lab itself
       } else if (this.moved > 6) {
         this.orbit.yaw -= dx * 0.008;
         this.orbit.pitch = clamp(this.orbit.pitch + dy * 0.006, -0.25, 1.5);
@@ -294,7 +314,8 @@ export class Stage {
       if (!g.mode && (Math.abs(dist - g.dist) > 14 || Math.abs(midY - g.midY) > 14)) {
         g.mode = Math.abs(dist - g.dist) >= Math.abs(midY - g.midY) || !this.template?.canSlice ? 'zoom' : 'slice';
       }
-      if (g.mode === 'zoom') this.orbit.zoom = clamp((g.zoom * g.dist) / Math.max(20, dist), 0.35, 2.5);
+      if (g.mode === 'zoom' && this.presenting) this.root.scale.setScalar(clamp((g.zoom * dist) / Math.max(20, g.dist), 0.05, 1));
+      else if (g.mode === 'zoom') this.orbit.zoom = clamp((g.zoom * g.dist) / Math.max(20, dist), 0.35, 2.5);
       if (g.mode === 'slice') this.setSlice(g.slice - (midY - g.midY) / 160);
     }
   };
@@ -334,7 +355,7 @@ export class Stage {
     g.updateWorldMatrix(true, false);
     const n = new THREE.Vector3(0, 0, 1).transformDirection(g.matrixWorld);
     const cam = new THREE.Vector3();
-    this.camera.getWorldPosition(cam);
+    this.cam().getWorldPosition(cam);
     const to = cam.sub(g.localToWorld(new THREE.Vector3(...(this.template.view.target)))).normalize();
     return Math.acos(clamp(Math.abs(n.dot(to)), 0, 1));
   }

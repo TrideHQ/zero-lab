@@ -104,7 +104,8 @@
     "reset": "Reset",
     "aim": "Aim",
     "sun": "Sun angle",
-    "resistor": "Resistor R"
+    "resistor": "Resistor R",
+    "distance": "Distance to the Moon"
   },
   "bench": {
     "aim": "Aim",
@@ -165,7 +166,8 @@
     "slope_is": "Slope = {v}",
     "r2": "Fit quality r² = {v}",
     "practical": "Practical",
-    "undo": "Remove last reading"
+    "undo": "Remove last reading",
+    "aim_apparatus": "Aim and apparatus"
   },
   "partner": {
     "hello": "I'm your lab partner. Take your first reading when you're ready.",
@@ -272,9 +274,28 @@
     "sun": "Sun lamp",
     "hammer": "hammer",
     "feather": "feather",
-    "ball": "ball",
+    "ball": "heavy ball",
     "laser": "laser",
     "reflector": "retroreflector",
-    "ground": "ground"
+    "ground": "ground",
+    "ball2": "small ball"
+  },
+  "sky": {
+    "new": "New Moon",
+    "waxing_crescent": "Waxing crescent",
+    "first_quarter": "First quarter",
+    "waxing_gibbous": "Waxing gibbous",
+    "full": "Full Moon",
+    "waning_gibbous": "Waning gibbous",
+    "last_quarter": "Last quarter",
+    "waning_crescent": "Waning crescent",
+    "from_earth": "Seen from Earth",
+    "not_to_scale": "384,400 km on average (not to scale)",
+    "sent": "sent: about 10¹⁷ photons per pulse",
+    "returned": "returned: only a few photons",
+    "missed": "missed the reflector",
+    "no_air": "No air on the Moon",
+    "air": "Air resistance on",
+    "vacuum": "Air pumped out (vacuum)"
   }
 }

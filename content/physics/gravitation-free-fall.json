@@ -1,0 +1,231 @@
+{
+  "slug": "gravitation-free-fall",
+  "subject": "physics",
+  "unit": {
+    "en": "Forces and Motion"
+  },
+  "title": {
+    "en": "Gravitation and Free Fall"
+  },
+  "curricula": {
+    "international": {
+      "topic": "Gravitation and free fall",
+      "unit": "Forces and Motion",
+      "level": "Foundation",
+      "verified": false
+    },
+    "igcse": {
+      "topic": "Motion: free fall",
+      "unit": "1 Motion, forces and energy",
+      "level": "Supplement",
+      "verified": false
+    },
+    "alevel": {
+      "topic": "Gravitational force between point masses",
+      "unit": "13 Gravitational fields",
+      "level": "A Level",
+      "verified": false
+    },
+    "gcse": {
+      "topic": "Gravity",
+      "unit": "Forces",
+      "level": "Combined",
+      "verified": false
+    },
+    "ap": {
+      "topic": "Gravitational Force",
+      "unit": "Force and Translational Dynamics",
+      "level": "AP Physics 1",
+      "verified": false
+    },
+    "ib": {
+      "topic": "Gravitational fields",
+      "unit": "D. Fields",
+      "level": "SL",
+      "verified": false
+    },
+    "ngss": {
+      "topic": "Types of Interactions",
+      "unit": "PS2 Motion and Stability",
+      "level": "HS",
+      "verified": false
+    },
+    "cbse": {
+      "topic": "Gravitation",
+      "unit": "Gravitation",
+      "level": "Class 11",
+      "verified": false
+    },
+    "waec": {
+      "topic": "Gravitational field",
+      "unit": "Fields at rest and in motion",
+      "level": "SS3",
+      "verified": false
+    },
+    "kcse": {
+      "topic": "Linear motion: free fall",
+      "unit": "Mechanics",
+      "level": "Form 3",
+      "verified": false
+    },
+    "caps": {
+      "topic": "Newton's law of universal gravitation",
+      "unit": "Newton's laws",
+      "level": "Grade 11",
+      "verified": false
+    },
+    "acara": {
+      "topic": "Gravity and motion",
+      "unit": "Gravity and electromagnetism",
+      "level": "Unit 3",
+      "verified": false
+    }
+  },
+  "reviewed": false,
+  "summary": {
+    "en": "Without air, everything falls with the same acceleration."
+  },
+  "cards": [
+    {
+      "title": {
+        "en": "Falling under gravity"
+      },
+      "text": {
+        "en": "Let go of an object and the Earth's gravity pulls it down. It does not fall at a steady speed: it gets faster every moment. This is free fall."
+      },
+      "equation": null,
+      "modelState": {
+        "gravity": "earth",
+        "air": false,
+        "dropped": true
+      }
+    },
+    {
+      "title": {
+        "en": "The same for every mass"
+      },
+      "text": {
+        "en": "Drop a heavy ball and a light ball together with the air removed. They land at the same time. The acceleration of free fall g does not depend on mass. Near the Earth's surface it is about 9.8 m/s²."
+      },
+      "equation": "s = \\tfrac{1}{2} g t^2",
+      "modelState": {
+        "gravity": "earth",
+        "air": false,
+        "dropped": true
+      }
+    },
+    {
+      "title": {
+        "en": "Air gets in the way"
+      },
+      "text": {
+        "en": "Turn the air back on. Air resistance grows with speed and matters more for light objects, so the small ball falls behind. In everyday life this is why a leaf falls slower than a stone."
+      },
+      "equation": null,
+      "modelState": {
+        "gravity": "earth",
+        "air": true,
+        "dropped": true
+      }
+    },
+    {
+      "title": {
+        "en": "Gravity is universal"
+      },
+      "text": {
+        "en": "Every mass attracts every other mass. The pull gets weaker with distance and stronger with mass. The Moon has less mass than the Earth, so g there is only about 1.6 m/s²."
+      },
+      "equation": "F = \\dfrac{G m_1 m_2}{r^2}",
+      "modelState": {
+        "gravity": "moon",
+        "air": false,
+        "dropped": true
+      }
+    }
+  ],
+  "images": [
+    {
+      "type": "generated",
+      "state": {
+        "gravity": "earth",
+        "air": false,
+        "dropped": false
+      },
+      "caption": {
+        "en": "Two masses released from the same height"
+      }
+    },
+    {
+      "type": "generated",
+      "state": {
+        "gravity": "moon",
+        "air": false,
+        "dropped": false
+      },
+      "caption": {
+        "en": "The same drop on the Moon, where g is about one sixth"
+      }
+    }
+  ],
+  "model": {
+    "template": "sky-moon",
+    "preset": "drop",
+    "params": {
+      "pair": "balls"
+    }
+  },
+  "checks": [
+    {
+      "q": {
+        "en": "Tap the heavy ball."
+      },
+      "type": "point",
+      "target": "ball",
+      "modelState": {
+        "gravity": "earth",
+        "air": false
+      }
+    },
+    {
+      "q": {
+        "en": "With no air, a heavy ball and a light ball are dropped together. Which lands first?"
+      },
+      "type": "choice",
+      "options": [
+        {
+          "en": "The heavy ball"
+        },
+        {
+          "en": "The light ball"
+        },
+        {
+          "en": "They land together"
+        }
+      ],
+      "answer": 2
+    },
+    {
+      "q": {
+        "en": "On the Moon, the acceleration of free fall is about…"
+      },
+      "type": "choice",
+      "options": [
+        {
+          "en": "1.6 m/s²"
+        },
+        {
+          "en": "9.8 m/s²"
+        },
+        {
+          "en": "zero"
+        }
+      ],
+      "answer": 0
+    }
+  ],
+  "practical": null,
+  "related": [
+    "simple-pendulum",
+    "hammer-and-feather"
+  ]
+}

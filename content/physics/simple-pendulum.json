@@ -56,5 +56,5 @@
     { "q": { "en": "You swap the bob for a heavier one. What happens to the period?" }, "type": "choice", "options": [{ "en": "It gets longer" }, { "en": "It stays the same" }], "answer": 1 }
   ],
   "practical": "pendulum-g",
-  "related": ["refraction"]
+  "related": ["hookes-law", "pendulum-on-the-moon"]
 }

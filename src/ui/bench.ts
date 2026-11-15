@@ -66,8 +66,9 @@ export default async function benchPage(params: string[], query: URLSearchParams
       xrButtons),
     h('div.bench-grid',
       h('aside.panel.bench-left',
-        h('p', h('strong', t('bench.aim') + ': '), L(practical.aim)),
-        h('p.muted', h('strong', t('bench.apparatus') + ': '), practical.apparatus.map((a) => L(a)).join(', ')),
+        h('details.about', { open: window.innerHeight > 900 }, h('summary', t('bench.aim_apparatus')),
+          h('p', h('strong', t('bench.aim') + ': '), L(practical.aim)),
+          h('p.muted', h('strong', t('bench.apparatus') + ': '), practical.apparatus.map((a) => L(a)).join(', '))),
         steps, readout, status, controls,
         h('div.btn-row', { style: { display: 'flex', gap: '8px', margin: '10px 0' } }, recordBtn, undoBtn),
         analyseBtn),
@@ -317,6 +318,7 @@ export default async function benchPage(params: string[], query: URLSearchParams
     side: () => ({ title: t('bench.table'), body: [], table: tableSpec(engine), buttons: [] }),
     sideImage: () => (engine.phase !== 'readings' ? graph : null),
     speech: () => speech,
+    pointAnywhere: () => engine.phase === 'readings' && !!driver?.onTapPoint,
     onPoint(_name, local) {
       if (local && engine.phase === 'readings') driver?.onTapPoint?.(local);
     },

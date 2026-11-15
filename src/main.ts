@@ -25,6 +25,8 @@ export function applySettings() {
 }
 
 async function boot() {
+  const emu = new URLSearchParams(location.search).get('iwer');
+  if (import.meta.env.DEV && emu) (await import('./xr/emulator.ts')).installEmulator(emu);
   const s = settings();
   await setLocale(s.locale);
   const app = document.getElementById('app')!;

@@ -56,5 +56,5 @@
     { "q": { "en": "Tap the refracted ray inside the block." }, "type": "point", "target": "refracted", "modelState": { "angle": 40, "showNormal": true } }
   ],
   "practical": "refraction-glass-block",
-  "related": ["simple-pendulum"]
+  "related": ["reflection", "total-internal-reflection", "lenses"]
 }
