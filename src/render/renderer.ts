@@ -99,7 +99,7 @@ export class Stage {
   unmount() {
     if (!this.presenting) this.renderer.setAnimationLoop(null); // an XR session outlives a page change
     this.ro.disconnect();
-    this.renderer.domElement.remove();
+    if (!this.presenting) this.renderer.domElement.remove(); // keep the canvas alive for a running XR session
     this.host = null;
     this.setTemplate(null);
     this.frame.clear();

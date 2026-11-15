@@ -235,3 +235,6 @@ table.results td.derived { color: #bfe9ff; }
 .ar-active .tools { position: fixed; inset-inline: 8px; top: 56px; z-index: 3; }
 .ar-active .bubble { top: auto; bottom: 38vh; }
 .ar-bar { position: fixed; top: 8px; inset-inline-end: 8px; z-index: 5; display: flex; gap: 6px; align-items: center; font-size: .85rem; color: #fff; text-shadow: 0 1px 4px #000; }
+
+/* dev emulator only: stand-in backdrop where a phone would show the camera */
+html[data-iwer='phone'].ar-active { background: linear-gradient(#c9d2da 0%, #c9d2da 52%, #9c8f7c 52%, #b3a692 100%) !important; }

@@ -168,11 +168,17 @@ await clip('6-ar', '/?board=international&iwer=phone#/t/simple-pendulum', async 
 }, { width: 1280, height: 1200 });
 
 await browser.close();
-// normalise every clip to 1280x720 30 fps and join
+// normalise every clip to 1280x720 30 fps (headset clips are cropped to the field of view and sped up:
+// software rendering in the emulator runs slower than a real headset), then join
+const SPEED = { '1-home': 1.2, '2-topic': 1.3, '3-practical': 1.4, '4-moon': 1.25, '5-vr': 2.6, '6-ar': 1.3 };
 const files = readdirSync(`${out}/raw`).filter((f) => f.endsWith('.webm')).sort();
 for (const f of files) {
-  execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-i', `${out}/raw/${f}`, '-vf', 'scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2:color=0x0a1230,fps=30', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '21', '-pix_fmt', 'yuv420p', '-an', `${out}/raw/${f.replace('.webm', '.mp4')}`]);
+  const name = f.replace('.webm', '');
+  const tall = name === '5-vr' || name === '6-ar';
+  const vf = `${tall ? 'crop=1280:720:0:390,' : ''}scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2:color=0x0a1230,setpts=PTS/${SPEED[name] ?? 1},fps=30`;
+  execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-i', `${out}/raw/${f}`, '-vf', vf, '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '21', '-pix_fmt', 'yuv420p', '-an', `${out}/raw/${name}.mp4`]);
 }
 writeFileSync(`${out}/raw/list.txt`, files.map((f) => `file '${f.replace('.webm', '.mp4')}'`).join('\n'));
 execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'concat', '-safe', '0', '-i', `${out}/raw/list.txt`, '-c', 'copy', '-movflags', '+faststart', `${out}/zero-lab-demo.mp4`]);
+execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-ss', '30', '-i', `${out}/zero-lab-demo.mp4`, '-frames:v', '1', '-q:v', '3', `${out}/zero-lab-thumb.jpg`]);
 console.log(execFileSync('ffprobe', ['-v', 'error', '-show_entries', 'format=duration,size', '-of', 'default=nw=1', `${out}/zero-lab-demo.mp4`]).toString());
