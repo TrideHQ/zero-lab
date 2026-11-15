@@ -79,6 +79,11 @@ class Controller {
   private swipe = [new PalmSwipe(), new PalmSwipe()];
   private ray = new THREE.Ray();
   private hov = new Map<Panel, number>();
+  /** Gaze + pinch: what the head is pointing at. A pinch that is not aimed at anything selects it. */
+  private gazeRay = new THREE.Ray();
+  private gazeHot: { panel: Panel; index: number } | null = null;
+  private gazeDot = new THREE.Mesh(new THREE.RingGeometry(0.006, 0.009, 20), glow(0xffffff, 0.9));
+  stats = { gaze: 0, menu: 0, swipe: 0 };
   private lastPoint = '';
   /** Where each hand was aiming over the last few frames. Closing a pinch moves the fingers, so a pinch
    *  acts on the aim from just before it started, not on where the closing fingers end up. */
@@ -100,7 +105,7 @@ class Controller {
     stage.floor.visible = mode !== 'ar';
     if (this.phoneAR) this.startPhoneAR();
     else {
-      stage.scene.add(this.rig, ...this.hands.map((h) => h.mesh), ...this.cursors);
+      stage.scene.add(this.rig, ...this.hands.map((h) => h.mesh), ...this.cursors, this.gazeDot);
       this.rig.add(this.text.mesh, this.side.mesh, this.buttons.mesh);
       this.text.mesh.position.set(-LAYOUT.sideX, 0.02, LAYOUT.sideZ);
       this.text.mesh.rotation.y = LAYOUT.sideTurn;
@@ -204,12 +209,37 @@ class Controller {
 
     const sources = [...this.session.inputSources];
     this.hov.clear();
+    this.gaze(dir);
     this.hands.forEach((h, i) => {
       h.update(frame, ref, sources.find((s) => s.handedness === h.side && s.hand), dt);
       this.hand(i, dt);
     });
-    for (const p of [this.buttons, this.menu]) p.setHover(this.hov.get(p) ?? -1);
+    for (const p of [this.buttons, this.menu]) p.setHover(this.hov.get(p) ?? (this.gazeHot?.panel === p ? this.gazeHot.index : -1));
     this.twoHands();
+  }
+
+  private gaze(dir: THREE.Vector3) {
+    this.gazeRay.origin.copy(this.head);
+    this.gazeRay.direction.copy(dir).normalize();
+    this.gazeHot = null;
+    this.gazeDot.visible = false;
+    for (const p of [this.menu, this.buttons]) {
+      const hit = this.panelHit(p, this.gazeRay);
+      if (!hit) continue;
+      this.gazeDot.visible = true;
+      this.gazeDot.position.copy(hit.point);
+      this.gazeDot.quaternion.copy(p.mesh.getWorldQuaternion(new THREE.Quaternion()));
+      const index = p.hit(hit.u, hit.v);
+      if (index >= 0) this.gazeHot = { panel: p, index };
+      break;
+    }
+  }
+
+  private toggleMenu() {
+    this.menu.mesh.visible = !this.menu.mesh.visible;
+    // within easy reach, just above the button panel
+    this.menu.mesh.position.copy(this.centre).add(new THREE.Vector3(Math.sin(this.rig.rotation.y) * 0.16, -0.03, Math.cos(this.rig.rotation.y) * 0.16));
+    this.menu.mesh.rotation.set(0, this.rig.rotation.y, 0);
   }
 
   private redraw() {
@@ -219,7 +249,7 @@ class Controller {
     const main = app.main();
     const speech = app.speech?.();
     this.text.set({ ...main, body: speech ? [...main.body, `${t('bench.partner')}: ${speech}`] : main.body, buttons: [] });
-    this.buttons.set({ title: '', body: [], buttons: main.buttons });
+    this.buttons.set({ title: '', body: [], buttons: [...main.buttons, { id: 'menu', label: '☰ ' + t('xr.menu'), pressed: this.menu.mesh.visible, on: () => { this.toggleMenu(); this.dirty = true; } }] });
     const image = app.sideImage?.() ?? null;
     const side = app.side?.() ?? null;
     this.side.mesh.visible = !!(image || side);
@@ -309,10 +339,15 @@ class Controller {
       this.menu.mesh.visible = !this.menu.mesh.visible;
       this.menu.mesh.position.copy(h.palm).add(new THREE.Vector3(0, 0.16, 0));
       this.menu.mesh.lookAt(this.head);
+      this.stats.menu++;
+      this.dirty = true;
       blip('step');
     }
     const sw = this.swipe[i].update(h, new THREE.Vector3(Math.cos(this.yaw), 0, -Math.sin(this.yaw)), dt);
-    if (sw && !this.grabs[0] && !this.grabs[1]) app?.onSwipe?.(sw);
+    if (sw && !this.grabs[0] && !this.grabs[1]) {
+      this.stats.swipe++;
+      app?.onSwipe?.(sw);
+    }
   }
 
   private grab(i: number, ray: THREE.Ray) {
@@ -361,7 +396,31 @@ class Controller {
       blip('tick');
       return;
     }
-    // 3. empty space: twist the model
+    // 3. gaze + pinch: nothing under the hand, so the pinch selects what the student is looking at
+    if (this.gazeHot) {
+      this.gazeHot.panel.press(this.gazeHot.index);
+      this.stats.gaze++;
+      blip('tick');
+      return;
+    }
+    if (app?.wantsPoint?.()) {
+      let gname: string | null = null, gd = 0.03;
+      for (const [k, target] of Object.entries(tpl.pickTargets())) {
+        const pts = Array.isArray(target) ? [0, 0.25, 0.5, 0.75, 1].map((f) => target[0].clone().lerp(target[1], f)) : [target.clone()];
+        for (const p of pts) {
+          const d = this.gazeRay.distanceToPoint(tpl.group.localToWorld(p));
+          if (d < gd) { gd = d; gname = k; }
+        }
+      }
+      if (gname) {
+        this.lastPoint = gname;
+        this.stats.gaze++;
+        app.onPoint?.(gname, null);
+        blip('tick');
+        return;
+      }
+    }
+    // 4. empty space: twist the model
     const right = new THREE.Vector3(Math.cos(this.yaw), 0, -Math.sin(this.yaw));
     this.grabs[i] = { rotate: { x: h.pinchPos.dot(right), yaw: this.stage.root.rotation.y } };
   }
@@ -432,7 +491,7 @@ class Controller {
     return { h: hMax, v: vMax };
   }
   state() {
-    return { lastPoint: this.lastPoint, cursor: this.cursors.map((c) => c.visible), hover: [this.buttons.hover, this.menu.hover], pinch: this.hands.map((h) => h.pinchPos.toArray().map((v) => +v.toFixed(3))), head: this.head.toArray(), headYaw: this.yaw, placed: this.placed, phoneAR: this.phoneAR, hands: this.hands.map((h) => ({ tracked: h.tracked, pinching: h.pinching })), buttons: this.buttons.buttonIds(), menu: this.menu.mesh.visible, scale: this.stage.root.scale.x, yaw: this.stage.root.rotation.y };
+    return { stats: this.stats, gazeHot: this.gazeHot ? this.gazeHot.panel.buttonIds()[this.gazeHot.index] : null, palm: this.hands.map((h) => ({ up: +h.palmNormal.y.toFixed(2), open: h.open, n: h.palmNormal.toArray().map((v) => +v.toFixed(2)) })), lastPoint: this.lastPoint, cursor: this.cursors.map((c) => c.visible), hover: [this.buttons.hover, this.menu.hover], pinch: this.hands.map((h) => h.pinchPos.toArray().map((v) => +v.toFixed(3))), head: this.head.toArray(), headYaw: this.yaw, placed: this.placed, phoneAR: this.phoneAR, hands: this.hands.map((h) => ({ tracked: h.tracked, pinching: h.pinching })), buttons: this.buttons.buttonIds(), menu: this.menu.mesh.visible, scale: this.stage.root.scale.x, yaw: this.stage.root.rotation.y };
   }
 
   // ---- teardown ----------------------------------------------------------
@@ -448,6 +507,9 @@ class Controller {
     st.root.scale.setScalar(1);
     for (const p of [this.text, this.side, this.buttons, this.menu]) p.dispose();
     this.hands.forEach((h) => h.dispose());
+    this.gazeDot.geometry.dispose();
+    (this.gazeDot.material as THREE.Material).dispose();
+    this.gazeDot.removeFromParent();
     this.cursors.forEach((c) => { c.geometry.dispose(); (c.material as THREE.Material).dispose(); c.removeFromParent(); });
     this.rig.removeFromParent();
     this.placement?.dispose();

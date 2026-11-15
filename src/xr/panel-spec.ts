@@ -23,6 +23,8 @@ export interface XRApp {
   onSwipe?(dir: 1 | -1): void;
   /** True when a pinch anywhere on the model's plane should be reported (e.g. placing pins). */
   pointAnywhere?(): boolean;
+  /** True while a "point at" question is waiting for an answer (enables gaze + pinch on the model). */
+  wantsPoint?(): boolean;
   /** Bumped by the screen whenever its panels need redrawing. */
   version: number;
 }

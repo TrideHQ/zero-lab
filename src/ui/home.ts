@@ -42,7 +42,7 @@ export default async function home(): Promise<Screen> {
       h('div.section-head',
         h('p.eyebrow', { style: { margin: '0' } }, t('home.start_here')),
         h('a.arrow-link', { href: '#/s/physics' }, t('home.all_topics', { n: physics.length }))),
-      h('div.cards-grid', featured.map((s) => topicCard(s!)))),
+      h('div.cards-grid.three', featured.map((s) => topicCard(s!)))),
 
     moon.length ? h('section',
       h('a.band', { href: '#/s/moon' },
