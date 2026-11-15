@@ -7,18 +7,21 @@ import { execFileSync } from 'node:child_process';
 import { mkdirSync, readdirSync, renameSync, rmSync, writeFileSync } from 'node:fs';
 const out = process.argv[2] ?? 'demo';
 const base = process.env.BASE ?? 'http://localhost:5173';
-rmSync(`${out}/raw`, { recursive: true, force: true });
+if (!process.env.ONLY) rmSync(`${out}/raw`, { recursive: true, force: true });
 mkdirSync(`${out}/raw`, { recursive: true });
 const browser = await chromium.launch({ args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
 const size = { width: 1280, height: 720 };
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
+const only = (process.env.ONLY ?? '').split(',').filter(Boolean);
 async function clip(name, url, run, viewport = size) {
+  if (only.length && !only.some((o) => name.startsWith(o))) return;
   const ctx = await browser.newContext({ viewport, recordVideo: { dir: `${out}/raw`, size: viewport } });
   const page = await ctx.newPage();
   await page.goto(base + url);
   await page.addStyleTag({ content: '#cap{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:99999;background:#ffb347;color:#2a1600;font:700 22px Inter,system-ui,sans-serif;padding:10px 22px;border-radius:999px;box-shadow:0 6px 30px rgba(0,0,0,.5);max-width:92%;text-align:center;pointer-events:none}#cap:empty{display:none}' });
   await page.evaluate(() => { const d = document.createElement('div'); d.id = 'cap'; document.body.append(d); });
+  if (viewport.height > 720) await page.addStyleTag({ content: '#cap{bottom:auto;top:' + (name === '5-vr' ? 348 : 70) + 'px}' }); // keep the caption inside the cropped headset view
   page.cap = (text) => page.evaluate((t) => { document.getElementById('cap').textContent = t; }, text);
   await run(page);
   const video = page.video();
@@ -174,8 +177,8 @@ const SPEED = { '1-home': 1.2, '2-topic': 1.3, '3-practical': 1.4, '4-moon': 1.2
 const files = readdirSync(`${out}/raw`).filter((f) => f.endsWith('.webm')).sort();
 for (const f of files) {
   const name = f.replace('.webm', '');
-  const tall = name === '5-vr' || name === '6-ar';
-  const vf = `${tall ? 'crop=1280:720:0:390,' : ''}scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2:color=0x0a1230,setpts=PTS/${SPEED[name] ?? 1},fps=30`;
+  const tall = name === '5-vr';
+  const vf = `${tall ? 'crop=1280:720:0:335,' : ''}scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2:color=0x0a1230,setpts=PTS/${SPEED[name] ?? 1},fps=30`;
   execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-i', `${out}/raw/${f}`, '-vf', vf, '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '21', '-pix_fmt', 'yuv420p', '-an', `${out}/raw/${name}.mp4`]);
 }
 writeFileSync(`${out}/raw/list.txt`, files.map((f) => `file '${f.replace('.webm', '.mp4')}'`).join('\n'));
