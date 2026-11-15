@@ -1,6 +1,6 @@
 // Topic stage: 3D model centre, explanation cards on the left, diagrams on the
 // right, step dots and "Try the practical" below. On phones it stacks.
-import { h } from './dom.ts';
+import { h, fill } from './dom.ts';
 import { renderTex, texToText } from './components/katex.ts';
 import { controlBar, type ControlBar } from './components/controls.ts';
 import { L, t } from '../i18n/index.ts';
@@ -87,7 +87,7 @@ export default async function topicPage(params: string[], query: URLSearchParams
       const c = topic.cards[index];
       count.textContent = t('topic.card', { n: index + 1, m: nCards });
       const eq = c.equation ? h('div.equation') : null;
-      cardBody.replaceChildren(h('h2', L(c.title)), h('p', L(c.text)), eq);
+      fill(cardBody, h('h2', L(c.title)), h('p', L(c.text)), eq);
       if (eq && c.equation) void renderTex(eq, c.equation);
       tpl?.setState(c.modelState, { reset: true });
       visitTopic(slug, index);
@@ -103,7 +103,7 @@ export default async function topicPage(params: string[], query: URLSearchParams
   function drawCheck() {
     count.textContent = t('topic.checks');
     if (checks.done()) {
-      cardBody.replaceChildren(h('h2', t('topic.checks')), h('p.feedback.good', t('topic.all_done')),
+      fill(cardBody, h('h2', t('topic.checks')), h('p.feedback.good', t('topic.all_done')),
         topic.related.length ? h('div', h('h3', t('topic.related')), h('div.options', topic.related.map((r) => h('a.option', { href: `#/t/${r}` }, L(summary(r)?.title))))) : null,
         topic.practical ? h('a.btn.primary.wide', { href: practicalHref() }, t('topic.try')) : null);
       return;
@@ -128,14 +128,14 @@ export default async function topicPage(params: string[], query: URLSearchParams
     };
     const head = [h('h2', t('topic.checks')), h('small', t('topic.check_n', { n: checks.index + 1, m: topic.checks.length })), h('p.check-q', L(c.q))];
     if (c.type === 'choice') {
-      cardBody.replaceChildren(...head, h('div.options', c.options.map((o, i) =>
+      fill(cardBody, ...head, h('div.options', c.options.map((o, i) =>
         h('button.option', { 'data-option': i, onclick: (e: Event) => {
           const ok = checks.answer(i);
           (e.currentTarget as HTMLElement).classList.add(ok ? 'right' : 'wrong');
           answered(ok);
         } }, L(o)))), fb);
     } else {
-      cardBody.replaceChildren(...head, h('p.muted', t('topic.point_hint')), fb);
+      fill(cardBody, ...head, h('p.muted', t('topic.point_hint')), fb);
       if (c.modelState) tpl?.setState(c.modelState, { reset: true });
       if (stage) stage.onTap = (name) => answered(checks.answer(name));
       pointAnswer = (name) => answered(checks.answer(name));
@@ -204,7 +204,7 @@ export default async function topicPage(params: string[], query: URLSearchParams
         console.warn(e);
       }
     };
-    xrButtons.replaceChildren(
+    fill(xrButtons, 
       sup.ar ? h('button.btn.small', { id: 'enter-ar', onclick: enter('ar') }, t('topic.ar')) : null,
       sup.vr ? h('button.btn.small', { id: 'enter-vr', onclick: enter('vr') }, t('topic.vr')) : null);
   }

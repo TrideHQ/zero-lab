@@ -59,7 +59,8 @@ export function buildContent(root = process.cwd()): BuiltContent {
         errors.push(`${where}: ${(e as Error).message}`);
         continue;
       }
-      if (!validate(t)) {
+      const valid: boolean = validate(t) as boolean;
+      if (!valid) {
         for (const e of validate.errors ?? []) errors.push(`${where}: ${e.instancePath || '/'} ${e.message}`);
         continue;
       }

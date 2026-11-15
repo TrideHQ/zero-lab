@@ -32,3 +32,9 @@ function append(el: HTMLElement, kids: Child[]) {
 }
 
 export const clear = (el: HTMLElement) => el.replaceChildren();
+
+/** Replace an element's children (null / false children are skipped). */
+export function fill(el: HTMLElement, ...kids: Child[]) {
+  el.replaceChildren();
+  append(el, kids);
+}
