@@ -66,7 +66,8 @@ export default async function progressPage(): Promise<Screen> {
       lines.push(t('progress.your_practicals').toUpperCase());
       for (const r of practicals) {
         const line = `${title(r.slug)}: ${r.symbol} = ${num(r.answer, 2)} ${r.unit} (${t('bench.error')} ${num(r.pctError, 1)}%), ${score(r)}`;
-        sheet.append(h('h3', title(r.slug)), h('p', line.slice(title(r.slug).length + 2)), r.graph ? h('img', { src: r.graph, alt: t('bench.graph') }) : null);
+        sheet.append(h('h3', title(r.slug)), h('p', line.slice(title(r.slug).length + 2)));
+        if (r.graph) sheet.append(h('img', { src: r.graph, alt: t('bench.graph') }));
         lines.push('- ' + line);
       }
     }

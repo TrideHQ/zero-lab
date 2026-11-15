@@ -365,7 +365,9 @@ const NAVY = new THREE.Color(0x0a1230);
 
 let stage: Stage | null = null;
 export function getStage(): Stage {
-  return (stage ??= new Stage());
+  stage ??= new Stage();
+  (window as unknown as { __stage: Stage }).__stage = stage; // for automated run-throughs
+  return stage;
 }
 export function webglOk(): boolean {
   try {

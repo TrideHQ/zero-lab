@@ -51,6 +51,7 @@ export async function enterXR(mode: 'vr' | 'ar', stage: Stage): Promise<void> {
     await stage.renderer.xr.setSession(session);
   }
   active = new Controller(stage, session, mode);
+  (window as unknown as { __xrc: unknown }).__xrc = active;
 }
 
 interface Grab { handle?: Handle; plane?: THREE.Plane; rotate?: { x: number; yaw: number } }
@@ -87,7 +88,8 @@ class Controller {
   constructor(stage: Stage, session: XRSession, mode: 'vr' | 'ar') {
     this.stage = stage;
     this.session = session;
-    this.phoneAR = mode === 'ar' && !!(session as XRSession & { domOverlayState?: unknown }).domOverlayState;
+    // (the dev emulator has no DOM overlay, so ?iwer=phone forces the phone path for testing)
+    this.phoneAR = mode === 'ar' && (!!(session as XRSession & { domOverlayState?: unknown }).domOverlayState || document.documentElement.dataset.iwer === 'phone');
     stage.arMode = mode === 'ar';
     stage.arTouch = this.phoneAR;
     stage.floor.visible = mode !== 'ar';
