@@ -415,7 +415,7 @@ class Controller {
     return { h: hMax, v: vMax };
   }
   state() {
-    return { head: this.head.toArray(), headYaw: this.yaw, placed: this.placed, phoneAR: this.phoneAR, hands: this.hands.map((h) => ({ tracked: h.tracked, pinching: h.pinching })), buttons: this.buttons.buttonIds(), menu: this.menu.mesh.visible, scale: this.stage.root.scale.x, yaw: this.stage.root.rotation.y };
+    return { cursor: this.cursors.map((c) => c.visible), hover: [this.buttons.hover, this.menu.hover], pinch: this.hands.map((h) => h.pinchPos.toArray().map((v) => +v.toFixed(3))), head: this.head.toArray(), headYaw: this.yaw, placed: this.placed, phoneAR: this.phoneAR, hands: this.hands.map((h) => ({ tracked: h.tracked, pinching: h.pinching })), buttons: this.buttons.buttonIds(), menu: this.menu.mesh.visible, scale: this.stage.root.scale.x, yaw: this.stage.root.rotation.y };
   }
 
   // ---- teardown ----------------------------------------------------------
