@@ -8,6 +8,7 @@ import { BaseTemplate, DEG, clamp, v3 } from '../base.ts';
 import { Beams, arc, arrow, type P3, type Seg } from '../../render/beams.ts';
 import { Label } from '../../render/label.ts';
 import { CYAN, TEAL, WARM, WHITE, edges, holo } from '../../render/hologram-shader.ts';
+import { t } from '../../i18n/index.ts';
 
 const RAY = 0xfff0b8;
 const AXIS_Y = 0.8;
@@ -317,7 +318,7 @@ class RayOptics extends BaseTemplate {
       } else segs.push(...arrow([v, AXIS_Y, 0], I, CYAN, 0.024, 0.08));
       this.targets.image = [v3(v, AXIS_Y), v3(...I)];
     }
-    this.labels.img.set(!finite ? '∞' : v < 0 ? 'virtual' : 'real');
+    this.labels.img.set(!finite ? '∞' : t(v < 0 ? 'model.virtual' : 'model.real'));
     this.labels.img.at(finite ? v : 1.15, finite ? AXIS_Y + m * h + Math.sign(m || 1) * 0.09 : AXIS_Y + 0.5, 0.02);
     // slice: the front half slides out and the cross-section outline lights up
     const ex = this.n('explode');

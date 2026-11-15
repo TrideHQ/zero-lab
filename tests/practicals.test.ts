@@ -96,7 +96,7 @@ test('refraction: pins traced with human error give n within tolerance; parallax
 });
 
 test("Ohm's law: meter readings give R within tolerance; an open switch is flagged", async () => {
-  const { solve, RES } = await import('../src/templates/circuit-board/index.ts');
+  const { solve, RES } = await import('../src/templates/circuit-board/solve.ts');
   const p = P('ohms-law');
   const e = new PracticalEngine(p);
   for (const rheo of [0.95, 0.7, 0.5, 0.32, 0.16, 0.04]) {

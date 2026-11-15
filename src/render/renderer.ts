@@ -80,7 +80,7 @@ export class Stage {
   mount(host: HTMLElement, lite: boolean) {
     this.lite = lite;
     this.host = host;
-    host.prepend(this.renderer.domElement);
+    if (!this.presenting) host.prepend(this.renderer.domElement); // during XR the canvas stays where the session put it
     this.ro.observe(host);
     this.renderer.setPixelRatio(lite ? 1 : Math.min(window.devicePixelRatio || 1, 2));
     this.resize();
@@ -134,10 +134,24 @@ export class Stage {
     this.onSlice?.(this.slice);
   }
 
+  private sizePoints(scale: number) {
+    this.template?.group.traverse((o) => {
+      const m = (o as THREE.Points).isPoints ? ((o as THREE.Points).material as THREE.PointsMaterial) : null;
+      if (!m) return;
+      m.userData.base ??= m.size;
+      m.size = m.userData.base * scale;
+    });
+  }
+
   /** Called when an XR session ends. */
   afterXR() {
+    this.sizePoints(1);
+    U.uScanFreq.value = 70;
     if (!this.host) this.renderer.setAnimationLoop(null);
-    else setTimeout(() => this.resize(), 50);
+    else {
+      this.host.prepend(this.renderer.domElement);
+      setTimeout(() => this.resize(), 50);
+    }
   }
 
   /** The camera that is actually rendering: the XR view while presenting. */
@@ -175,6 +189,11 @@ export class Stage {
     this.template?.update(dt, t);
     for (const f of this.frame) f(dt, t, frame);
     this.xrHook?.(dt, t, frame);
+    if (xr) {
+      // point sprites and scan lines are sized in world units: keep them in step with the scaled-down lab
+      this.sizePoints(this.root.scale.x);
+      U.uScanFreq.value = 70 / this.root.scale.x;
+    }
     if (!xr) this.placeCamera();
     const useBloom = this.bloom && this.wantBloom && !xr;
     this.scene.background = useBloom ? NAVY : xr && !this.arMode ? NAVY : null;

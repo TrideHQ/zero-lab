@@ -6,6 +6,7 @@ import type { ControlSpec, Handle, PickTarget, Template } from '../types.ts';
 import { BaseTemplate, DEG, clamp, v3 } from '../base.ts';
 import { Beams, arrow, arc, type P3, type Seg } from '../../render/beams.ts';
 import { Label } from '../../render/label.ts';
+import { t } from '../../i18n/index.ts';
 import { CYAN, TEAL, WARM, C_FORCE, C_FORCE2, C_ALT, C_GOOD, edges, holo } from '../../render/hologram-shader.ts';
 
 /** Model units per metre. */
@@ -256,7 +257,7 @@ class ForcesRig extends BaseTemplate {
     this.labels.e.at(rx + 0.36, (y0 + y1) / 2, 0);
     this.labels.m.set(`m = ${Math.round(mass * 1000)} g`);
     this.labels.m.at(-0.02, yLoad - hgt / 2 - 0.1, 0.1);
-    this.labels.status.set(mass > 0.5 ? 'past the elastic limit' : '');
+    this.labels.status.set(mass > 0.5 ? t('model.past_limit') : '');
     this.labels.status.sprite.visible = mass > 0.5;
     this.labels.status.at(0.75, PIVOT_Y + 0.12, 0);
     if (this.b('arrows') && mass > 0) {
@@ -307,7 +308,7 @@ class ForcesRig extends BaseTemplate {
     this.labels.l2.set(`${Math.round(m2 * 1000)} g × ${Math.round(d2 * 100)} cm = ${(m2 * g * d2).toFixed(2)} N m`);
     this.labels.l2.at(0.72, 1.28, 0);
     const balanced = Math.abs(net) < 0.012;
-    this.labels.status.set(balanced ? 'Balanced' : net > 0 ? '↺ turns anticlockwise' : '↻ turns clockwise');
+    this.labels.status.set(balanced ? t('model.balanced') : net > 0 ? '↺ ' + t('model.anticlockwise') : '↻ ' + t('model.clockwise'));
     this.labels.status.at(0, 1.62, 0);
     this.beams.set(segs);
     this.targets = {

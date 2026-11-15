@@ -5,6 +5,6 @@ dist
 *.log
 .vercel
 tmp
-public/img/gen
+
 demo/*.mp4
 demo/raw

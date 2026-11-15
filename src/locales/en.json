@@ -297,5 +297,14 @@
     "no_air": "No air on the Moon",
     "air": "Air resistance on",
     "vacuum": "Air pumped out (vacuum)"
+  },
+  "model": {
+    "virtual": "virtual",
+    "real": "real",
+    "past_limit": "past the elastic limit",
+    "balanced": "Balanced",
+    "anticlockwise": "turns anticlockwise",
+    "clockwise": "turns clockwise",
+    "switch_open": "switch open: no current"
   }
 }
