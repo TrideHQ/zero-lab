@@ -1,0 +1,18 @@
+# Credits
+
+## Content
+- All explanation text, check questions, practical instructions and diagrams are original to 0⁰ Lab. Nothing is copied from textbooks, exam papers or websites.
+- Curriculum mappings use each board's publicly listed topic names only, in plain text. Board names are used descriptively; 0⁰ Lab is not affiliated with or endorsed by any exam board. No exam-board logos are used.
+- All diagrams are generated from the app's own 3D templates (`public/img/gen`). There are no external images.
+- The Moon and Earth are procedural (generated in code). No NASA models, textures, logos or insignia are used. The hammer-and-feather experience refers to the demonstration performed on Apollo 15 in 1971; lunar laser ranging uses the retroreflectors left by the Apollo missions.
+
+## Software
+- three.js (MIT)
+- KaTeX (MIT)
+- Inter typeface via @fontsource-variable/inter (SIL Open Font License 1.1)
+- Vite (MIT), TypeScript (Apache-2.0), Ajv (MIT)
+- IWER, the Immersive Web Emulation Runtime by Meta (MIT), used in development and testing only
+- Playwright (Apache-2.0), used for automated checks only
+
+## AI
+- The lab partner's wording comes from an LLM behind `/api/partner` (default: Cerebras, `gpt-oss-120b`). Marks and all numbers are computed in code.
