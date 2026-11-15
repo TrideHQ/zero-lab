@@ -195,7 +195,7 @@ class RayOptics extends BaseTemplate {
     const hi = Math.PI / 2 + (i * DEG) / 2, hr = -Math.PI / 2 + (tr.r * DEG) / 2;
     this.labels.i.at(tr.entry[0] + Math.cos(hi) * 0.3, top + Math.sin(hi) * 0.3, 0.02);
     this.labels.r.at(tr.entry[0] + Math.cos(hr) * 0.34, top + Math.sin(hr) * 0.34, 0.02);
-    this.labels.n.set(`n = ${n.toFixed(2)}`);
+    this.labels.n.set(this.params.hideN ? 'n = ?' : `n = ${n.toFixed(2)}`);
     this.labels.n.at(BLOCK.cx + BLOCK.w / 2 - 0.26, BLOCK.cy - BLOCK.h / 2 + 0.09, 0.2);
     this.rayBox(tr.source, tr.entry);
     this.path = [{ a: tr.source, b: tr.entry, v: 1 }, { a: tr.entry, b: tr.exit, v: 1 / n }, { a: tr.exit, b: tr.end, v: 1 }];

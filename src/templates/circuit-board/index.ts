@@ -384,7 +384,7 @@ class CircuitBoard extends BaseTemplate {
     const c: ControlSpec[] = [{ key: 'switchOn', label: 'controls.switch', type: 'toggle' }];
     if (this.preset === 'ohm') {
       c.push({ key: 'rheo', label: 'controls.rheostat', type: 'range', min: 0, max: 1, step: 0.02, dp: 2 });
-      if (!this.params.hideR) c.push({ key: 'R', label: 'labels.resistor', type: 'range', min: 1, max: 20, step: 0.1, unit: ' Ω', dp: 1 });
+      if (!this.params.hideR) c.push({ key: 'R', label: 'controls.resistor', type: 'range', min: 1, max: 20, step: 0.1, unit: ' Ω', dp: 1 });
     } else {
       c.push({ key: 'R1', label: 'controls.r1', type: 'range', min: 1, max: 20, step: 1, unit: ' Ω', dp: 0 });
       c.push({ key: 'R2', label: 'controls.r2', type: 'range', min: 1, max: 20, step: 1, unit: ' Ω', dp: 0 });

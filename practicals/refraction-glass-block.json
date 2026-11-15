@@ -1,56 +1,230 @@
 {
   "slug": "refraction-glass-block",
-  "model": { "template": "ray-optics", "preset": "glass-block", "params": { "n": 1.52 } },
-  "title": { "en": "Refraction through a glass block: finding n" },
-  "aim": { "en": "Find the refractive index n of a glass block by tracing rays through it." },
+  "model": {
+    "template": "ray-optics",
+    "preset": "glass-block",
+    "params": {
+      "n": 1.52
+    }
+  },
+  "title": {
+    "en": "Refraction through a glass block: finding n"
+  },
+  "aim": {
+    "en": "Find the refractive index n of a glass block by tracing rays through it."
+  },
   "apparatus": [
-    { "en": "Rectangular glass block" }, { "en": "Ray box" }, { "en": "Four optical pins" }, { "en": "Protractor" }, { "en": "Plain paper" }
+    {
+      "en": "Rectangular glass block"
+    },
+    {
+      "en": "Ray box"
+    },
+    {
+      "en": "Four optical pins"
+    },
+    {
+      "en": "Protractor"
+    },
+    {
+      "en": "Plain paper"
+    }
   ],
   "steps": [
-    { "id": "aim", "text": { "en": "Turn the ray box to choose an angle of incidence." } },
-    { "id": "pins", "text": { "en": "Place two pins on the incoming ray and two on the ray leaving the block. Keep each pair well apart." } },
-    { "id": "measure", "text": { "en": "Look straight down, then measure i and r with the protractor." } },
-    { "id": "record", "text": { "en": "Record i and r. Repeat for 5 different angles." } },
-    { "id": "analyse", "text": { "en": "Plot the graph, choose the formula and finish your report." } }
+    {
+      "id": "aim",
+      "text": {
+        "en": "Turn the ray box to choose an angle of incidence."
+      }
+    },
+    {
+      "id": "pins",
+      "text": {
+        "en": "Place two pins on the incoming ray and two on the ray leaving the block. Keep each pair well apart."
+      }
+    },
+    {
+      "id": "measure",
+      "text": {
+        "en": "Look straight down, then measure i and r with the protractor."
+      }
+    },
+    {
+      "id": "record",
+      "text": {
+        "en": "Record i and r. Repeat for 5 different angles."
+      }
+    },
+    {
+      "id": "analyse",
+      "text": {
+        "en": "Plot the graph, choose the formula and finish your report."
+      }
+    }
   ],
   "variants": {
-    "glass": { "label": { "en": "Glass block" }, "params": { "n": 1.52 }, "accepted": 1.52 }
+    "glass": {
+      "label": {
+        "en": "Glass block"
+      },
+      "params": {
+        "n": 1.52
+      },
+      "accepted": 1.52
+    }
   },
-  "readings": { "target": 5 },
+  "readings": {
+    "target": 5
+  },
   "table": {
     "columns": [
-      { "id": "i", "label": "i", "unit": "°", "source": "measured", "dp": 0 },
-      { "id": "r", "label": "r", "unit": "°", "source": "measured", "dp": 0 },
-      { "id": "sini", "label": "sin i", "unit": "", "source": "derived", "dp": 3 },
-      { "id": "sinr", "label": "sin r", "unit": "", "source": "derived", "dp": 3 }
+      {
+        "id": "i",
+        "label": "i",
+        "unit": "°",
+        "source": "measured",
+        "dp": 0
+      },
+      {
+        "id": "r",
+        "label": "r",
+        "unit": "°",
+        "source": "measured",
+        "dp": 0
+      },
+      {
+        "id": "sini",
+        "label": "sin i",
+        "unit": "",
+        "source": "derived",
+        "dp": 3
+      },
+      {
+        "id": "sinr",
+        "label": "sin r",
+        "unit": "",
+        "source": "derived",
+        "dp": 3
+      }
     ]
   },
-  "graph": { "x": "sinr", "y": "sini", "choices": ["i", "r", "sini", "sinr"] },
+  "graph": {
+    "x": "sinr",
+    "y": "sini",
+    "choices": [
+      "i",
+      "r",
+      "sini",
+      "sinr"
+    ]
+  },
   "expected": {
-    "relation": { "en": "sin i is directly proportional to sin r" },
+    "relation": {
+      "en": "sin i is directly proportional to sin r"
+    },
     "symbol": "n",
     "unit": "(no unit)",
-    "units": ["(no unit)", "°", "m/s", "m"]
+    "units": [
+      "(no unit)",
+      "°",
+      "m/s",
+      "m"
+    ]
   },
   "formula": {
     "options": [
-      { "id": "a", "tex": "n = \\text{slope of } \\sin i \\text{ against } \\sin r", "text": "n = slope of sin i against sin r", "correct": true },
-      { "id": "b", "tex": "n = \\dfrac{1}{\\text{slope}}", "text": "n = 1 ÷ slope", "correct": false },
-      { "id": "c", "tex": "n = \\dfrac{i}{r}", "text": "n = i ÷ r", "correct": false }
+      {
+        "id": "a",
+        "tex": "n = \\text{slope of } \\sin i \\text{ against } \\sin r",
+        "text": "n = slope of sin i against sin r",
+        "correct": true,
+        "calc": "slope"
+      },
+      {
+        "id": "b",
+        "tex": "n = \\dfrac{1}{\\text{slope}}",
+        "text": "n = 1 ÷ slope",
+        "correct": false,
+        "calc": "1/slope"
+      },
+      {
+        "id": "c",
+        "tex": "n = \\dfrac{i}{r}",
+        "text": "n = i ÷ r",
+        "correct": false,
+        "calc": "none"
+      }
     ]
   },
-  "tolerance": { "reading": 2, "answer": 0.05 },
+  "tolerance": {
+    "reading": 2,
+    "answer": 0.05
+  },
   "precautions": [
-    { "id": "eye_level", "text": { "en": "I looked straight down on the protractor to avoid parallax." }, "correct": true },
-    { "id": "pins_apart", "text": { "en": "I kept the pins far apart and upright." }, "correct": true },
-    { "id": "sharp_lines", "text": { "en": "I drew thin, sharp lines and kept the block still." }, "correct": true },
-    { "id": "pins_close", "text": { "en": "I put the pins close together so they were easy to see." }, "correct": false },
-    { "id": "one_angle", "text": { "en": "I used one angle only to keep it simple." }, "correct": false }
+    {
+      "id": "eye_level",
+      "text": {
+        "en": "I looked straight down on the protractor to avoid parallax."
+      },
+      "correct": true
+    },
+    {
+      "id": "pins_apart",
+      "text": {
+        "en": "I kept the pins far apart and upright."
+      },
+      "correct": true
+    },
+    {
+      "id": "sharp_lines",
+      "text": {
+        "en": "I drew thin, sharp lines and kept the block still."
+      },
+      "correct": true
+    },
+    {
+      "id": "pins_close",
+      "text": {
+        "en": "I put the pins close together so they were easy to see."
+      },
+      "correct": false
+    },
+    {
+      "id": "one_angle",
+      "text": {
+        "en": "I used one angle only to keep it simple."
+      },
+      "correct": false
+    }
   ],
   "conclusions": [
-    { "text": { "en": "sin i divided by sin r is constant, so the graph is a straight line whose slope is n." }, "correct": true },
-    { "text": { "en": "The angle of refraction is always equal to the angle of incidence." }, "correct": false },
-    { "text": { "en": "Light bends away from the normal when it enters glass." }, "correct": false }
+    {
+      "text": {
+        "en": "sin i divided by sin r is constant, so the graph is a straight line whose slope is n."
+      },
+      "correct": true
+    },
+    {
+      "text": {
+        "en": "The angle of refraction is always equal to the angle of incidence."
+      },
+      "correct": false
+    },
+    {
+      "text": {
+        "en": "Light bends away from the normal when it enters glass."
+      },
+      "correct": false
+    }
   ],
-  "mistakes": ["parallax", "pins_too_close", "duplicate_reading", "narrow_range", "too_few_readings", "wrong_axis", "unit_missing", "wrong_formula"]
+  "mistakes": [
+    "parallax",
+    "pins_too_close",
+    "duplicate_reading",
+    "narrow_range",
+    "too_few_readings",
+    "wrong_axis",
+    "unit_missing",
+    "wrong_formula"
+  ]
 }

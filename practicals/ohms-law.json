@@ -1,54 +1,221 @@
 {
   "slug": "ohms-law",
-  "model": { "template": "circuit-board", "preset": "ohm", "params": { "R": 4.7, "emf": 6 } },
-  "title": { "en": "Ohm's law: finding a resistance" },
-  "aim": { "en": "Find the resistance R of a resistor from readings of potential difference and current." },
+  "model": {
+    "template": "circuit-board",
+    "preset": "ohm",
+    "params": {
+      "R": 4.7,
+      "emf": 6
+    }
+  },
+  "title": {
+    "en": "Ohm's law: finding a resistance"
+  },
+  "aim": {
+    "en": "Find the resistance R of a resistor from readings of potential difference and current."
+  },
   "apparatus": [
-    { "en": "Battery" }, { "en": "Switch" }, { "en": "Rheostat" }, { "en": "Resistor" }, { "en": "Ammeter" }, { "en": "Voltmeter" }, { "en": "Connecting wires" }
+    {
+      "en": "Battery"
+    },
+    {
+      "en": "Switch"
+    },
+    {
+      "en": "Rheostat"
+    },
+    {
+      "en": "Resistor"
+    },
+    {
+      "en": "Ammeter"
+    },
+    {
+      "en": "Voltmeter"
+    },
+    {
+      "en": "Connecting wires"
+    }
   ],
   "steps": [
-    { "id": "build", "text": { "en": "Drag each component onto the board. The ammeter goes in series; the voltmeter goes across the resistor." } },
-    { "id": "switch", "text": { "en": "Close the switch." } },
-    { "id": "vary", "text": { "en": "Move the rheostat slider to change the current." } },
-    { "id": "record", "text": { "en": "Read the voltmeter and the ammeter and record V and I. Repeat for 6 settings." } },
-    { "id": "analyse", "text": { "en": "Plot the graph, choose the formula and finish your report." } }
+    {
+      "id": "build",
+      "text": {
+        "en": "Drag each component onto the board. The ammeter goes in series; the voltmeter goes across the resistor."
+      }
+    },
+    {
+      "id": "switch",
+      "text": {
+        "en": "Close the switch."
+      }
+    },
+    {
+      "id": "vary",
+      "text": {
+        "en": "Move the rheostat slider to change the current."
+      }
+    },
+    {
+      "id": "record",
+      "text": {
+        "en": "Read the voltmeter and the ammeter and record V and I. Repeat for 6 settings."
+      }
+    },
+    {
+      "id": "analyse",
+      "text": {
+        "en": "Plot the graph, choose the formula and finish your report."
+      }
+    }
   ],
   "variants": {
-    "resistor": { "label": { "en": "Unknown resistor" }, "params": { "R": 4.7 }, "accepted": 4.7 }
+    "resistor": {
+      "label": {
+        "en": "Unknown resistor"
+      },
+      "params": {
+        "R": 4.7
+      },
+      "accepted": 4.7
+    }
   },
-  "readings": { "target": 6 },
+  "readings": {
+    "target": 6
+  },
   "table": {
     "columns": [
-      { "id": "V", "label": "V", "unit": "V", "source": "measured", "dp": 1 },
-      { "id": "I", "label": "I", "unit": "A", "source": "measured", "dp": 2 }
+      {
+        "id": "V",
+        "label": "V",
+        "unit": "V",
+        "source": "measured",
+        "dp": 1
+      },
+      {
+        "id": "I",
+        "label": "I",
+        "unit": "A",
+        "source": "measured",
+        "dp": 2
+      }
     ]
   },
-  "graph": { "x": "I", "y": "V", "choices": ["V", "I"] },
+  "graph": {
+    "x": "I",
+    "y": "V",
+    "choices": [
+      "V",
+      "I"
+    ]
+  },
   "expected": {
-    "relation": { "en": "V is directly proportional to I" },
+    "relation": {
+      "en": "V is directly proportional to I"
+    },
     "symbol": "R",
     "unit": "Ω",
-    "units": ["Ω", "A", "V", "W"]
+    "units": [
+      "Ω",
+      "A",
+      "V",
+      "W"
+    ]
   },
   "formula": {
     "options": [
-      { "id": "a", "tex": "R = \\text{slope of } V \\text{ against } I", "text": "R = slope of V against I", "correct": true },
-      { "id": "b", "tex": "R = \\dfrac{1}{\\text{slope}}", "text": "R = 1 ÷ slope", "correct": false },
-      { "id": "c", "tex": "R = V \\times I", "text": "R = V × I", "correct": false }
+      {
+        "id": "a",
+        "tex": "R = \\text{slope of } V \\text{ against } I",
+        "text": "R = slope of V against I",
+        "correct": true,
+        "calc": "slope"
+      },
+      {
+        "id": "b",
+        "tex": "R = \\dfrac{1}{\\text{slope}}",
+        "text": "R = 1 ÷ slope",
+        "correct": false,
+        "calc": "1/slope"
+      },
+      {
+        "id": "c",
+        "tex": "R = V \\times I",
+        "text": "R = V × I",
+        "correct": false,
+        "calc": "none"
+      }
     ]
   },
-  "tolerance": { "reading": 0.05, "answer": 0.05 },
+  "tolerance": {
+    "reading": 0.05,
+    "answer": 0.05
+  },
   "precautions": [
-    { "id": "open_switch", "text": { "en": "I opened the switch between readings so the resistor did not heat up." }, "correct": true },
-    { "id": "tight", "text": { "en": "I made sure the connections were tight." }, "correct": true },
-    { "id": "zero_error", "text": { "en": "I checked the meters for zero error and read them straight on." }, "correct": true },
-    { "id": "ammeter_parallel", "text": { "en": "I connected the ammeter across the resistor." }, "correct": false },
-    { "id": "max_current", "text": { "en": "I kept the current as large as possible the whole time." }, "correct": false }
+    {
+      "id": "open_switch",
+      "text": {
+        "en": "I opened the switch between readings so the resistor did not heat up."
+      },
+      "correct": true
+    },
+    {
+      "id": "tight",
+      "text": {
+        "en": "I made sure the connections were tight."
+      },
+      "correct": true
+    },
+    {
+      "id": "zero_error",
+      "text": {
+        "en": "I checked the meters for zero error and read them straight on."
+      },
+      "correct": true
+    },
+    {
+      "id": "ammeter_parallel",
+      "text": {
+        "en": "I connected the ammeter across the resistor."
+      },
+      "correct": false
+    },
+    {
+      "id": "max_current",
+      "text": {
+        "en": "I kept the current as large as possible the whole time."
+      },
+      "correct": false
+    }
   ],
   "conclusions": [
-    { "text": { "en": "V is proportional to I at constant temperature, so the resistor obeys Ohm's law." }, "correct": true },
-    { "text": { "en": "The current falls as the potential difference rises." }, "correct": false },
-    { "text": { "en": "The resistance changes a lot as the current changes." }, "correct": false }
+    {
+      "text": {
+        "en": "V is proportional to I at constant temperature, so the resistor obeys Ohm's law."
+      },
+      "correct": true
+    },
+    {
+      "text": {
+        "en": "The current falls as the potential difference rises."
+      },
+      "correct": false
+    },
+    {
+      "text": {
+        "en": "The resistance changes a lot as the current changes."
+      },
+      "correct": false
+    }
   ],
-  "mistakes": ["misread_scale", "switch_open", "duplicate_reading", "narrow_range", "too_few_readings", "wrong_axis", "unit_missing", "wrong_formula"]
+  "mistakes": [
+    "misread_scale",
+    "switch_open",
+    "duplicate_reading",
+    "narrow_range",
+    "too_few_readings",
+    "wrong_axis",
+    "unit_missing",
+    "wrong_formula"
+  ]
 }

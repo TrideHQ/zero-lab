@@ -25,6 +25,8 @@ export class Stage {
   lite = false;
   slice = 0;
   frame = new Set<FrameHook>();
+  /** Extra grab / tap targets added by a practical (instruments), in template-local space. */
+  extraHandles: Handle[] = [];
   onTap: ((name: string | null) => void) | null = null;
   /** Raw tap in template-local coordinates on the template's upright (z = 0) plane. */
   onTapPoint: ((local: THREE.Vector3) => void) | null = null;
@@ -97,6 +99,7 @@ export class Stage {
     this.host = null;
     this.setTemplate(null);
     this.frame.clear();
+    this.extraHandles = [];
     this.onTap = this.onTapPoint = this.onSlice = null;
   }
 
@@ -198,7 +201,7 @@ export class Stage {
     const r = this.rect();
     const x = cx - r.left, y = cy - r.top;
     let best: Handle | null = null, bestD = 1e9;
-    for (const h of this.template.handles()) {
+    for (const h of [...this.template.handles(), ...this.extraHandles]) {
       if (h.enabled && !h.enabled()) continue;
       const s = this.toScreen(h.pos);
       const edge = this.toScreen(tmp2.copy(h.pos).add(new THREE.Vector3(h.radius, 0, 0)));

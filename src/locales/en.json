@@ -71,7 +71,7 @@
   "controls": {
     "angle": "Angle",
     "n": "Refractive index n",
-    "normal": "Normal",
+    "normal": "Normal line",
     "photons": "Slow-motion light",
     "length": "Length L",
     "release": "Release",
@@ -103,7 +103,8 @@
     "image": "Image",
     "reset": "Reset",
     "aim": "Aim",
-    "sun": "Sun angle"
+    "sun": "Sun angle",
+    "resistor": "Resistor R"
   },
   "bench": {
     "aim": "Aim",
@@ -124,7 +125,7 @@
     "pin": "Tap the ray to place pin {n} of 4",
     "pins_done": "Pins placed. Lines traced.",
     "clear_pins": "Clear pins",
-    "top_view": "Look straight down",
+    "top_view": "Look straight on",
     "analyse": "Analyse results",
     "need_more": "Take at least {n} readings first.",
     "axes": "Choose your axes",
@@ -150,7 +151,21 @@
     "variant": "Where",
     "placed": "{n} of {m} components placed",
     "not_ready": "Finish the set-up first.",
-    "saved": "Saved to your progress."
+    "saved": "Saved to your progress.",
+    "place_next": "Place next part",
+    "pins": "Pins placed: {n} of 4",
+    "i_r": "i = {i}°, r = {r}°",
+    "stop_first": "Stop the stopwatch first.",
+    "time_first": "Time 20 swings with the stopwatch first.",
+    "pins_first": "Place all four pins first.",
+    "pull": "Pull-back angle",
+    "x1": "×1",
+    "x4": "×4",
+    "step": "Step {n} of {m}",
+    "slope_is": "Slope = {v}",
+    "r2": "Fit quality r² = {v}",
+    "practical": "Practical",
+    "undo": "Remove last reading"
   },
   "partner": {
     "hello": "I'm your lab partner. Take your first reading when you're ready.",

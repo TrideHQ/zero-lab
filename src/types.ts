@@ -65,7 +65,7 @@ export interface Practical {
   table: { columns: Column[] };
   graph: { x: string; y: string; choices: string[] };
   expected: { relation: Text; symbol: string; unit: string; units: string[] };
-  formula: { options: { id: string; tex: string; text: string; correct: boolean }[] };
+  formula: { options: { id: string; tex: string; text: string; correct: boolean; calc: string }[] };
   tolerance: { reading: number; answer: number };
   precautions: { id: string; text: Text; correct: boolean }[];
   conclusions: { text: Text; correct: boolean }[];

@@ -53,7 +53,7 @@ export default async function topicPage(params: string[], query: URLSearchParams
       xrButtons),
     h('div.stage-grid',
       h('aside.panel.cards', cardBody, h('div.card-nav', prev, count, next)),
-      viewport,
+      h('div.stage-center', viewport, tools),
       images),
     h('footer.stage-foot',
       dots,
@@ -182,7 +182,7 @@ export default async function topicPage(params: string[], query: URLSearchParams
       blip('hum');
       bar = controlBar(tpl, stage);
       tools.replaceChildren(bar.el);
-      viewport.append(hint, tools);
+      viewport.append(hint);
       setTimeout(() => hint.remove(), 6000);
       draw();
       void offerXR();
