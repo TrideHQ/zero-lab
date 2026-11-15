@@ -1,0 +1,9 @@
+{
+  "app": { "tagline": "每个科学主题，尽在 3D — 面向世界各地的学生。", "sub": "以全息方式探索主题，然后亲手完成实验。", "home": "首页", "progress": "进度", "settings": "设置", "back": "返回", "loading": "加载中…", "works_with": "适用于以下课程体系" },
+  "home": { "subjects": "学科", "physics": "物理", "chemistry": "化学", "biology": "生物", "maths": "数学", "soon": "即将推出", "topics": "{n} 个主题", "moon_title": "月球与宇航员", "continue": "继续学习", "start": "从物理开始", "open": "打开" },
+  "picker": { "title": "你学习哪种课程体系？", "sub": "这只会改变主题名称、级别和分组。物理内容在哪里都一样。可随时在设置中更改。", "go": "继续" },
+  "subject": { "title_physics": "物理", "title_moon": "月球与宇航员", "practical": "含实验", "beyond": "更多探索", "curriculum": "课程体系", "change": "更改" },
+  "topic": { "draft": "草稿 — 教师审核中", "next": "下一张", "prev": "上一张", "try": "做实验", "checks": "自我检测", "correct": "正确！", "wrong": "不太对，再试一次。", "show3d": "查看 3D", "images": "示意图" },
+  "settings": { "title": "设置", "curriculum": "课程体系", "language": "语言", "lite": "轻量模式", "text": "文字大小", "sound": "声音", "narration": "旁白" },
+  "progress": { "title": "你的进度" }
+}

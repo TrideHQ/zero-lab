@@ -1,0 +1,9 @@
+{
+  "app": { "tagline": "Toutes les sciences, en 3D — pour les élèves du monde entier.", "sub": "Explorez un sujet en hologramme. Puis faites le TP de vos propres mains.", "home": "Accueil", "progress": "Progrès", "settings": "Réglages", "back": "Retour", "loading": "Chargement…", "works_with": "Compatible avec ces programmes" },
+  "home": { "subjects": "Matières", "physics": "Physique", "chemistry": "Chimie", "biology": "Biologie", "maths": "Maths", "soon": "Bientôt", "topics": "{n} sujets", "moon_title": "Lune et astronautes", "moon_sub": "Lâchez un marteau et une plume. Tirez un laser vers la Lune. Quatre expériences.", "continue": "Continuer", "start": "Commencer par la physique", "open": "Ouvrir" },
+  "picker": { "title": "Quel programme suivez-vous ?", "sub": "Cela ne change que les noms des sujets, les niveaux et le classement. La physique est la même partout. Modifiable à tout moment dans les réglages.", "go": "Continuer" },
+  "subject": { "title_physics": "Physique", "title_moon": "Lune et astronautes", "practical": "TP disponible", "beyond": "Pour aller plus loin", "beyond_sub": "Hors de ce programme, mais intéressant.", "curriculum": "Programme", "change": "Changer" },
+  "topic": { "draft": "Brouillon — en cours de relecture par un enseignant", "card": "Fiche {n} sur {m}", "next": "Suivant", "prev": "Précédent", "try": "Faire le TP", "checks": "Vérifiez vos acquis", "correct": "Correct !", "wrong": "Pas tout à fait. Réessayez.", "show3d": "Voir en 3D", "images": "Schémas", "related": "Sujets liés", "ar": "Voir en RA", "vr": "Entrer en RV" },
+  "settings": { "title": "Réglages", "curriculum": "Programme", "language": "Langue", "lite": "Mode léger", "text": "Taille du texte", "sound": "Son", "narration": "Narration" },
+  "progress": { "title": "Vos progrès", "explored": "Sujets explorés", "checks": "Questions réussies", "practicals": "TP réalisés" }
+}

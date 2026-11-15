@@ -1,0 +1,60 @@
+{
+  "slug": "ohms-law",
+  "subject": "physics",
+  "unit": { "en": "Electricity" },
+  "title": { "en": "Ohm's Law" },
+  "curricula": {
+    "international": { "topic": "Ohm's law", "unit": "Electricity", "level": "Foundation", "verified": false },
+    "igcse": { "topic": "Resistance", "unit": "4 Electricity and magnetism", "level": "Core", "verified": false },
+    "alevel": { "topic": "Resistance and resistivity", "unit": "9 Electricity", "level": "AS Level", "verified": false },
+    "gcse": { "topic": "Current, resistance and potential difference", "unit": "Electricity", "level": "Combined", "verified": false },
+    "ap": { "topic": "Resistance, Resistivity, and Ohm's Law", "unit": "Electric Circuits", "level": "AP Physics 2", "verified": false },
+    "ib": { "topic": "Current and circuits", "unit": "B. The particulate nature of matter", "level": "SL", "verified": false },
+    "ngss": { "topic": "Definitions of Energy", "unit": "PS3 Energy", "level": "HS", "verified": false },
+    "cbse": { "topic": "Electricity", "unit": "Effects of Current", "level": "Class 10", "verified": false },
+    "waec": { "topic": "Electric current: Ohm's law", "unit": "Fields at rest and in motion", "level": "SS2", "verified": false },
+    "kcse": { "topic": "Current electricity (II)", "unit": "Electricity", "level": "Form 3", "verified": false },
+    "caps": { "topic": "Ohm's law", "unit": "Electric circuits", "level": "Grade 11", "verified": false },
+    "acara": { "topic": "Electrical circuits", "unit": "Thermal, nuclear and electrical physics", "level": "Unit 1", "verified": false }
+  },
+  "reviewed": false,
+  "summary": { "en": "Double the potential difference across a resistor and the current doubles too." },
+  "cards": [
+    {
+      "title": { "en": "Charge on the move" },
+      "text": { "en": "Close the switch and electrons drift around the loop. The rate at which charge flows is the current I, measured in amperes with an ammeter placed in series." },
+      "equation": null,
+      "modelState": { "switchOn": true, "rheo": 0.5, "electrons": true }
+    },
+    {
+      "title": { "en": "The push: potential difference" },
+      "text": { "en": "The battery gives each charge energy. The energy given up per unit charge across the resistor is the potential difference V, measured in volts with a voltmeter connected across the resistor." },
+      "equation": null,
+      "modelState": { "switchOn": true, "rheo": 0.25, "electrons": true }
+    },
+    {
+      "title": { "en": "Ohm's law" },
+      "text": { "en": "Slide the rheostat. The current changes, and so does the voltmeter reading, but V divided by I stays the same. For a metal conductor at constant temperature, current is proportional to potential difference." },
+      "equation": "V = IR",
+      "modelState": { "switchOn": true, "rheo": 0.05, "electrons": true }
+    },
+    {
+      "title": { "en": "Inside a resistor" },
+      "text": { "en": "Slice the board open. Inside the resistor is a long, thin resistive track. Electrons collide with its atoms as they pass, which is why a resistor limits the current and warms up." },
+      "equation": "R = \\dfrac{V}{I}",
+      "modelState": { "switchOn": true, "rheo": 0.3, "electrons": true, "explode": 1 }
+    }
+  ],
+  "images": [
+    { "type": "generated", "state": { "switchOn": true, "rheo": 0.3, "electrons": false }, "caption": { "en": "The circuit used to test Ohm's law" } },
+    { "type": "generated", "state": { "switchOn": true, "rheo": 0.3, "electrons": false, "explode": 1 }, "caption": { "en": "Components lifted off the board; the resistor opened" } }
+  ],
+  "model": { "template": "circuit-board", "preset": "ohm", "params": { "R": 4.7, "emf": 6 } },
+  "checks": [
+    { "q": { "en": "Tap the instrument that measures current." }, "type": "point", "target": "ammeter", "modelState": { "switchOn": true, "rheo": 0.3 } },
+    { "q": { "en": "The potential difference across a resistor doubles. What happens to the current?" }, "type": "choice", "options": [{ "en": "It doubles" }, { "en": "It halves" }, { "en": "It stays the same" }], "answer": 0 },
+    { "q": { "en": "How is a voltmeter connected to a resistor?" }, "type": "choice", "options": [{ "en": "In series with it" }, { "en": "Across it (in parallel)" }], "answer": 1 }
+  ],
+  "practical": "ohms-law",
+  "related": ["refraction", "simple-pendulum"]
+}

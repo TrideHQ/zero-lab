@@ -1,0 +1,60 @@
+{
+  "slug": "simple-pendulum",
+  "subject": "physics",
+  "unit": { "en": "Forces and Motion" },
+  "title": { "en": "Simple Pendulum and Simple Harmonic Motion" },
+  "curricula": {
+    "international": { "topic": "Simple pendulum and simple harmonic motion", "unit": "Forces and Motion", "level": "Intermediate", "verified": false },
+    "igcse": { "topic": "Physical quantities and measurement techniques", "unit": "1 Motion, forces and energy", "level": "Core", "verified": false },
+    "alevel": { "topic": "Simple harmonic oscillations", "unit": "17 Oscillations", "level": "A Level", "verified": false },
+    "gcse": null,
+    "ap": { "topic": "Simple Harmonic Motion", "unit": "Oscillations", "level": "AP Physics 1", "verified": false },
+    "ib": { "topic": "Simple harmonic motion", "unit": "C. Wave behaviour", "level": "SL", "verified": false },
+    "ngss": { "topic": "Forces and Motion", "unit": "PS2 Motion and Stability", "level": "HS", "verified": false },
+    "cbse": { "topic": "Oscillations", "unit": "Oscillations and Waves", "level": "Class 11", "verified": false },
+    "waec": { "topic": "Simple harmonic motion", "unit": "Motion", "level": "SS2", "verified": false },
+    "kcse": { "topic": "Linear motion: determining g with a simple pendulum", "unit": "Mechanics", "level": "Form 3", "verified": false },
+    "caps": null,
+    "acara": null
+  },
+  "reviewed": false,
+  "summary": { "en": "A swinging bob keeps time: its period depends on the length of the string and on gravity." },
+  "cards": [
+    {
+      "title": { "en": "A swing that repeats" },
+      "text": { "en": "Pull the bob to one side and let go. It swings out, comes back, and repeats. One complete trip there and back is one oscillation. The time it takes is the period T." },
+      "equation": null,
+      "modelState": { "L": 0.6, "amp": 10, "running": true, "arrows": false }
+    },
+    {
+      "title": { "en": "What pulls it back?" },
+      "text": { "en": "Gravity pulls the bob down while the string holds it on a circle. The part of the weight that points back to the centre grows with the displacement. That pull towards the centre is what makes the motion simple harmonic." },
+      "equation": "F = -mg\\sin\\theta \\approx -mg\\,\\theta",
+      "modelState": { "L": 0.6, "amp": 14, "running": true, "arrows": true }
+    },
+    {
+      "title": { "en": "Length sets the period" },
+      "text": { "en": "Slide the clamp to make the string longer. The swing slows down. For small angles the period depends only on the length L and on g. The mass of the bob does not matter." },
+      "equation": "T = 2\\pi\\sqrt{\\dfrac{L}{g}}",
+      "modelState": { "L": 1.0, "amp": 10, "running": true, "arrows": false }
+    },
+    {
+      "title": { "en": "Keep the angle small" },
+      "text": { "en": "The formula works when the swing is small, about 10° or less. A big swing takes slightly longer, so careful experimenters always start with a small angle." },
+      "equation": null,
+      "modelState": { "L": 1.0, "amp": 45, "running": true, "arrows": true }
+    }
+  ],
+  "images": [
+    { "type": "generated", "state": { "L": 0.8, "amp": 18, "running": false, "arrows": true }, "caption": { "en": "Forces on the bob when it is pulled aside" } },
+    { "type": "generated", "state": { "L": 0.4, "amp": 18, "running": false, "arrows": false }, "caption": { "en": "A shorter pendulum swings faster" } }
+  ],
+  "model": { "template": "forces-rig", "preset": "pendulum", "params": { "g": 9.81 } },
+  "checks": [
+    { "q": { "en": "Tap the pivot, the point the pendulum swings from." }, "type": "point", "target": "pivot" },
+    { "q": { "en": "You make the string four times longer. What happens to the period?" }, "type": "choice", "options": [{ "en": "It doubles" }, { "en": "It becomes four times longer" }, { "en": "It stays the same" }], "answer": 0 },
+    { "q": { "en": "You swap the bob for a heavier one. What happens to the period?" }, "type": "choice", "options": [{ "en": "It gets longer" }, { "en": "It stays the same" }], "answer": 1 }
+  ],
+  "practical": "pendulum-g",
+  "related": ["refraction"]
+}

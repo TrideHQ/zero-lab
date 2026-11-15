@@ -1,0 +1,9 @@
+{
+  "app": { "tagline": "Kila mada ya sayansi, kwa 3D — kwa wanafunzi kila mahali.", "sub": "Chunguza mada kama hologramu. Kisha fanya jaribio kwa mikono yako mwenyewe.", "home": "Mwanzo", "progress": "Maendeleo", "settings": "Mipangilio", "back": "Rudi", "loading": "Inapakia…", "works_with": "Inafanya kazi na mitaala hii" },
+  "home": { "subjects": "Masomo", "physics": "Fizikia", "chemistry": "Kemia", "biology": "Biolojia", "maths": "Hisabati", "soon": "Inakuja hivi karibuni", "topics": "Mada {n}", "moon_title": "Mwezi na Wanaanga", "continue": "Endelea kujifunza", "start": "Anza na Fizikia", "open": "Fungua" },
+  "picker": { "title": "Unafuata mtaala gani?", "sub": "Hii hubadilisha majina ya mada, viwango na mpangilio tu. Fizikia ni ile ile kila mahali. Unaweza kubadilisha wakati wowote kwenye Mipangilio.", "go": "Endelea" },
+  "subject": { "title_physics": "Fizikia", "title_moon": "Mwezi na Wanaanga", "practical": "Jaribio linapatikana", "beyond": "Zaidi ya kuchunguza", "curriculum": "Mtaala", "change": "Badilisha" },
+  "topic": { "draft": "Rasimu — inakaguliwa na walimu", "next": "Inayofuata", "prev": "Iliyotangulia", "try": "Fanya jaribio", "checks": "Jipime", "correct": "Sahihi!", "wrong": "Bado. Jaribu tena.", "show3d": "Onyesha kwa 3D", "images": "Michoro" },
+  "settings": { "title": "Mipangilio", "curriculum": "Mtaala", "language": "Lugha", "lite": "Hali nyepesi", "text": "Ukubwa wa maandishi", "sound": "Sauti", "narration": "Usimulizi" },
+  "progress": { "title": "Maendeleo yako" }
+}

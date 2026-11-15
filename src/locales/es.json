@@ -1,0 +1,9 @@
+{
+  "app": { "tagline": "Todos los temas de ciencias, en 3D — para estudiantes de todo el mundo.", "sub": "Explora un tema como holograma. Luego haz la práctica con tus propias manos.", "home": "Inicio", "progress": "Progreso", "settings": "Ajustes", "back": "Atrás", "loading": "Cargando…", "works_with": "Compatible con estos currículos" },
+  "home": { "subjects": "Materias", "physics": "Física", "chemistry": "Química", "biology": "Biología", "maths": "Matemáticas", "soon": "Próximamente", "topics": "{n} temas", "moon_title": "Luna y astronautas", "moon_sub": "Deja caer un martillo y una pluma. Dispara un láser a la Luna. Cuatro experiencias.", "continue": "Seguir aprendiendo", "start": "Empezar con Física", "open": "Abrir" },
+  "picker": { "title": "¿Qué currículo sigues?", "sub": "Solo cambia los nombres de los temas, los niveles y el orden. La física es la misma en todas partes. Puedes cambiarlo cuando quieras en Ajustes.", "go": "Continuar" },
+  "subject": { "title_physics": "Física", "title_moon": "Luna y astronautas", "practical": "Práctica disponible", "beyond": "Más para explorar", "beyond_sub": "No está en este currículo, pero vale la pena.", "curriculum": "Currículo", "change": "Cambiar" },
+  "topic": { "draft": "Borrador — en revisión docente", "card": "Tarjeta {n} de {m}", "next": "Siguiente", "prev": "Anterior", "try": "Hacer la práctica", "checks": "Compruébalo", "correct": "¡Correcto!", "wrong": "Casi. Inténtalo de nuevo.", "show3d": "Ver en 3D", "images": "Diagramas", "related": "Temas relacionados", "ar": "Ver en RA", "vr": "Entrar en RV" },
+  "settings": { "title": "Ajustes", "curriculum": "Currículo", "language": "Idioma", "lite": "Modo ligero", "text": "Tamaño del texto", "sound": "Sonido", "narration": "Narración" },
+  "progress": { "title": "Tu progreso", "explored": "Temas explorados", "checks": "Preguntas superadas", "practicals": "Prácticas hechas" }
+}

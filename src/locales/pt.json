@@ -1,0 +1,9 @@
+{
+  "app": { "tagline": "Todos os temas de ciências, em 3D — para estudantes de todo o mundo.", "sub": "Explore um tema como holograma. Depois faça a prática com as próprias mãos.", "home": "Início", "progress": "Progresso", "settings": "Definições", "back": "Voltar", "loading": "A carregar…", "works_with": "Funciona com estes currículos" },
+  "home": { "subjects": "Disciplinas", "physics": "Física", "chemistry": "Química", "biology": "Biologia", "maths": "Matemática", "soon": "Em breve", "topics": "{n} temas", "moon_title": "Lua e astronautas", "moon_sub": "Largue um martelo e uma pena. Dispare um laser para a Lua. Quatro experiências.", "continue": "Continuar a aprender", "start": "Começar pela Física", "open": "Abrir" },
+  "picker": { "title": "Que currículo segue?", "sub": "Só muda os nomes dos temas, os níveis e a organização. A física é a mesma em todo o lado. Pode alterar quando quiser nas Definições.", "go": "Continuar" },
+  "subject": { "title_physics": "Física", "title_moon": "Lua e astronautas", "practical": "Prática disponível", "beyond": "Mais para explorar", "curriculum": "Currículo", "change": "Alterar" },
+  "topic": { "draft": "Rascunho — em revisão por professores", "card": "Cartão {n} de {m}", "next": "Seguinte", "prev": "Anterior", "try": "Fazer a prática", "checks": "Verifique", "correct": "Correto!", "wrong": "Quase. Tente de novo.", "show3d": "Ver em 3D", "images": "Diagramas", "ar": "Ver em RA", "vr": "Entrar em RV" },
+  "settings": { "title": "Definições", "curriculum": "Currículo", "language": "Idioma", "lite": "Modo leve", "text": "Tamanho do texto", "sound": "Som", "narration": "Narração" },
+  "progress": { "title": "O seu progresso", "explored": "Temas explorados", "checks": "Perguntas certas", "practicals": "Práticas feitas" }
+}

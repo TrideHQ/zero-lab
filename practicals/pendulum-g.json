@@ -1,0 +1,58 @@
+{
+  "slug": "pendulum-g",
+  "model": { "template": "forces-rig", "preset": "pendulum", "params": {} },
+  "title": { "en": "Simple pendulum: finding g" },
+  "aim": { "en": "Find the acceleration of free fall, g, by timing a simple pendulum at different lengths." },
+  "apparatus": [
+    { "en": "Retort stand and clamp" }, { "en": "Thread and bob" }, { "en": "Metre rule" }, { "en": "Stopwatch" }
+  ],
+  "steps": [
+    { "id": "length", "text": { "en": "Slide the clamp to set the length L of the pendulum." } },
+    { "id": "release", "text": { "en": "Pull the bob a little to one side (a small angle) and let it go." } },
+    { "id": "time", "text": { "en": "Start the stopwatch as the bob passes the centre. Count 20 complete swings, then stop it." } },
+    { "id": "record", "text": { "en": "Record L and the time t. Repeat for 5 different lengths." } },
+    { "id": "analyse", "text": { "en": "Plot the graph, choose the formula and finish your report." } }
+  ],
+  "variants": {
+    "earth": { "label": { "en": "On Earth" }, "params": { "g": 9.81 }, "accepted": 9.81 },
+    "moon": { "label": { "en": "On the Moon" }, "params": { "g": 1.62 }, "accepted": 1.62 }
+  },
+  "readings": { "target": 5 },
+  "oscillations": 20,
+  "table": {
+    "columns": [
+      { "id": "L", "label": "L", "unit": "m", "source": "measured", "dp": 2 },
+      { "id": "t", "label": "t₂₀", "unit": "s", "source": "measured", "dp": 2 },
+      { "id": "T", "label": "T = t/20", "unit": "s", "source": "derived", "dp": 3 },
+      { "id": "T2", "label": "T²", "unit": "s²", "source": "derived", "dp": 3 }
+    ]
+  },
+  "graph": { "x": "L", "y": "T2", "choices": ["L", "t", "T", "T2"] },
+  "expected": {
+    "relation": { "en": "T² is directly proportional to L" },
+    "symbol": "g",
+    "unit": "m/s²",
+    "units": ["m/s²", "m/s", "s²/m", "N"]
+  },
+  "formula": {
+    "options": [
+      { "id": "a", "tex": "g = \\dfrac{4\\pi^2}{\\text{slope}}", "text": "g = 4π² ÷ slope", "correct": true },
+      { "id": "b", "tex": "g = 4\\pi^2 \\times \\text{slope}", "text": "g = 4π² × slope", "correct": false },
+      { "id": "c", "tex": "g = \\dfrac{\\text{slope}}{4\\pi^2}", "text": "g = slope ÷ 4π²", "correct": false }
+    ]
+  },
+  "tolerance": { "reading": 0.03, "answer": 0.05 },
+  "precautions": [
+    { "id": "small_angle", "text": { "en": "I kept the angle of swing small." }, "correct": true },
+    { "id": "count_zero", "text": { "en": "I started counting from zero as the bob passed the centre." }, "correct": true },
+    { "id": "no_draught", "text": { "en": "I kept the pendulum away from draughts and let it swing in one plane." }, "correct": true },
+    { "id": "big_push", "text": { "en": "I pushed the bob hard so it swung faster." }, "correct": false },
+    { "id": "one_swing", "text": { "en": "I timed just one swing to save time." }, "correct": false }
+  ],
+  "conclusions": [
+    { "text": { "en": "T² increases in proportion to L, so the graph is a straight line through the origin." }, "correct": true },
+    { "text": { "en": "The period does not depend on the length." }, "correct": false },
+    { "text": { "en": "T is directly proportional to L." }, "correct": false }
+  ],
+  "mistakes": ["late_start", "miscount", "large_angle", "duplicate_reading", "narrow_range", "too_few_readings", "wrong_axis", "unit_missing", "wrong_formula"]
+}

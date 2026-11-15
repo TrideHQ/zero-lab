@@ -1,0 +1,81 @@
+{
+  "note": "Every score is computed in code (src/practicals/marks.ts). 'score' names one or more deterministic scoring functions; several are averaged. The AI lab partner never sets a mark.",
+  "issueCodes": [
+    "late_start", "miscount", "large_angle", "parallax", "pins_too_close", "misread_scale", "switch_open",
+    "duplicate_reading", "narrow_range", "too_few_readings", "wrong_axis", "unit_missing", "wrong_formula", "outlier", "none"
+  ],
+  "tips": [
+    "count_from_zero", "small_angle", "eye_level", "space_pins", "read_nearest_division", "close_switch",
+    "change_setting", "spread_readings", "take_more_readings", "swap_axes", "add_unit", "check_formula", "repeat_reading", "keep_going", "none"
+  ],
+  "issueTip": {
+    "late_start": "count_from_zero", "miscount": "count_from_zero", "large_angle": "small_angle", "parallax": "eye_level",
+    "pins_too_close": "space_pins", "misread_scale": "read_nearest_division", "switch_open": "close_switch",
+    "duplicate_reading": "change_setting", "narrow_range": "spread_readings", "too_few_readings": "take_more_readings",
+    "wrong_axis": "swap_axes", "unit_missing": "add_unit", "wrong_formula": "check_formula", "outlier": "repeat_reading", "none": "keep_going"
+  },
+  "rubrics": {
+    "generic": {
+      "name": { "en": "Practical score" },
+      "type": "percent",
+      "total": 100,
+      "criteria": [
+        { "id": "readings", "label": { "en": "Readings: enough, accurate, well spread" }, "max": 30, "score": ["readings", "range"] },
+        { "id": "table", "label": { "en": "Results table" }, "max": 15, "score": ["table"] },
+        { "id": "graph", "label": { "en": "Graph and line of best fit" }, "max": 20, "score": ["graph"] },
+        { "id": "calculation", "label": { "en": "Calculation and units" }, "max": 20, "score": ["calculation"] },
+        { "id": "precautions", "label": { "en": "Precautions" }, "max": 10, "score": ["precautions"] },
+        { "id": "conclusion", "label": { "en": "Conclusion" }, "max": 5, "score": ["conclusion"] }
+      ]
+    },
+    "waec": {
+      "name": { "en": "Practical mark (out of 20)" },
+      "type": "marks",
+      "total": 20,
+      "criteria": [
+        { "id": "readings", "label": { "en": "Observations: readings taken and recorded" }, "max": 6, "score": ["readings", "procedure"] },
+        { "id": "table", "label": { "en": "Composite table with units" }, "max": 3, "score": ["table"] },
+        { "id": "graph", "label": { "en": "Graph: axes, scales, points, line of best fit" }, "max": 5, "score": ["graph"] },
+        { "id": "calculation", "label": { "en": "Slope and its evaluation" }, "max": 3, "score": ["calculation"] },
+        { "id": "precautions", "label": { "en": "Two precautions" }, "max": 2, "score": ["precautions"] },
+        { "id": "conclusion", "label": { "en": "Deduction" }, "max": 1, "score": ["conclusion"] }
+      ]
+    },
+    "igcse-atp": {
+      "name": { "en": "Alternative-to-Practical style mark (out of 12)" },
+      "type": "marks",
+      "total": 12,
+      "criteria": [
+        { "id": "table", "label": { "en": "Recording: readings and table headings with units" }, "max": 3, "score": ["readings", "table"] },
+        { "id": "graph", "label": { "en": "Graph: axes, scales, plots, best-fit line" }, "max": 4, "score": ["graph"] },
+        { "id": "calculation", "label": { "en": "Gradient and calculated value" }, "max": 2, "score": ["calculation"] },
+        { "id": "conclusion", "label": { "en": "Conclusion supported by the results" }, "max": 1, "score": ["conclusion"] },
+        { "id": "precautions", "label": { "en": "Precautions and improvements" }, "max": 2, "score": ["precautions"] }
+      ]
+    },
+    "alevel-cpac": {
+      "name": { "en": "Practical competencies (CPAC style)" },
+      "type": "competency",
+      "total": 5,
+      "threshold": 0.7,
+      "criteria": [
+        { "id": "cpac1", "label": { "en": "Follows written procedures" }, "max": 1, "score": ["procedure"] },
+        { "id": "cpac2", "label": { "en": "Applies investigative approaches and methods" }, "max": 1, "score": ["range", "graph"] },
+        { "id": "cpac3", "label": { "en": "Safely uses equipment and materials" }, "max": 1, "score": ["precautions"] },
+        { "id": "cpac4", "label": { "en": "Makes and records observations" }, "max": 1, "score": ["readings", "table"] },
+        { "id": "cpac5", "label": { "en": "Analyses, concludes and reports" }, "max": 1, "score": ["calculation", "conclusion"] }
+      ]
+    },
+    "ap-lab": {
+      "name": { "en": "Lab skills (science practices, out of 16)" },
+      "type": "marks",
+      "total": 16,
+      "criteria": [
+        { "id": "method", "label": { "en": "Experimental method: range and number of trials" }, "max": 4, "score": ["procedure", "range"] },
+        { "id": "data", "label": { "en": "Data collection: accuracy and organised table" }, "max": 4, "score": ["readings", "table"] },
+        { "id": "analysis", "label": { "en": "Data analysis: linearised graph and slope" }, "max": 4, "score": ["graph", "calculation"] },
+        { "id": "argument", "label": { "en": "Argumentation: claim and sources of error" }, "max": 4, "score": ["conclusion", "precautions"] }
+      ]
+    }
+  }
+}
