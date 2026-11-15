@@ -99,19 +99,27 @@ export class Panel {
       return;
     }
     // buttons: laid out from the bottom up so they are always fully visible
-    const bh = 84, gap = 14;
-    g.font = `600 30px ${FONT}`;
-    const rows: { b: PanelButton; w: number; lines: string[] }[][] = [[]];
-    let rowW = 0;
-    for (const b of s.buttons) {
-      const lines = wrap(g, b.label, W - 2 * pad - 48).slice(0, 2);
-      const w = Math.min(W - 2 * pad, Math.max(170, Math.max(...lines.map((l) => g.measureText(l).width)) + 48));
-      if (rowW + w > W - 2 * pad && rows[rows.length - 1].length) {
-        rows.push([]);
-        rowW = 0;
+    const gap = 14;
+    const room = H - 2 * pad - (s.footer ? 34 : 0);
+    let bh = 84, fs = 30;
+    let rows: { b: PanelButton; w: number; lines: string[] }[][] = [];
+    // long lists of options (precautions, conclusions) get shorter rows so every button stays on the panel
+    for (const size of [[84, 30, 2], [62, 26, 1], [48, 23, 1], [40, 20, 1]] as const) {
+      [bh, fs] = size;
+      g.font = `600 ${fs}px ${FONT}`;
+      rows = [[]];
+      let rowW = 0;
+      for (const b of s.buttons) {
+        const lines = wrap(g, b.label, W - 2 * pad - 48).slice(0, size[2]);
+        const w = Math.min(W - 2 * pad, Math.max(150, Math.max(...lines.map((l) => g.measureText(l).width)) + 44));
+        if (rowW + w > W - 2 * pad && rows[rows.length - 1].length) {
+          rows.push([]);
+          rowW = 0;
+        }
+        rows[rows.length - 1].push({ b, w, lines });
+        rowW += w + gap;
       }
-      rows[rows.length - 1].push({ b, w, lines });
-      rowW += w + gap;
+      if (rows.length * (bh + gap) - gap <= (s.title || s.body.length ? room * 0.6 : room)) break;
     }
     const used = s.buttons.length ? rows.length * (bh + gap) : 0;
     const bare = !s.title && !s.body.length && !s.table; // a buttons-only panel fills from the top
@@ -136,7 +144,7 @@ export class Panel {
         g.fillStyle = r.b.primary ? '#2a1600' : '#e8f7ff';
         g.textAlign = 'center';
         g.textBaseline = 'middle';
-        r.lines.forEach((l, i) => g.fillText(l, x + w / 2, y + bh / 2 + (i - (r.lines.length - 1) / 2) * 34));
+        r.lines.forEach((l, i) => g.fillText(l, x + w / 2, y + bh / 2 + (i - (r.lines.length - 1) / 2) * (fs + 4), w - 16));
         g.globalAlpha = 1;
         x += w + gap;
       }

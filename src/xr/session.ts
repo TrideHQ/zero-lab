@@ -79,6 +79,7 @@ class Controller {
   private swipe = [new PalmSwipe(), new PalmSwipe()];
   private ray = new THREE.Ray();
   private hov = new Map<Panel, number>();
+  private lastPoint = '';
   /** Where each hand was aiming over the last few frames. Closing a pinch moves the fingers, so a pinch
    *  acts on the aim from just before it started, not on where the closing fingers end up. */
   private aims: Aim[][] = [[], []];
@@ -350,6 +351,7 @@ class Controller {
       }
     }
     const inside = !!local && Math.abs(local.x) < 1.7 && local.y > -0.1 && local.y < 2.3;
+    this.lastPoint = name ?? (inside ? '(plane)' : '(none)');
     if (name || (inside && app?.pointAnywhere?.())) {
       app?.onPoint?.(name, local);
       blip('tick');
@@ -426,7 +428,7 @@ class Controller {
     return { h: hMax, v: vMax };
   }
   state() {
-    return { cursor: this.cursors.map((c) => c.visible), hover: [this.buttons.hover, this.menu.hover], pinch: this.hands.map((h) => h.pinchPos.toArray().map((v) => +v.toFixed(3))), head: this.head.toArray(), headYaw: this.yaw, placed: this.placed, phoneAR: this.phoneAR, hands: this.hands.map((h) => ({ tracked: h.tracked, pinching: h.pinching })), buttons: this.buttons.buttonIds(), menu: this.menu.mesh.visible, scale: this.stage.root.scale.x, yaw: this.stage.root.rotation.y };
+    return { lastPoint: this.lastPoint, cursor: this.cursors.map((c) => c.visible), hover: [this.buttons.hover, this.menu.hover], pinch: this.hands.map((h) => h.pinchPos.toArray().map((v) => +v.toFixed(3))), head: this.head.toArray(), headYaw: this.yaw, placed: this.placed, phoneAR: this.phoneAR, hands: this.hands.map((h) => ({ tracked: h.tracked, pinching: h.pinching })), buttons: this.buttons.buttonIds(), menu: this.menu.mesh.visible, scale: this.stage.root.scale.x, yaw: this.stage.root.rotation.y };
   }
 
   // ---- teardown ----------------------------------------------------------

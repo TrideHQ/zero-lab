@@ -74,7 +74,8 @@ for (const profile of ['glasses', 'quest3']) {
   const nw = await page.evaluate(() => { const t = window.__stage.template; const [a, b] = t.pickTargets().normal; const p = t.group.localToWorld(a.clone().lerp(b, 0.5)); return [p.x, p.y, p.z]; });
   await aim(page, nw);
   await page.waitForTimeout(300);
-  check(await page.evaluate(() => document.querySelector('.feedback')?.textContent === 'Correct!'), '"Tap the normal line" answered by pointing and pinching');
+  const fb = await page.evaluate(() => ({ text: document.querySelector('.feedback')?.textContent, q: document.querySelector('.check-q')?.textContent, last: window.__xrc.state().lastPoint }));
+  check(fb.text === 'Correct!', `"${fb.q}" answered by pointing and pinching (pointed at: ${fb.last}; feedback: ${fb.text})`);
   // empty-space pinch rotates; two-hand pull zooms
   const yaw0 = (await page.evaluate(() => window.__xrc.state())).yaw;
   const free = [0.05, 1.42, -0.3];
@@ -100,7 +101,7 @@ for (const profile of ['glasses', 'quest3']) {
     await page.waitForFunction(() => window.__bench.say() !== '…');
   }
   const rows = await page.evaluate(() => window.__bench.engine.rows.map((r) => [r.values.V, r.values.I, r.issues.join()]));
-  check(rows.length === 6 && rows.every((r) => !r[2]), `6 readings recorded by pinching: ${rows.map((r) => `${r[0].toFixed(1)}V/${r[1].toFixed(2)}A`).join(' ')}`);
+  check(rows.length === 6 && rows.every((r) => !r[2]), `6 readings recorded by pinching: ${rows.map((r) => `${r[0].toFixed(1)}V/${r[1].toFixed(2)}A${r[2] ? ' [' + r[2] + ']' : ''}`).join(' ')}`);
   await pinchButton(page, 'analyse');
   const pick = async (label) => { const ids = await page.evaluate(() => window.__xrc.state().buttons); const id = ids.find((x) => x === 'w' + label); if (!id) throw new Error(`no option "${label}" in ${ids}`); await pinchButton(page, id); await page.waitForTimeout(150); };
   await pick('V / V'); await pick('I / A'); await pick('R = slope of V against I'); await pick('Ω');
