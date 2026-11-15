@@ -250,7 +250,6 @@ export default async function topicPage(params: string[], query: URLSearchParams
     onPoint(name) {
       if (index === nCards && checks.check?.type === 'point' && !checks.done()) pointAnswer?.(name);
     },
-    onSwipe: (dir) => show(index + dir),
     wantsPoint: () => index === nCards && !checks.done() && checks.check?.type === 'point',
   };
 

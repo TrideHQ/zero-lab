@@ -20,7 +20,6 @@ export interface XRApp {
   speech?(): string;
   /** A part was pointed at and pinched (name from the template's pick targets, or null). */
   onPoint?(name: string | null, local: import('three').Vector3 | null): void;
-  onSwipe?(dir: 1 | -1): void;
   /** True when a pinch anywhere on the model's plane should be reported (e.g. placing pins). */
   pointAnywhere?(): boolean;
   /** True while a "point at" question is waiting for an answer (enables gaze + pinch on the model). */

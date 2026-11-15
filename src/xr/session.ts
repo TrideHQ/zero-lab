@@ -6,7 +6,7 @@ import type { Stage } from '../render/renderer.ts';
 import type { Handle } from '../templates/types.ts';
 import type { XRApp } from './panel-spec.ts';
 import { HandState } from './hands.ts';
-import { PalmSwipe, PalmUpHold, pointerRay } from './gestures.ts';
+import { PalmUpHold, pointerRay } from './gestures.ts';
 import { Panel } from './panel.ts';
 import { ArPlacement } from './ar-placement.ts';
 import { WARM, glow } from '../render/hologram-shader.ts';
@@ -76,14 +76,13 @@ class Controller {
   private poked = [false, false];
   private two: { d: number; scale: number; slice: number; mode: 'zoom' | 'slice' } | null = null;
   private palmUp = [new PalmUpHold(), new PalmUpHold()];
-  private swipe = [new PalmSwipe(), new PalmSwipe()];
   private ray = new THREE.Ray();
   private hov = new Map<Panel, number>();
   /** Gaze + pinch: what the head is pointing at. A pinch that is not aimed at anything selects it. */
   private gazeRay = new THREE.Ray();
   private gazeHot: { panel: Panel; index: number } | null = null;
   private gazeDot = new THREE.Mesh(new THREE.RingGeometry(0.006, 0.009, 20), glow(0xffffff, 0.9));
-  stats = { gaze: 0, menu: 0, swipe: 0 };
+  stats = { gaze: 0, menu: 0 };
   private lastPoint = '';
   /** Where each hand was aiming over the last few frames. Closing a pinch moves the fingers, so a pinch
    *  acts on the aim from just before it started, not on where the closing fingers end up. */
@@ -342,11 +341,6 @@ class Controller {
       this.stats.menu++;
       this.dirty = true;
       blip('step');
-    }
-    const sw = this.swipe[i].update(h, new THREE.Vector3(Math.cos(this.yaw), 0, -Math.sin(this.yaw)), dt);
-    if (sw && !this.grabs[0] && !this.grabs[1]) {
-      this.stats.swipe++;
-      app?.onSwipe?.(sw);
     }
   }
 

@@ -1,5 +1,4 @@
-// Hand gestures beyond the pinch: the pointing ray, palm-up hold (menu) and
-// the palm swipe (next / previous card).
+// Hand gestures beyond the pinch: the pointing ray and the palm-up hold (menu).
 import * as THREE from 'three';
 import type { HandState } from './hands.ts';
 
@@ -35,28 +34,5 @@ export class PalmUpHold {
   get progress() { return Math.min(1, this.t); }
 }
 
-export class PalmSwipe {
-  private travel = 0;
-  private dir = 0;
-  private cool = 0;
-  /** Returns +1 (next) or -1 (previous) when an open hand sweeps sideways; 0 otherwise. */
-  update(hand: HandState, right: THREE.Vector3, dt: number): 1 | -1 | 0 {
-    this.cool = Math.max(0, this.cool - dt);
-    const side = hand.tracked && hand.open ? hand.velocity.dot(right) : 0;
-    // palm must face sideways (not up/down) so a resting or menu hand does not swipe
-    const sideways = Math.abs(hand.palmNormal.dot(UP)) < 0.5;
-    if (Math.abs(side) < 0.9 || !sideways || this.cool > 0) {
-      this.travel = 0;
-      return 0;
-    }
-    const d = Math.sign(side);
-    if (d !== this.dir) { this.dir = d; this.travel = 0; }
-    this.travel += Math.abs(side) * dt;
-    if (this.travel > 0.22) {
-      this.travel = 0;
-      this.cool = 0.8;
-      return d < 0 ? 1 : -1; // sweeping right-to-left brings the next card, like turning a page
-    }
-    return 0;
-  }
-}
+// A palm-swipe for next / previous card was tried and removed: in emulator tests it fired 9 times out of 12.
+// The Previous / Next pinch buttons do that job reliably.

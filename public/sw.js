@@ -44,3 +44,11 @@ self.addEventListener('fetch', (e) => {
     }
   })());
 });
+
+// The very first visit loads its files before this worker is in control, so the page
+// hands over the list of what it loaded and the worker stores them for offline use.
+self.addEventListener('message', (e) => {
+  const urls = e.data && Array.isArray(e.data.cache) ? e.data.cache : null;
+  if (!urls) return;
+  e.waitUntil(caches.open(SHELL).then((c) => Promise.all(urls.filter((u) => new URL(u).origin === location.origin && !u.includes('/api/')).map((u) => c.match(u).then((hit) => hit || fetch(u).then((r) => (r.ok ? c.put(u, r) : undefined)).catch(() => undefined))))));
+});

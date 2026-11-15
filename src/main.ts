@@ -58,7 +58,12 @@ async function boot() {
   window.addEventListener('offline', () => document.documentElement.classList.add('offline'));
   window.addEventListener('online', () => document.documentElement.classList.remove('offline'));
   if ('serviceWorker' in navigator && import.meta.env.PROD) {
-    navigator.serviceWorker.register('/sw.js').catch(() => { /* offline cache is optional */ });
+    navigator.serviceWorker.register('/sw.js').then(async () => {
+      const reg = await navigator.serviceWorker.ready;
+      const sendLoaded = () => reg.active?.postMessage({ cache: performance.getEntriesByType('resource').map((r) => r.name).filter((u) => /\/assets\/|\/img\/|\.woff2/.test(u)) });
+      sendLoaded();
+      setTimeout(sendLoaded, 8000); // again once lazy chunks (3D engine, first topic) have arrived
+    }).catch(() => { /* offline cache is optional */ });
   }
 }
 
