@@ -1,3 +1,4 @@
+import { Agent as HttpsAgent } from 'node:https';
 import { defineConfig, type Plugin } from 'vite';
 import { buildContent } from './scripts/content.ts';
 
@@ -57,7 +58,8 @@ export default defineConfig({
   server: {
     host: true,
     port: 5173,
-    proxy: { '/api': { target: process.env.API_TARGET ?? 'http://127.0.0.1:8011', changeOrigin: true } },
+    // keep-alive so a slow TLS handshake to a remote API is paid once, not on every lab-partner call
+    proxy: { '/api': { target: process.env.API_TARGET ?? 'http://127.0.0.1:8011', changeOrigin: true, agent: (process.env.API_TARGET ?? '').startsWith('https') ? new HttpsAgent({ keepAlive: true }) : undefined } },
   },
   build: {
     target: 'es2022',

@@ -9,7 +9,16 @@ const out = process.argv[2] ?? 'demo';
 const base = process.env.BASE ?? 'http://localhost:5173';
 if (!process.env.ONLY) rmSync(`${out}/raw`, { recursive: true, force: true });
 mkdirSync(`${out}/raw`, { recursive: true });
-const browser = await chromium.launch({ args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
+// GPU=1: a real window (under Xvfb) rendered through Vulkan on the machine's GPU. Otherwise software rendering.
+const GPU = process.env.GPU === '1';
+const browser = await chromium.launch(GPU
+  ? { headless: false, args: ['--use-angle=vulkan', '--enable-features=Vulkan', '--ignore-gpu-blocklist', '--enable-gpu-rasterization', '--no-sandbox', '--window-position=0,0'] }
+  : { args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
+{
+  const probe = await browser.newPage();
+  console.log('WebGL renderer:', await probe.evaluate(() => { const gl = document.createElement('canvas').getContext('webgl'); const e = gl?.getExtension('WEBGL_debug_renderer_info'); return e ? gl.getParameter(e.UNMASKED_RENDERER_WEBGL) : 'unknown'; }));
+  await probe.close();
+}
 const size = { width: 1280, height: 720 };
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
