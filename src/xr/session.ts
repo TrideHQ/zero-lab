@@ -485,7 +485,7 @@ class Controller {
     return { h: hMax, v: vMax };
   }
   state() {
-    return { stats: this.stats, gazeHot: this.gazeHot ? this.gazeHot.panel.buttonIds()[this.gazeHot.index] : null, palm: this.hands.map((h) => ({ up: +h.palmNormal.y.toFixed(2), open: h.open, n: h.palmNormal.toArray().map((v) => +v.toFixed(2)) })), lastPoint: this.lastPoint, cursor: this.cursors.map((c) => c.visible), hover: [this.buttons.hover, this.menu.hover], pinch: this.hands.map((h) => h.pinchPos.toArray().map((v) => +v.toFixed(3))), head: this.head.toArray(), headYaw: this.yaw, placed: this.placed, phoneAR: this.phoneAR, hands: this.hands.map((h) => ({ tracked: h.tracked, pinching: h.pinching })), buttons: this.buttons.buttonIds(), menu: this.menu.mesh.visible, scale: this.stage.root.scale.x, yaw: this.stage.root.rotation.y };
+    return { grabs: this.grabs.map((g) => (g ? g.handle?.name ?? 'rotate' : null)), stats: this.stats, gazeHot: this.gazeHot ? this.gazeHot.panel.buttonIds()[this.gazeHot.index] : null, palm: this.hands.map((h) => ({ up: +h.palmNormal.y.toFixed(2), open: h.open, n: h.palmNormal.toArray().map((v) => +v.toFixed(2)) })), lastPoint: this.lastPoint, cursor: this.cursors.map((c) => c.visible), hover: [this.buttons.hover, this.menu.hover], pinch: this.hands.map((h) => h.pinchPos.toArray().map((v) => +v.toFixed(3))), head: this.head.toArray(), headYaw: this.yaw, placed: this.placed, phoneAR: this.phoneAR, hands: this.hands.map((h) => ({ tracked: h.tracked, pinching: h.pinching })), buttons: this.buttons.buttonIds(), menu: this.menu.mesh.visible, scale: this.stage.root.scale.x, yaw: this.stage.root.rotation.y };
   }
 
   // ---- teardown ----------------------------------------------------------

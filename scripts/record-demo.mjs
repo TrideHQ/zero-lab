@@ -16,7 +16,7 @@ mkdirSync(`${out}/raw`, { recursive: true });
 // libx11-6 libxext6 and VK_ICD_FILENAMES=/etc/vulkan/icd.d/nvidia_icd.json). Otherwise software rendering.
 const GPU = process.env.GPU === '1';
 const browser = await chromium.launch(GPU
-  ? { args: ['--use-gl=angle', '--use-angle=vulkan', '--enable-features=Vulkan', '--ignore-gpu-blocklist', '--no-sandbox'] }
+  ? { args: ['--use-gl=angle', '--use-angle=vulkan', '--enable-features=Vulkan', '--ignore-gpu-blocklist', '--no-sandbox', '--disable-dev-shm-usage'] }
   : { args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
 {
   const probe = await browser.newPage();
@@ -187,7 +187,7 @@ if (want('5-vr')) {
   const dir = `${out}/raw/vrframes`;
   rmSync(dir, { recursive: true, force: true }); mkdirSync(dir, { recursive: true });
   let n = 0;
-  const frames = async (count) => { for (let i = 0; i < count; i++) { await p.evaluate(() => { window.__demoAct(); window.__vt.step(1000 / 30); }); await p.screenshot({ path: `${dir}/${String(n++).padStart(5, '0')}.jpg`, type: 'jpeg', quality: 90, clip: { x: 0, y: 502, width: 1920, height: 1080 } }); } };
+  const frames = async (count) => { for (let i = 0; i < count; i++) { await p.evaluate(() => { window.__demoAct(); window.__vt.step(1000 / 30); }); const file = `${dir}/${String(n++).padStart(5, '0')}.jpg`; if (process.env.DRY === '1') continue; for (let tries = 0; ; tries++) { try { await p.screenshot({ path: file, type: 'jpeg', quality: 90, clip: { x: 0, y: 502, width: 1920, height: 1080 } }); break; } catch (e) { if (tries > 8) throw e; await sleep(300); } } } };
   const set = (patch) => p.evaluate((patch) => Object.assign(window.__demo, patch), patch);
   const world = (expr) => p.evaluate((expr) => new Function('return ' + expr)(), expr);
   const glide = async (from, to, count) => { for (let i = 1; i <= count; i++) { const k = i / count, e = k * k * (3 - 2 * k); await set({ target: from.map((v, j) => v + (to[j] - v) * e) }); await frames(1); } };
@@ -218,6 +218,7 @@ if (want('5-vr')) {
     const to = await world(`__w(${slot[0]}, ${slot[1]})`);
     await reach(from, 16); await frames(3);
     await set({ pinch: 1 }); await frames(6);
+    if (process.env.DRY === '1') console.log(name, JSON.stringify(await p.evaluate((from) => { const st = window.__xrc.state(); return { from, pinch: st.pinch[1], hand: st.hands[1], grabs: st.grabs, last: st.lastPoint, cursor: st.cursor, gaze: st.gazeHot }; }, from)));
     await glide(from, to, 24); at = to;
     await set({ pinch: 0 }); await frames(7);
   }
