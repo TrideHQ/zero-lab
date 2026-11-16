@@ -173,7 +173,7 @@ if (want('5-vr')) {
   await p.waitForFunction(() => window.__xrc?.state().placed, null, { polling: 200, timeout: 30000 });
   await p.evaluate(() => {
     window.__vt.auto(false);
-    window.__demo = { target: null, pinch: 0, gain: 0.26 };
+    window.__demo = { target: null, pinch: 0, gain: 0.42 };
     window.__demoAct = () => {
       const d = window.__demo, hand = window.__xr.hands.right, c = window.__xrc;
       if (d.target) { const q = c.hands[1].pinchPos; hand.position.x += (d.target[0] - q.x) * d.gain; hand.position.y += (d.target[1] - q.y) * d.gain; hand.position.z += (d.target[2] - q.z) * d.gain; }
@@ -187,24 +187,30 @@ if (want('5-vr')) {
   const dir = `${out}/raw/vrframes`;
   rmSync(dir, { recursive: true, force: true }); mkdirSync(dir, { recursive: true });
   let n = 0;
-  const frames = async (count) => { for (let i = 0; i < count; i++) { await p.evaluate(() => { window.__demoAct(); window.__vt.step(1000 / 30); }); const file = `${dir}/${String(n++).padStart(5, '0')}.jpg`; if (process.env.DRY === '1') continue; for (let tries = 0; ; tries++) { try { await p.screenshot({ path: file, type: 'jpeg', quality: 90, clip: { x: 0, y: 502, width: 1920, height: 1080 } }); break; } catch (e) { if (tries > 8) throw e; await sleep(300); } } } };
+  const frames = async (count) => { for (let i = 0; i < count; i++) { await p.evaluate(() => { window.__demoAct(); window.__vt.step(1000 / 30); }); const file = `${dir}/${String(n++).padStart(5, '0')}.jpg`; if (process.env.DRY === '1') { const q = await p.evaluate(() => { const c = window.__xrc, h = c.hands[1]; return [h.pinching, +h.thumbTip.distanceTo(h.indexTip).toFixed(3), window.__demo.pinch, c.state().grabs[1]]; }); const key = q[0] + '|' + q[3]; if (false) { globalThis.__last = key; console.log('   frame', n, 'pinching', q[0], 'gap', q[1], 'wanted', q[2], 'grab', q[3]); } continue; } for (let tries = 0; ; tries++) { try { await p.screenshot({ path: file, type: 'jpeg', quality: 90, clip: { x: 0, y: 502, width: 1920, height: 1080 } }); break; } catch (e) { if (tries > 8) throw e; await sleep(300); } } } };
   const set = (patch) => p.evaluate((patch) => Object.assign(window.__demo, patch), patch);
   const world = (expr) => p.evaluate((expr) => new Function('return ' + expr)(), expr);
   const glide = async (from, to, count) => { for (let i = 1; i <= count; i++) { const k = i / count, e = k * k * (3 - 2 * k); await set({ target: from.map((v, j) => v + (to[j] - v) * e) }); await frames(1); } };
   const rayAim = (expr) => p.evaluate((expr) => { const c = window.__xrc, st = c.state(); const w = new Function('c', 'return ' + expr)(c); if (!w) return null; const sh = [st.head[0] + 0.17, st.head[1] - 0.22, st.head[2]], d = w.map((v, i) => v - sh[i]), len = Math.hypot(...d); return sh.map((v, i) => v + (d[i] / len) * 0.36); }, expr);
   const pinchButton = async (id, lead = 24, after = 18) => { const t = await rayAim(`c.buttonWorld(${JSON.stringify(id)})`); if (!t) return; await set({ target: t, pinch: 0 }); await frames(lead); await set({ pinch: 1 }); await frames(5); await set({ pinch: 0 }); await frames(after); };
+  // Closing the fingers moves the pinch point a few centimetres. A real hand does not then slide back, so
+  // the hand is left where it is while it closes, and the rest of the move is offset by that shift.
+  const pinchNow = () => p.evaluate(() => window.__xrc.hands[1].pinchPos.toArray());
+  const close = async (from) => { await set({ target: null, pinch: 1 }); await frames(7); const q = await pinchNow(); return q.map((v, i) => v - from[i]); };
+  const open = async (n = 8) => { await set({ target: null, pinch: 0 }); await frames(n); at = await pinchNow(); };
+  const plus = (a, b) => a.map((v, i) => v + b[i]);
   let at = [0.2, 1.0, -0.3];
-  const reach = async (to, count = 20) => { await glide(at, to, count); at = to; };
+  const reach = async (to, count = 20) => { await glide(at, to, count); at = to; await frames(10); }; // pause on the part before pinching
 
   await cap('Hands only. No controllers.');
   await set({ target: at }); await frames(40);
   // grab the ray box itself and swing it round
   const box = await world('__hw("source")');
   await reach(box, 24); await frames(6);
-  await set({ pinch: 1 }); await frames(8);
+  const b0 = await close(box);
   const up = await world('__w(-0.62, 1.78)'), low = await world('__w(-1.05, 1.32)');
-  await glide(box, up, 34); await glide(up, low, 44); at = low;
-  await set({ pinch: 0 }); await frames(14);
+  await glide(plus(box, b0), plus(up, b0), 34); await glide(plus(up, b0), plus(low, b0), 44);
+  await open(14);
   await cap('Now build the circuit with your own hands');
   await p.evaluate(() => { window.__vt.auto(true); location.hash = '#/p/ohms-law'; });
   await p.waitForFunction(() => window.__xrc.state().buttons.includes('place-next') && window.__stage.template?.name === 'circuit-board', null, { polling: 200, timeout: 30000 });
@@ -217,27 +223,31 @@ if (want('5-vr')) {
     if (!from) continue;
     const to = await world(`__w(${slot[0]}, ${slot[1]})`);
     await reach(from, 16); await frames(3);
-    await set({ pinch: 1 }); await frames(6);
-    if (process.env.DRY === '1') console.log(name, JSON.stringify(await p.evaluate((from) => { const st = window.__xrc.state(); return { from, pinch: st.pinch[1], hand: st.hands[1], grabs: st.grabs, last: st.lastPoint, cursor: st.cursor, gaze: st.gazeHot }; }, from)));
-    await glide(from, to, 24); at = to;
-    await set({ pinch: 0 }); await frames(7);
+    const bias = await close(from);
+    if (process.env.DRY === '1' && false) console.log(name, JSON.stringify(await p.evaluate((from) => { const st = window.__xrc.state(); return { from, pinch: st.pinch[1], hand: st.hands[1], grabs: st.grabs, last: st.lastPoint, cursor: st.cursor, gaze: st.gazeHot }; }, from)));
+    await glide(plus(from, bias), plus(to, bias), 26);
+    await frames(8); // settle on the spot before letting go
+    const dbg = () => p.evaluate(([name, slot]) => { const st = window.__xrc.state(), t = window.__stage.template, pt = t.pickTargets()[name]; const pl = window.__stage.template.group.worldToLocal(window.__xrc.hands[1].pinchPos.clone()); return { grabs: st.grabs, pinching: st.hands[1].pinching, pos: [+pt.x.toFixed(2), +pt.y.toFixed(2)], slot, placed: window.__bench.driver.bot.placed(), yaw: +st.yaw.toFixed(2) }; }, [name, slot]);
+    if (process.env.DRY === '1') console.log('  held', JSON.stringify(await dbg()));
+    await open(8);
+    if (process.env.DRY === '1') console.log('  released', JSON.stringify(await dbg()));
   }
   await cap('Flip the switch, slide the rheostat, take the reading');
   const sw = await world('__hw("switch")');
-  if (sw) { await reach(sw, 18); await set({ pinch: 1 }); await frames(6); await set({ pinch: 0 }); await frames(12); }
+  if (sw) { await reach(sw, 18); await close(sw); await open(12); }
   for (let k = 0; k < 2; k++) {
     const knob = await world('__hw("rheostat")');
     if (knob) {
-      await reach(knob, 16); await set({ pinch: 1 }); await frames(6);
+      await reach(knob, 16); const kb = await close(knob);
       const to = [knob[0] - 0.016, knob[1], knob[2]];
-      await glide(knob, to, 22); at = to;
-      await set({ pinch: 0 }); await frames(8);
+      await glide(plus(knob, kb), plus(to, kb), 22); await frames(8);
+      await open(8);
     }
     await pinchButton('record', 22, 34);
-    at = await p.evaluate(() => window.__demo.target);
+    at = await pinchNow();
   }
   await frames(30);
-  console.log('vr end state:', JSON.stringify(await p.evaluate(() => ({ placed: window.__bench?.driver.bot.placed(), rows: window.__bench?.engine.rows.length, angle: 0 }))));
+  console.log('vr end state:', JSON.stringify(await p.evaluate(() => ({ placed: window.__bench?.driver.bot.placed(), switchOn: window.__stage.template.getState().switchOn, rows: window.__bench?.engine.rows.map((r) => [r.values.V, r.values.I, r.issues.join()]) }))));
   await ctx.close();
   execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-framerate', '30', '-i', `${dir}/%05d.jpg`, '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '19', '-pix_fmt', 'yuv420p', `${out}/raw/5-vr.mp4`]);
   console.log('clip 5-vr', n, 'frames rendered offline =', (n / 30).toFixed(1), 's at true speed');

@@ -54,8 +54,8 @@ export async function enterXR(mode: 'vr' | 'ar', stage: Stage): Promise<void> {
   (window as unknown as { __xrc: unknown }).__xrc = active;
 }
 
-interface Grab { handle?: Handle; plane?: THREE.Plane; offset?: THREE.Vector3; rotate?: { x: number; yaw: number } }
-interface Aim { ray: THREE.Ray; hot: { panel: Panel; index: number } | null; onPanel: boolean }
+interface Grab { handle?: Handle; plane?: THREE.Plane; offset?: THREE.Vector3; direct?: boolean; rotate?: { x: number; yaw: number } }
+interface Aim { ray: THREE.Ray; pinch: THREE.Vector3; hot: { panel: Panel; index: number } | null; onPanel: boolean }
 
 class Controller {
   dirty = true;
@@ -309,21 +309,22 @@ class Controller {
     if (hot) this.hov.set(hot.panel, hot.index);
 
     if (!h.pinching) {
-      this.aims[i].push({ ray: this.ray.clone(), hot, onPanel: cursor.visible });
+      this.aims[i].push({ ray: this.ray.clone(), pinch: h.pinchPos.clone(), hot, onPanel: cursor.visible });
       if (this.aims[i].length > 8) this.aims[i].shift();
     }
     if (h.pinchStart) {
-      const was = this.aims[i][0] ?? { ray: this.ray.clone(), hot, onPanel: cursor.visible };
+      const was = this.aims[i][0] ?? { ray: this.ray.clone(), pinch: h.pinchPos.clone(), hot, onPanel: cursor.visible };
       this.aims[i] = [];
       if (was.hot) {
         was.hot.panel.press(was.hot.index);
         blip('tick');
-      } else if (!was.onPanel) this.grab(i, was.ray);
+      } else if (!was.onPanel) this.grab(i, was.ray, was.pinch);
     }
     const g = this.grabs[i];
     if (g && h.pinching) {
       if (g.handle?.drag && g.plane) {
-        const p = this.ray.intersectPlane(g.plane, new THREE.Vector3()) ?? g.plane.projectPoint(h.pinchPos, new THREE.Vector3());
+        // a part picked up directly follows the fingers; one picked from a distance follows the pointing ray
+        const p = g.direct ? g.plane.projectPoint(h.pinchPos, new THREE.Vector3()) : this.ray.intersectPlane(g.plane, new THREE.Vector3()) ?? g.plane.projectPoint(h.pinchPos, new THREE.Vector3());
         const local = this.stage.template!.group.worldToLocal(p);
         g.offset ??= g.handle.pos.clone().sub(local); // keep the handle under the fingers: no jump as the pinch closes
         g.handle.drag(local.add(g.offset), 'move');
@@ -344,7 +345,7 @@ class Controller {
     }
   }
 
-  private grab(i: number, ray: THREE.Ray) {
+  private grab(i: number, ray: THREE.Ray, reach: THREE.Vector3) {
     const tpl = this.stage.template;
     const h = this.hands[i];
     if (!tpl) return;
@@ -355,7 +356,8 @@ class Controller {
     for (const hd of [...tpl.handles(), ...this.stage.extraHandles]) {
       if (hd.enabled && !hd.enabled()) continue;
       const w = tpl.group.localToWorld(hd.pos.clone());
-      const direct = w.distanceTo(h.pinchPos), along = ray.distanceToPoint(w);
+      // where the fingers were before they closed: closing moves the pinch point a few centimetres
+      const direct = w.distanceTo(reach), along = ray.distanceToPoint(w);
       const d = direct < Math.max(0.05, hd.radius * s * 1.5) ? direct * 0.5 : along < Math.max(0.03, hd.radius * s) ? along : 1e9;
       if (d < bestD) { best = hd; bestD = d; }
     }
@@ -364,7 +366,7 @@ class Controller {
         const axis = best.plane ?? 'z';
         const n = new THREE.Vector3(axis === 'x' ? 1 : 0, axis === 'y' ? 1 : 0, axis === 'z' ? 1 : 0).transformDirection(tpl.group.matrixWorld);
         const plane = new THREE.Plane().setFromNormalAndCoplanarPoint(n, tpl.group.localToWorld(best.pos.clone()));
-        this.grabs[i] = { handle: best, plane };
+        this.grabs[i] = { handle: best, plane, direct: tpl.group.localToWorld(best.pos.clone()).distanceTo(reach) < 0.07 };
         best.drag(best.pos.clone(), 'start');
       } else best.tap?.();
       blip('tick');
