@@ -2,6 +2,7 @@ import '@fontsource-variable/inter/index.css';
 import './style.css';
 import { h } from './ui/dom.ts';
 import { logo } from './ui/components/logo.ts';
+import { atomBackdrop } from './ui/components/atom.ts';
 import { firstRunPicker } from './ui/components/picker.ts';
 import { route, startRouter, render } from './router.ts';
 import { setLocale, t } from './i18n/index.ts';
@@ -32,6 +33,8 @@ async function boot() {
   const app = document.getElementById('app')!;
   chip = h('a.board-chip', { href: '#/settings', id: 'board-chip', title: t('subject.curriculum') }, board().name);
   const main = h('main', { id: 'outlet' });
+  const still = isLite() || matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.body.prepend(atomBackdrop(still));
   app.replaceChildren(
     h('header.topbar',
       h('a.brand', { href: '#/', 'aria-label': '0⁰ Lab' }, logo(22)),
