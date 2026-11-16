@@ -56,7 +56,8 @@ node scripts/draft-topic.ts <slug> "<Title>"   # LLM first draft, always saved a
 - Not yet run on a physical Quest, VR Glasses or Android phone: XR was tested in the IWER emulator only, so frame rate on devices is unmeasured and AR hit-testing on a real surface is unverified.
 - Every topic is `reviewed: false` and every curriculum mapping is `verified: false` until a teacher checks them. The Draft badge shows on all of them.
 - Circuit components snap to fixed places and wires appear automatically; free wiring is not built.
-- No narration audio is shipped yet (`scripts/render-vo.sh` is the hook); card text is always on screen.
+- No per-card narration audio is shipped yet (`scripts/render-vo.sh` is the hook); card text is always on screen.
+- Curriculum mappings and their sources are listed in `docs/CURRICULA.md`. Four boards (IB, Australian Curriculum, WASSCE, KCSE) are still unsourced because their official pages could not be fetched.
 - Textures are procedural, so there is no KTX2 pipeline.
 
 See `CREDITS.md` for third-party software and content notes.
