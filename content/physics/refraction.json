@@ -1,60 +1,222 @@
 {
   "slug": "refraction",
   "subject": "physics",
-  "unit": { "en": "Light and Optics" },
-  "title": { "en": "Refraction and Snell's Law" },
+  "unit": {
+    "en": "Light and Optics"
+  },
+  "title": {
+    "en": "Refraction and Snell's Law"
+  },
   "curricula": {
-    "international": { "topic": "Refraction and Snell's law", "unit": "Light and Optics", "level": "Intermediate", "verified": false },
-    "igcse": { "topic": "Refraction of light", "unit": "3 Waves", "level": "Core", "verified": false },
+    "international": {
+      "topic": "Refraction and Snell's law",
+      "unit": "Light and Optics",
+      "level": "Intermediate",
+      "verified": false,
+      "source": null
+    },
+    "igcse": {
+      "topic": "3.2.2 Refraction of light",
+      "unit": "3 Waves",
+      "level": "Core",
+      "verified": false,
+      "source": "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"
+    },
     "alevel": null,
-    "gcse": { "topic": "Refraction of waves", "unit": "Waves", "level": "Physics only", "verified": false },
-    "ap": { "topic": "Refraction", "unit": "Geometric Optics", "level": "AP Physics 2", "verified": false },
-    "ib": { "topic": "Wave phenomena", "unit": "C. Wave behaviour", "level": "SL", "verified": false },
-    "ngss": { "topic": "Wave Properties", "unit": "PS4 Waves and Their Applications", "level": "HS", "verified": false },
-    "cbse": { "topic": "Light – Reflection and Refraction", "unit": "Natural Phenomena", "level": "Class 10", "verified": false },
-    "waec": { "topic": "Refraction of light at plane surfaces", "unit": "Light waves", "level": "SS2", "verified": false },
-    "kcse": { "topic": "Refraction of light", "unit": "Light", "level": "Form 3", "verified": false },
-    "caps": { "topic": "Refraction and Snell's law", "unit": "Geometrical optics", "level": "Grade 11", "verified": false },
-    "acara": { "topic": "Waves: refraction", "unit": "Linear motion and waves", "level": "Unit 2", "verified": false }
+    "gcse": {
+      "topic": "4.6.2.2 Properties of electromagnetic waves 1",
+      "unit": "4.6 Waves",
+      "level": "Combined",
+      "verified": false,
+      "source": "https://www.aqa.org.uk/subjects/physics/gcse/physics-8463/specification/subject-content/waves"
+    },
+    "ap": {
+      "topic": "Unit 13: Geometric Optics",
+      "unit": "AP Physics 2",
+      "level": "AP Physics 2",
+      "verified": false,
+      "source": "https://apcentral.collegeboard.org/courses/ap-physics-2"
+    },
+    "ib": {
+      "topic": "Wave phenomena",
+      "unit": "C. Wave behaviour",
+      "level": "SL",
+      "verified": false,
+      "source": null
+    },
+    "ngss": null,
+    "cbse": {
+      "topic": "Refraction; Laws of refraction, refractive index",
+      "unit": "Unit III: Natural Phenomena",
+      "level": "Class 10",
+      "verified": false,
+      "source": "https://cbseacademic.nic.in/web_material/CurriculumMain26/Sec/Science_Sec_2025-26.pdf"
+    },
+    "waec": {
+      "topic": "Refraction of light at plane surfaces",
+      "unit": "Light waves",
+      "level": "SS2",
+      "verified": false,
+      "source": null
+    },
+    "kcse": {
+      "topic": "Refraction of light",
+      "unit": "Light",
+      "level": "Form 3",
+      "verified": false,
+      "source": null
+    },
+    "caps": {
+      "topic": "Geometrical Optics: Refraction, Snell’s Law",
+      "unit": "Waves, Sound and Light",
+      "level": "Grade 11",
+      "verified": false,
+      "source": "https://www.education.gov.za/Portals/0/CD/National%20Curriculum%20Statements%20and%20Vocational/CAPS%20FET%20%20PHYSICAL%20SCIENCE%20WEB.pdf"
+    },
+    "acara": {
+      "topic": "Waves: refraction",
+      "unit": "Linear motion and waves",
+      "level": "Unit 2",
+      "verified": false,
+      "source": null
+    }
   },
   "reviewed": false,
-  "summary": { "en": "Light changes direction when it crosses from one transparent material into another." },
+  "summary": {
+    "en": "Light changes direction when it crosses from one transparent material into another."
+  },
   "cards": [
     {
-      "title": { "en": "What is refraction?" },
-      "text": { "en": "Shine a ray of light at a glass block and it bends as it goes in. This change of direction at a boundary is called refraction. It happens because light travels more slowly in glass than in air." },
+      "title": {
+        "en": "What is refraction?"
+      },
+      "text": {
+        "en": "Shine a ray of light at a glass block and it bends as it goes in. This change of direction at a boundary is called refraction. It happens because light travels more slowly in glass than in air."
+      },
       "equation": null,
-      "modelState": { "angle": 30, "showNormal": false, "photons": false }
+      "modelState": {
+        "angle": 30,
+        "showNormal": false,
+        "photons": false
+      }
     },
     {
-      "title": { "en": "The normal and the two angles" },
-      "text": { "en": "Draw a line at 90° to the surface where the ray meets it. That line is the normal. The angle of incidence i and the angle of refraction r are both measured from the normal, never from the surface." },
+      "title": {
+        "en": "The normal and the two angles"
+      },
+      "text": {
+        "en": "Draw a line at 90° to the surface where the ray meets it. That line is the normal. The angle of incidence i and the angle of refraction r are both measured from the normal, never from the surface."
+      },
       "equation": null,
-      "modelState": { "angle": 40, "showNormal": true, "photons": false }
+      "modelState": {
+        "angle": 40,
+        "showNormal": true,
+        "photons": false
+      }
     },
     {
-      "title": { "en": "Snell's law" },
-      "text": { "en": "For two given materials, sin i divided by sin r always gives the same number. For air into a material that number is its refractive index n. Drag the ray box and watch r follow the rule." },
+      "title": {
+        "en": "Snell's law"
+      },
+      "text": {
+        "en": "For two given materials, sin i divided by sin r always gives the same number. For air into a material that number is its refractive index n. Drag the ray box and watch r follow the rule."
+      },
       "equation": "n_1 \\sin\\theta_1 = n_2 \\sin\\theta_2",
-      "modelState": { "angle": 55, "showNormal": true, "photons": false }
+      "modelState": {
+        "angle": 55,
+        "showNormal": true,
+        "photons": false
+      }
     },
     {
-      "title": { "en": "Slower light, bigger bend" },
-      "text": { "en": "The refractive index compares the speed of light in a vacuum with its speed in the material. Watch the light slow down inside the block. A larger n means slower light and more bending." },
+      "title": {
+        "en": "Slower light, bigger bend"
+      },
+      "text": {
+        "en": "The refractive index compares the speed of light in a vacuum with its speed in the material. Watch the light slow down inside the block. A larger n means slower light and more bending."
+      },
       "equation": "n = \\dfrac{c}{v}",
-      "modelState": { "angle": 55, "showNormal": true, "photons": true, "n": 1.9 }
+      "modelState": {
+        "angle": 55,
+        "showNormal": true,
+        "photons": true,
+        "n": 1.9
+      }
     }
   ],
   "images": [
-    { "type": "generated", "state": { "angle": 40, "showNormal": true }, "caption": { "en": "A ray entering and leaving a glass block" } },
-    { "type": "generated", "state": { "angle": 65, "showNormal": true, "n": 1.33 }, "caption": { "en": "The same ray through water (n = 1.33): less bending" } }
+    {
+      "type": "generated",
+      "state": {
+        "angle": 40,
+        "showNormal": true
+      },
+      "caption": {
+        "en": "A ray entering and leaving a glass block"
+      }
+    },
+    {
+      "type": "generated",
+      "state": {
+        "angle": 65,
+        "showNormal": true,
+        "n": 1.33
+      },
+      "caption": {
+        "en": "The same ray through water (n = 1.33): less bending"
+      }
+    }
   ],
-  "model": { "template": "ray-optics", "preset": "glass-block", "params": { "n": 1.5 } },
+  "model": {
+    "template": "ray-optics",
+    "preset": "glass-block",
+    "params": {
+      "n": 1.5
+    }
+  },
   "checks": [
-    { "q": { "en": "Tap the normal line." }, "type": "point", "target": "normal", "modelState": { "angle": 40, "showNormal": true } },
-    { "q": { "en": "Which way does the ray bend as it enters the glass?" }, "type": "choice", "options": [{ "en": "Towards the normal" }, { "en": "Away from the normal" }], "answer": 0 },
-    { "q": { "en": "Tap the refracted ray inside the block." }, "type": "point", "target": "refracted", "modelState": { "angle": 40, "showNormal": true } }
+    {
+      "q": {
+        "en": "Tap the normal line."
+      },
+      "type": "point",
+      "target": "normal",
+      "modelState": {
+        "angle": 40,
+        "showNormal": true
+      }
+    },
+    {
+      "q": {
+        "en": "Which way does the ray bend as it enters the glass?"
+      },
+      "type": "choice",
+      "options": [
+        {
+          "en": "Towards the normal"
+        },
+        {
+          "en": "Away from the normal"
+        }
+      ],
+      "answer": 0
+    },
+    {
+      "q": {
+        "en": "Tap the refracted ray inside the block."
+      },
+      "type": "point",
+      "target": "refracted",
+      "modelState": {
+        "angle": 40,
+        "showNormal": true
+      }
+    }
   ],
   "practical": "refraction-glass-block",
-  "related": ["reflection", "total-internal-reflection", "lenses"]
+  "related": [
+    "reflection",
+    "total-internal-reflection",
+    "lenses"
+  ]
 }

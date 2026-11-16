@@ -12,73 +12,85 @@
       "topic": "Gravitation and free fall",
       "unit": "Forces and Motion",
       "level": "Foundation",
-      "verified": false
+      "verified": false,
+      "source": null
     },
     "igcse": {
-      "topic": "Motion: free fall",
+      "topic": "1.2 Motion",
       "unit": "1 Motion, forces and energy",
-      "level": "Supplement",
-      "verified": false
+      "level": "Core",
+      "verified": false,
+      "source": "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"
     },
     "alevel": {
-      "topic": "Gravitational force between point masses",
+      "topic": "13.2 Gravitational force between point masses",
       "unit": "13 Gravitational fields",
       "level": "A Level",
-      "verified": false
+      "verified": false,
+      "source": "https://www.cambridgeinternational.org/Images/664565-2025-2027-syllabus.pdf"
     },
     "gcse": {
-      "topic": "Gravity",
-      "unit": "Forces",
+      "topic": "4.5.1.3 Gravity",
+      "unit": "4.5 Forces",
       "level": "Combined",
-      "verified": false
+      "verified": false,
+      "source": "https://www.aqa.org.uk/subjects/physics/gcse/physics-8463/specification/subject-content/forces"
     },
     "ap": {
-      "topic": "Gravitational Force",
-      "unit": "Force and Translational Dynamics",
+      "topic": "Unit 2: Force and Translational Dynamics",
+      "unit": "AP Physics 1",
       "level": "AP Physics 1",
-      "verified": false
+      "verified": false,
+      "source": "https://apcentral.collegeboard.org/courses/ap-physics-1"
     },
     "ib": {
       "topic": "Gravitational fields",
       "unit": "D. Fields",
       "level": "SL",
-      "verified": false
+      "verified": false,
+      "source": null
     },
     "ngss": {
-      "topic": "Types of Interactions",
-      "unit": "PS2 Motion and Stability",
+      "topic": "PS2.B: Types of Interactions",
+      "unit": "HS-PS2 Motion and Stability: Forces and Interactions",
       "level": "HS",
-      "verified": false
+      "verified": false,
+      "source": "https://www.nextgenscience.org/dci-arrangement/hs-ps2-motion-and-stability-forces-and-interactions"
     },
     "cbse": {
-      "topic": "Gravitation",
-      "unit": "Gravitation",
+      "topic": "Chapter–7: Gravitation",
+      "unit": "Unit VI: Gravitation",
       "level": "Class 11",
-      "verified": false
+      "verified": false,
+      "source": "https://cbseacademic.nic.in/web_material/CurriculumMain26/SrSec/Physics_SrSec_2025-26.pdf"
     },
     "waec": {
       "topic": "Gravitational field",
       "unit": "Fields at rest and in motion",
       "level": "SS3",
-      "verified": false
+      "verified": false,
+      "source": null
     },
     "kcse": {
       "topic": "Linear motion: free fall",
       "unit": "Mechanics",
       "level": "Form 3",
-      "verified": false
+      "verified": false,
+      "source": null
     },
     "caps": {
-      "topic": "Newton's law of universal gravitation",
-      "unit": "Newton's laws",
+      "topic": "Newton’s law of universal gravitation",
+      "unit": "Mechanics",
       "level": "Grade 11",
-      "verified": false
+      "verified": false,
+      "source": "https://www.education.gov.za/Portals/0/CD/National%20Curriculum%20Statements%20and%20Vocational/CAPS%20FET%20%20PHYSICAL%20SCIENCE%20WEB.pdf"
     },
     "acara": {
       "topic": "Gravity and motion",
       "unit": "Gravity and electromagnetism",
       "level": "Unit 3",
-      "verified": false
+      "verified": false,
+      "source": null
     }
   },
   "reviewed": false,

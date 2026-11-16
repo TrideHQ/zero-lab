@@ -12,68 +12,67 @@
       "topic": "Total internal reflection",
       "unit": "Light and Optics",
       "level": "Advanced",
-      "verified": false
+      "verified": false,
+      "source": null
     },
     "igcse": {
-      "topic": "Refraction of light: critical angle",
+      "topic": "3.2.2 Refraction of light",
       "unit": "3 Waves",
-      "level": "Supplement",
-      "verified": false
+      "level": "Core",
+      "verified": false,
+      "source": "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"
     },
     "alevel": null,
-    "gcse": {
-      "topic": "Total internal reflection",
-      "unit": "Waves",
-      "level": "Physics only",
-      "verified": false
-    },
+    "gcse": null,
     "ap": {
-      "topic": "Refraction",
-      "unit": "Geometric Optics",
+      "topic": "Unit 13: Geometric Optics",
+      "unit": "AP Physics 2",
       "level": "AP Physics 2",
-      "verified": false
+      "verified": false,
+      "source": "https://apcentral.collegeboard.org/courses/ap-physics-2"
     },
     "ib": {
       "topic": "Wave phenomena",
       "unit": "C. Wave behaviour",
       "level": "SL",
-      "verified": false
+      "verified": false,
+      "source": null
     },
-    "ngss": {
-      "topic": "Electromagnetic Radiation",
-      "unit": "PS4 Waves and Their Applications",
-      "level": "HS",
-      "verified": false
-    },
+    "ngss": null,
     "cbse": {
-      "topic": "Ray Optics and Optical Instruments",
-      "unit": "Optics",
+      "topic": "Chapter–9: Ray Optics and Optical Instruments",
+      "unit": "Unit VI: Optics",
       "level": "Class 12",
-      "verified": false
+      "verified": false,
+      "source": "https://cbseacademic.nic.in/web_material/CurriculumMain26/SrSec/Physics_SrSec_2025-26.pdf"
     },
     "waec": {
       "topic": "Total internal reflection and critical angle",
       "unit": "Light waves",
       "level": "SS2",
-      "verified": false
+      "verified": false,
+      "source": null
     },
     "kcse": {
       "topic": "Refraction of light",
       "unit": "Light",
       "level": "Form 3",
-      "verified": false
+      "verified": false,
+      "source": null
     },
     "caps": {
-      "topic": "Critical angles and total internal reflection",
-      "unit": "Geometrical optics",
+      "topic": "Geometrical Optics: Critical angles and total internal reflection",
+      "unit": "Waves, Sound and Light",
       "level": "Grade 11",
-      "verified": false
+      "verified": false,
+      "source": "https://www.education.gov.za/Portals/0/CD/National%20Curriculum%20Statements%20and%20Vocational/CAPS%20FET%20%20PHYSICAL%20SCIENCE%20WEB.pdf"
     },
     "acara": {
       "topic": "Waves: total internal reflection",
       "unit": "Linear motion and waves",
       "level": "Unit 2",
-      "verified": false
+      "verified": false,
+      "source": null
     }
   },
   "reviewed": false,

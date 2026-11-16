@@ -12,23 +12,26 @@
       "topic": "Phases of the Moon",
       "unit": "Moon & Astronauts",
       "level": "Foundation",
-      "verified": false
+      "verified": false,
+      "source": null
     },
     "igcse": {
-      "topic": "The Earth",
+      "topic": "6.1.1 The Earth",
       "unit": "6 Space physics",
       "level": "Core",
-      "verified": false
+      "verified": false,
+      "source": "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"
     },
     "alevel": null,
     "gcse": null,
     "ap": null,
     "ib": null,
     "ngss": {
-      "topic": "Earth and the Solar System",
-      "unit": "ESS1 Earth's Place in the Universe",
+      "topic": "MS-ESS1-1: cyclic patterns of lunar phases",
+      "unit": "MS-ESS1 Earth’s Place in the Universe",
       "level": "MS",
-      "verified": false
+      "verified": false,
+      "source": "https://www.nextgenscience.org/dci-arrangement/ms-ess1-earths-place-universe"
     },
     "cbse": null,
     "waec": null,

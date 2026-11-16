@@ -12,73 +12,79 @@
       "topic": "Resistors in series and parallel",
       "unit": "Electricity",
       "level": "Intermediate",
-      "verified": false
+      "verified": false,
+      "source": null
     },
     "igcse": {
-      "topic": "Series and parallel circuits",
+      "topic": "4.3.2 Series and parallel circuits",
       "unit": "4 Electricity and magnetism",
       "level": "Core",
-      "verified": false
+      "verified": false,
+      "source": "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"
     },
     "alevel": {
-      "topic": "Kirchhoff's laws",
+      "topic": "10.2 Kirchhoff’s laws",
       "unit": "10 D.C. circuits",
       "level": "AS Level",
-      "verified": false
+      "verified": false,
+      "source": "https://www.cambridgeinternational.org/Images/664565-2025-2027-syllabus.pdf"
     },
     "gcse": {
-      "topic": "Series and parallel circuits",
-      "unit": "Electricity",
+      "topic": "4.2.2 Series and parallel circuits",
+      "unit": "4.2 Electricity",
       "level": "Combined",
-      "verified": false
+      "verified": false,
+      "source": "https://www.aqa.org.uk/subjects/physics/gcse/physics-8463/specification/subject-content/electricity"
     },
     "ap": {
-      "topic": "Compound Direct Current Circuits",
-      "unit": "Electric Circuits",
+      "topic": "Unit 11: Electric Circuits",
+      "unit": "AP Physics 2",
       "level": "AP Physics 2",
-      "verified": false
+      "verified": false,
+      "source": "https://apcentral.collegeboard.org/courses/ap-physics-2"
     },
     "ib": {
       "topic": "Current and circuits",
       "unit": "B. The particulate nature of matter",
       "level": "SL",
-      "verified": false
+      "verified": false,
+      "source": null
     },
-    "ngss": {
-      "topic": "Definitions of Energy",
-      "unit": "PS3 Energy",
-      "level": "HS",
-      "verified": false
-    },
+    "ngss": null,
     "cbse": {
-      "topic": "Electricity",
-      "unit": "Effects of Current",
-      "level": "Class 10",
-      "verified": false
+      "topic": "Chapter–3: Current Electricity",
+      "unit": "Unit II: Current Electricity",
+      "level": "Class 12",
+      "verified": false,
+      "source": "https://cbseacademic.nic.in/web_material/CurriculumMain26/SrSec/Physics_SrSec_2025-26.pdf"
     },
     "waec": {
       "topic": "Electric circuits: resistors in series and parallel",
       "unit": "Fields at rest and in motion",
       "level": "SS2",
-      "verified": false
+      "verified": false,
+      "source": null
     },
     "kcse": {
       "topic": "Current electricity (II)",
       "unit": "Electricity",
       "level": "Form 3",
-      "verified": false
+      "verified": false,
+      "source": null
     },
     "caps": {
-      "topic": "Resistors in series and parallel",
-      "unit": "Electric circuits",
+      "topic": "Electric circuits (resistors in series and parallel)",
+      "unit": "Electricity and Magnetism",
       "level": "Grade 10",
-      "verified": false
+      "verified": false,
+      "source": "https://www.education.gov.za/Portals/0/CD/National%20Curriculum%20Statements%20and%20Vocational/CAPS%20FET%20%20PHYSICAL%20SCIENCE%20WEB.pdf"
     },
     "acara": {
       "topic": "Electrical circuits",
       "unit": "Thermal, nuclear and electrical physics",
       "level": "Unit 1",
-      "verified": false
+      "verified": false,
+      "source": null
     }
   },
   "reviewed": false,

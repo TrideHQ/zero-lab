@@ -60,7 +60,7 @@ draft.model = { template, preset, params: draft.model?.params ?? {} };
 draft.curricula ??= {};
 for (const b of boards) {
   const m = draft.curricula[b.id];
-  draft.curricula[b.id] = m && typeof m === 'object' ? { ...m, verified: false } : null;
+  draft.curricula[b.id] = m && typeof m === 'object' ? { ...m, verified: false, source: m.source ?? null } : null;
 }
 draft.images = (draft.images ?? []).filter((i: any) => i?.type === 'generated');
 

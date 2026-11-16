@@ -12,51 +12,53 @@
       "topic": "Lenses",
       "unit": "Light and Optics",
       "level": "Intermediate",
-      "verified": false
+      "verified": false,
+      "source": null
     },
     "igcse": {
-      "topic": "Thin lenses",
+      "topic": "3.2.3 Thin lenses",
       "unit": "3 Waves",
       "level": "Core",
-      "verified": false
+      "verified": false,
+      "source": "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"
     },
     "alevel": null,
     "gcse": {
-      "topic": "Lenses",
-      "unit": "Waves",
+      "topic": "4.6.2.5 Lenses",
+      "unit": "4.6 Waves",
       "level": "Physics only",
-      "verified": false
+      "verified": false,
+      "source": "https://www.aqa.org.uk/subjects/physics/gcse/physics-8463/specification/subject-content/waves"
     },
     "ap": {
-      "topic": "Images Formed by Lenses",
-      "unit": "Geometric Optics",
+      "topic": "Unit 13: Geometric Optics",
+      "unit": "AP Physics 2",
       "level": "AP Physics 2",
-      "verified": false
+      "verified": false,
+      "source": "https://apcentral.collegeboard.org/courses/ap-physics-2"
     },
     "ib": null,
-    "ngss": {
-      "topic": "Wave Properties",
-      "unit": "PS4 Waves and Their Applications",
-      "level": "HS",
-      "verified": false
-    },
+    "ngss": null,
     "cbse": {
-      "topic": "Ray Optics and Optical Instruments",
-      "unit": "Optics",
-      "level": "Class 12",
-      "verified": false
+      "topic": "Refraction of light by spherical lens",
+      "unit": "Unit III: Natural Phenomena",
+      "level": "Class 10",
+      "verified": false,
+      "source": "https://cbseacademic.nic.in/web_material/CurriculumMain26/Sec/Science_Sec_2025-26.pdf"
     },
     "waec": {
       "topic": "Refraction of light at curved surfaces: lenses",
       "unit": "Light waves",
       "level": "SS2",
-      "verified": false
+      "verified": false,
+      "source": null
     },
     "kcse": {
       "topic": "Thin lenses",
       "unit": "Light",
       "level": "Form 4",
-      "verified": false
+      "verified": false,
+      "source": null
     },
     "caps": null,
     "acara": null

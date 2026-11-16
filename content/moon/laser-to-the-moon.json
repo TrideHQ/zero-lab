@@ -12,37 +12,60 @@
       "topic": "Laser ranging to the Moon",
       "unit": "Moon & Astronauts",
       "level": "Intermediate",
-      "verified": false
+      "verified": false,
+      "source": null
     },
     "igcse": {
-      "topic": "Electromagnetic spectrum",
+      "topic": "3.3 Electromagnetic spectrum",
       "unit": "3 Waves",
       "level": "Core",
-      "verified": false
+      "verified": false,
+      "source": "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"
     },
-    "alevel": null,
+    "alevel": {
+      "topic": "7.4 Electromagnetic spectrum",
+      "unit": "7 Waves",
+      "level": "AS Level",
+      "verified": false,
+      "source": "https://www.cambridgeinternational.org/Images/664565-2025-2027-syllabus.pdf"
+    },
     "gcse": {
-      "topic": "Electromagnetic waves",
-      "unit": "Waves",
+      "topic": "4.6.2.1 Types of electromagnetic waves",
+      "unit": "4.6 Waves",
       "level": "Combined",
-      "verified": false
+      "verified": false,
+      "source": "https://www.aqa.org.uk/subjects/physics/gcse/physics-8463/specification/subject-content/waves"
     },
-    "ap": null,
+    "ap": {
+      "topic": "Unit 14: Waves, Sound, and Physical Optics",
+      "unit": "AP Physics 2",
+      "level": "AP Physics 2",
+      "verified": false,
+      "source": "https://apcentral.collegeboard.org/courses/ap-physics-2"
+    },
     "ib": null,
     "ngss": {
-      "topic": "Electromagnetic Radiation",
-      "unit": "PS4 Waves and Their Applications",
+      "topic": "PS4.B: Electromagnetic Radiation",
+      "unit": "HS-PS4 Waves and their Applications in Technologies for Information Transfer",
       "level": "HS",
-      "verified": false
+      "verified": false,
+      "source": "https://www.nextgenscience.org/dci-arrangement/hs-ps4-waves-and-their-applications-technologies-information-transfer"
     },
-    "cbse": null,
+    "cbse": {
+      "topic": "Chapter–8: Electromagnetic Waves",
+      "unit": "Unit V: Electromagnetic Waves",
+      "level": "Class 12",
+      "verified": false,
+      "source": "https://cbseacademic.nic.in/web_material/CurriculumMain26/SrSec/Physics_SrSec_2025-26.pdf"
+    },
     "waec": null,
     "kcse": null,
     "caps": {
       "topic": "Electromagnetic radiation",
-      "unit": "Waves, sound and light",
+      "unit": "Waves, Sound and Light",
       "level": "Grade 10",
-      "verified": false
+      "verified": false,
+      "source": "https://www.education.gov.za/Portals/0/CD/National%20Curriculum%20Statements%20and%20Vocational/CAPS%20FET%20%20PHYSICAL%20SCIENCE%20WEB.pdf"
     },
     "acara": null
   },

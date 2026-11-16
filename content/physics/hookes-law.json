@@ -12,61 +12,65 @@
       "topic": "Hooke's law and elasticity",
       "unit": "Forces and Motion",
       "level": "Foundation",
-      "verified": false
+      "verified": false,
+      "source": null
     },
     "igcse": {
-      "topic": "Effects of forces",
+      "topic": "1.5.1 Effects of forces",
       "unit": "1 Motion, forces and energy",
       "level": "Core",
-      "verified": false
+      "verified": false,
+      "source": "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"
     },
     "alevel": {
-      "topic": "Stress and strain",
+      "topic": "6.1 Stress and strain",
       "unit": "6 Deformation of solids",
       "level": "AS Level",
-      "verified": false
+      "verified": false,
+      "source": "https://www.cambridgeinternational.org/Images/664565-2025-2027-syllabus.pdf"
     },
     "gcse": {
-      "topic": "Forces and elasticity",
-      "unit": "Forces",
+      "topic": "4.5.3 Forces and elasticity",
+      "unit": "4.5 Forces",
       "level": "Combined",
-      "verified": false
+      "verified": false,
+      "source": "https://www.aqa.org.uk/subjects/physics/gcse/physics-8463/specification/subject-content/forces"
     },
     "ap": {
-      "topic": "Spring Forces",
-      "unit": "Force and Translational Dynamics",
+      "topic": "Unit 2: Force and Translational Dynamics",
+      "unit": "AP Physics 1",
       "level": "AP Physics 1",
-      "verified": false
+      "verified": false,
+      "source": "https://apcentral.collegeboard.org/courses/ap-physics-1"
     },
     "ib": {
       "topic": "Forces and momentum",
       "unit": "A. Space, time and motion",
       "level": "SL",
-      "verified": false
+      "verified": false,
+      "source": null
     },
-    "ngss": {
-      "topic": "Forces and Motion",
-      "unit": "PS2 Motion and Stability",
-      "level": "HS",
-      "verified": false
-    },
+    "ngss": null,
     "cbse": {
-      "topic": "Mechanical Properties of Solids",
-      "unit": "Properties of Bulk Matter",
+      "topic": "Chapter–8: Mechanical Properties of Solids",
+      "unit": "Unit VII: Properties of Bulk Matter",
       "level": "Class 11",
-      "verified": false
+      "verified": false,
+      "source": "https://cbseacademic.nic.in/web_material/CurriculumMain26/SrSec/Physics_SrSec_2025-26.pdf"
     },
     "waec": {
       "topic": "Elastic properties of solids: Hooke's law",
       "unit": "Motion",
       "level": "SS1",
-      "verified": false
+      "verified": false,
+      "source": null
     },
     "kcse": {
       "topic": "Hooke's law",
       "unit": "Mechanics",
       "level": "Form 2",
-      "verified": false
+      "verified": false,
+      "source": null
     },
     "caps": null,
     "acara": null

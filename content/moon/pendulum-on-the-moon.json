@@ -12,56 +12,59 @@
       "topic": "Pendulum on the Moon",
       "unit": "Moon & Astronauts",
       "level": "Intermediate",
-      "verified": false
+      "verified": false,
+      "source": null
     },
     "igcse": {
-      "topic": "Physical quantities and measurement techniques",
+      "topic": "1.1 Physical quantities and measurement techniques",
       "unit": "1 Motion, forces and energy",
       "level": "Core",
-      "verified": false
+      "verified": false,
+      "source": "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf"
     },
     "alevel": {
-      "topic": "Simple harmonic oscillations",
+      "topic": "17.1 Simple harmonic oscillations",
       "unit": "17 Oscillations",
       "level": "A Level",
-      "verified": false
+      "verified": false,
+      "source": "https://www.cambridgeinternational.org/Images/664565-2025-2027-syllabus.pdf"
     },
     "gcse": null,
     "ap": {
-      "topic": "Simple Harmonic Motion",
-      "unit": "Oscillations",
+      "topic": "Unit 7: Oscillations",
+      "unit": "AP Physics 1",
       "level": "AP Physics 1",
-      "verified": false
+      "verified": false,
+      "source": "https://apcentral.collegeboard.org/courses/ap-physics-1"
     },
     "ib": {
       "topic": "Simple harmonic motion",
       "unit": "C. Wave behaviour",
       "level": "SL",
-      "verified": false
+      "verified": false,
+      "source": null
     },
-    "ngss": {
-      "topic": "Forces and Motion",
-      "unit": "PS2 Motion and Stability",
-      "level": "HS",
-      "verified": false
-    },
+    "ngss": null,
     "cbse": {
-      "topic": "Oscillations",
-      "unit": "Oscillations and Waves",
+      "topic": "Chapter–13: Oscillations",
+      "unit": "Unit X: Oscillations and Waves",
       "level": "Class 11",
-      "verified": false
+      "verified": false,
+      "source": "https://cbseacademic.nic.in/web_material/CurriculumMain26/SrSec/Physics_SrSec_2025-26.pdf"
     },
     "waec": {
       "topic": "Simple harmonic motion",
       "unit": "Motion",
       "level": "SS2",
-      "verified": false
+      "verified": false,
+      "source": null
     },
     "kcse": {
       "topic": "Linear motion: determining g with a simple pendulum",
       "unit": "Mechanics",
       "level": "Form 3",
-      "verified": false
+      "verified": false,
+      "source": null
     },
     "caps": null,
     "acara": null

@@ -24,5 +24,5 @@ export function topicCard(s: TopicSummary): HTMLElement {
         h('span.tags',
           s.practical ? h('span.tag.practical', t('subject.practical')) : null,
           !s.reviewed ? h('span.tag.draft', t('topic.draft')) : null,
-          m && !m.verified && import.meta.env.DEV ? h('span.tag.dev', t('subject.unverified')) : null))));
+          m && !m.verified && import.meta.env.DEV ? h('span.tag.dev', b.id !== 'international' && !m.source ? t('subject.unsourced') : t('subject.unverified')) : null))));
 }

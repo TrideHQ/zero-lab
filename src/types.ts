@@ -1,7 +1,7 @@
 export type Text = { en: string } & Record<string, string>;
 export type State = Record<string, number | boolean | string>;
 
-export interface Mapping { topic: string; unit?: string; level: string; verified: boolean }
+export interface Mapping { topic: string; unit?: string; level: string; verified: boolean; source: string | null }
 export interface Board { id: string; name: string; hint: string; levels: string[]; rubric: string }
 
 export interface TopicSummary {
