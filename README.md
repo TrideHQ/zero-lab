@@ -39,7 +39,7 @@ Useful URL switches: `?board=ap`, `?lang=fr`, `?lite=1`, `?partner=rules`, and i
 - **Topics are data.** `content/<subject>/<slug>.json`, validated against `content/schema.json`. Each card's `modelState` drives the 3D model. `curricula` maps the topic to each board's own topic name and level (`null` when a board does not list it).
 - **Templates** (`src/templates/*`): `ray-optics`, `circuit-board`, `forces-rig`, `sky-moon`. Each exposes state, named parts for "point at" checks, drag handles, controls, and renders its own diagrams.
 - **Practicals** (`practicals/*.json` + `src/practicals`): the engine holds readings, derives the table, fits the line by least squares and detects issues. `marks.ts` computes every mark from `practicals/rubric.json`.
-- **Lab partner** (`src/partner`, `api/`): the server receives numbers and issue codes only, never names or free text. The model's reply is validated: fixed tip list, no marks, and any number it writes must already be in the context. Otherwise the rules answer.
+- **Lab partner** (`src/partner`, `server/api/`): the server receives numbers and issue codes only, never names or free text. The model's reply is validated: fixed tip list, no marks, and any number it writes must already be in the context. Otherwise the rules answer.
 - **XR** (`src/xr`): pinch + ray panels and direct handle grabbing for headsets; hit-test placement with the normal HTML UI for phone AR.
 
 ## Checks

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { ISSUES, ISSUE_TIP, TIPS, parseModelJson, sanitizeContext, validateSay, type PartnerContext } from '../src/partner/schema.ts';
 import { pickIssue, ruleSay } from '../src/partner/rules.ts';
-import { handlePartner } from '../api/partner-core.ts';
+import { handlePartner } from '../server/api/partner-core.ts';
 
 const rubric = JSON.parse(readFileSync(new URL('../practicals/rubric.json', import.meta.url), 'utf8'));
 const en = JSON.parse(readFileSync(new URL('../src/locales/en.json', import.meta.url), 'utf8'));

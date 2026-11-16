@@ -14,5 +14,5 @@
     "skipLibCheck": true,
     "noUnusedLocals": false
   },
-  "include": ["src", "api", "server", "scripts", "tests", "vite.config.ts"]
+  "include": ["src", "server", "scripts", "tests", "vite.config.ts"]
 }

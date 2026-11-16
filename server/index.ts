@@ -3,8 +3,8 @@
 import { createServer, type ServerResponse } from 'node:http';
 import { createReadStream, existsSync, statSync } from 'node:fs';
 import { extname, join, normalize, resolve } from 'node:path';
-import { handlePartner } from '../api/partner-core.ts';
-import { llmConfigured } from '../api/llm.ts';
+import { handlePartner } from './api/partner-core.ts';
+import { llmConfigured } from './api/llm.ts';
 
 const ROOT = resolve(import.meta.dirname, '..');
 const DIST = join(ROOT, 'dist');

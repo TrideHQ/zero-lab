@@ -11,10 +11,14 @@ Topic names are copied from each board's official public syllabus (topic names o
 - **IB DP Physics**: _no official document could be read; names are from memory and unsourced_
 - **NGSS (US high school)**: https://www.nextgenscience.org/dci-arrangement/hs-ps2-motion-and-stability-forces-and-interactions, https://www.nextgenscience.org/dci-arrangement/hs-ps4-waves-and-their-applications-technologies-information-transfer, https://www.nextgenscience.org/dci-arrangement/ms-ess1-earths-place-universe
 - **CBSE (India)**: https://cbseacademic.nic.in/web_material/CurriculumMain26/Sec/Science_Sec_2025-26.pdf, https://cbseacademic.nic.in/web_material/CurriculumMain26/SrSec/Physics_SrSec_2025-26.pdf
-- **WAEC/NECO (West Africa)**: _no official document could be read; names are from memory and unsourced_
+- **WASSCE (WAEC/NECO)**: _no official document could be read; names are from memory and unsourced_
 - **KCSE (Kenya)**: _no official document could be read; names are from memory and unsourced_
 - **CAPS (South Africa)**: https://www.education.gov.za/Portals/0/CD/National%20Curriculum%20Statements%20and%20Vocational/CAPS%20FET%20%20PHYSICAL%20SCIENCE%20WEB.pdf
 - **Australian Curriculum**: _no official document could be read; names are from memory and unsourced_
+
+## Note on West Africa
+
+WAEC and NECO are examining bodies, so this entry follows the WASSCE **exam syllabus**, not a teaching curriculum. No copy on an official WAEC domain could be read (expired certificates, missing pages), so these names are unsourced. Textbook chapter titles are deliberately not used.
 
 ## Not covered
 
@@ -28,14 +32,14 @@ Topics a board does not list are left unmapped (shown under "More to explore") r
 - **IB DP Physics** (11 of 14 mapped): laser-to-the-moon, phases-of-the-moon, lenses
 - **NGSS (US high school)** (4 of 14 mapped): pendulum-on-the-moon, hookes-law, lenses, moments, ohms-law, reflection, refraction, series-parallel, simple-pendulum, total-internal-reflection
 - **CBSE (India)** (13 of 14 mapped): phases-of-the-moon
-- **WAEC/NECO (West Africa)** (12 of 14 mapped): laser-to-the-moon, phases-of-the-moon
+- **WASSCE (WAEC/NECO)** (12 of 14 mapped): laser-to-the-moon, phases-of-the-moon
 - **KCSE (Kenya)** (12 of 14 mapped): laser-to-the-moon, phases-of-the-moon
 - **CAPS (South Africa)** (7 of 14 mapped): pendulum-on-the-moon, phases-of-the-moon, hookes-law, lenses, moments, reflection, simple-pendulum
 - **Australian Curriculum** (7 of 14 mapped): laser-to-the-moon, pendulum-on-the-moon, phases-of-the-moon, hookes-law, lenses, moments, simple-pendulum
 
 ## Mapping table
 
-| Topic | Cambridge IGCSE | Cambridge A-Level | UK GCSE | AP Physics 1/2 (US) | IB DP Physics | NGSS (US high school) | CBSE (India) | WAEC/NECO (West Africa) | KCSE (Kenya) | CAPS (South Africa) | Australian Curriculum |
+| Topic | Cambridge IGCSE | Cambridge A-Level | UK GCSE | AP Physics 1/2 (US) | IB DP Physics | NGSS (US high school) | CBSE (India) | WASSCE (WAEC/NECO) | KCSE (Kenya) | CAPS (South Africa) | Australian Curriculum |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | hammer-and-feather | 1.2 Motion | 2.1 Equations of motion | 4.5.6.1.5 Acceleration | Unit 1: Kinematics | Gravitational fields *(unsourced)* | PS2.B: Types of Interactions | Chapter–7: Gravitation | Gravitational field *(unsourced)* | Linear motion: free fall *(unsourced)* | Vertical projectile motion in one dimension (1D) | Gravity and motion *(unsourced)* |
 | laser-to-the-moon | 3.3 Electromagnetic spectrum | 7.4 Electromagnetic spectrum | 4.6.2.1 Types of electromagnetic waves | Unit 14: Waves, Sound, and Physical Optics | — | PS4.B: Electromagnetic Radiation | Chapter–8: Electromagnetic Waves | — | — | Electromagnetic radiation | — |

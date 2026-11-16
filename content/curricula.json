@@ -10,7 +10,7 @@
     { "id": "ib", "name": "IB DP Physics", "hint": "First assessment 2025", "levels": ["SL", "HL"], "rubric": "generic" },
     { "id": "ngss", "name": "NGSS (US high school)", "hint": "Disciplinary core ideas", "levels": ["HS", "MS"], "rubric": "generic" },
     { "id": "cbse", "name": "CBSE (India)", "hint": "Classes 10–12", "levels": ["Class 10", "Class 11", "Class 12"], "rubric": "generic" },
-    { "id": "waec", "name": "WAEC/NECO (West Africa)", "hint": "SS1–SS3", "levels": ["SS1", "SS2", "SS3"], "rubric": "waec" },
+    { "id": "waec", "name": "WASSCE (WAEC/NECO)", "hint": "Exam syllabus, West Africa", "levels": ["SS1", "SS2", "SS3"], "rubric": "waec" },
     { "id": "kcse", "name": "KCSE (Kenya)", "hint": "Forms 1–4", "levels": ["Form 1", "Form 2", "Form 3", "Form 4"], "rubric": "generic" },
     { "id": "caps", "name": "CAPS (South Africa)", "hint": "Physical Sciences Grades 10–12", "levels": ["Grade 10", "Grade 11", "Grade 12"], "rubric": "generic" },
     { "id": "acara", "name": "Australian Curriculum", "hint": "Senior Physics Units 1–4", "levels": ["Unit 1", "Unit 2", "Unit 3", "Unit 4"], "rubric": "generic" }

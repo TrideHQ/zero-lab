@@ -7,7 +7,7 @@
 //    is re-validated against the new context before it is reused, so it can never carry a
 //    number from someone else's readings.
 import { chat, llmConfigured, type LlmEnv } from './llm.ts';
-import { SYSTEM_PROMPT, checkSay, parseModelJson, sanitizeContext, userPrompt, type PartnerContext, type PartnerSay } from '../src/partner/schema.ts';
+import { SYSTEM_PROMPT, checkSay, parseModelJson, sanitizeContext, userPrompt, type PartnerContext, type PartnerSay } from '../../src/partner/schema.ts';
 
 export interface PartnerResult { status: number; body: Record<string, unknown>; log: Record<string, unknown> }
 
