@@ -9,10 +9,11 @@ const out = process.argv[2] ?? 'demo';
 const base = process.env.BASE ?? 'http://localhost:5173';
 if (!process.env.ONLY) rmSync(`${out}/raw`, { recursive: true, force: true });
 mkdirSync(`${out}/raw`, { recursive: true });
-// GPU=1: a real window (under Xvfb) rendered through Vulkan on the machine's GPU. Otherwise software rendering.
+// GPU=1: headless Chrome rendering through ANGLE on Vulkan on the machine's GPU (needs the NVIDIA Vulkan ICD;
+// on a bare CUDA image: apt install libgl1 libglx0 libegl1 libx11-6 libxext6, VK_ICD_FILENAMES=/etc/vulkan/icd.d/nvidia_icd.json).
 const GPU = process.env.GPU === '1';
 const browser = await chromium.launch(GPU
-  ? { headless: false, args: ['--use-angle=vulkan', '--enable-features=Vulkan', '--ignore-gpu-blocklist', '--enable-gpu-rasterization', '--no-sandbox', '--window-position=0,0'] }
+  ? { args: ['--use-gl=angle', '--use-angle=vulkan', '--enable-features=Vulkan', '--ignore-gpu-blocklist', '--no-sandbox'] }
   : { args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
 {
   const probe = await browser.newPage();
