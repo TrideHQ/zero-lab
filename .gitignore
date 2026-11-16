@@ -8,3 +8,5 @@ tmp
 
 demo/*.mp4
 demo/raw
+public/demo/*.mp4
+.env*
